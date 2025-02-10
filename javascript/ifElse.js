@@ -10,19 +10,23 @@ const prompt = require("prompt-sync")();
 let edad = parseInt(prompt("Introduce tu edad: "));
 if (edad < 12) {
     console.log ("Eres un niño");
-} else if (edad >= 12 && edad <= 17){
+} else if (edad <= 17){
     console.log ("Eres un adolescente")
 } else {
     console.log("Eres un adulto")
 }
 
 /* o también
-if ...
+if (edad < 12) {
+    console.log ("Eres un niño");
 } else {
     if (edad <= 17) {
         console.log("Adolescente");
-   } 
-        ...*/
+   } else {
+    console.log("Eres un adulto")
+    }
+}
+...*/
 
 /*Ejercicio 2: Determinar un descuento
 Crea un programa que solicite el importe de una compra.
@@ -35,7 +39,7 @@ let importe = prompt("Introduce el importe: ");
 if(importe>=100){
     console.log("el descuento es del 20%")
 } else {
-    if (importe<100 && importe>=50){
+    if (importe >= 50){
         console.log("el descuento es del 10%")
     }
     else {
