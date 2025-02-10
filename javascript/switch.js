@@ -18,6 +18,8 @@ switch (tipo){
     case "camion":
         console.log("más de 4 ruedas");
         break;
+    default:
+        console.log("El tipo de vehículo no es válido");
 }
 
 /*Ejercicio 2: Meses del año
@@ -65,7 +67,7 @@ switch (num){
         console.log("Diciembre");
         break;
     default:
-        console.log("El número no corresponde a ningún mes")    
+        console.log("El número no corresponde a ningún mes");  
 }
 
 /*Ejercicio 3: Clasificación de frutas
