@@ -26,7 +26,7 @@ if (cadena1.toLowerCase == cadena2.toLowerCase) {
 let longitudmin = 3;
 let longitudmax = 10;
 if (cadena1.length >= longitudmin && cadena1.length <= longitudmax) {
-    console.log (`la longitud de la cadena ${"cadena1"} está entre ${longitudmin} y ${longitudmax} caracteres`)
+    console.log (`la longitud de la cadena "${cadena1}" está entre ${longitudmin} y ${longitudmax} caracteres`)
 } else {
     console.log(`la cadena "${cadena1}" no tiene la longitud requerida`)
 }
