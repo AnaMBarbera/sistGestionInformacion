@@ -1,20 +1,17 @@
 
-for (let n = 1; n <= 5; n++) {
-    console.log(n);
-}
-console.log(" ");
-
 /* Ejercicio 1: Imprimir un asterisco
-Usa un bucle para imprimir un * (*) en 10 veces. Resuelve este ejercicio utilizando los tres tipos de bucles: for, while y do-while. */
+Usa un bucle para imprimir un * (*) en n veces. Resuelve este ejercicio utilizando los tres tipos de bucles: for, while y do-while. */
+const n = 5;
+
 console.log("bucle for ");
-for (let i = 1; i<=10; i++){
+for (let i = 1; i<=n; i++){
     console.log("*");
 }
 //para averiguar el valor de i fuera del bucle debemos inicializarla fuera igual que en los bucles while y do-while
 
 console.log("bucle while");
 let j = 1;
-while (j<=10){
+while (j<=n){
     console.log("*");
     j++;
 }
@@ -26,7 +23,7 @@ let k = 1;
 do {
     console.log("*");
     k++;
-} while (k<=10)
+} while (k<=n)
     console.log(`Se han imprimido ${k-1} asteriscos`);
 
 console.log(" ");
