@@ -37,4 +37,34 @@ do {
     k++
 } while (k<=10);
 
+/*Reto adicional
+Modifica el programa tenga dos constantes MIN y MAX. Por ejemlo, si MIN = 5 y MAX = 15, el programa mostrará la tabla de multiplicar del 5 al 15.*/
 
+const MIN = 5;
+const MAX = 15;
+
+console.log("bucle for")
+for (let i = MIN; i<=MAX; i++) {
+    let mult = N * i;
+    console.log(`${N} x ${i} = ${mult}`)
+}
+
+
+console.log("bucle while");
+mult = 0;
+j = MIN;
+while (j<=MAX){
+    mult = N * j;
+    console.log(`${N} x ${j} = ${mult}`);
+    j++
+}
+
+
+console.log("bucle do-while");
+mult = 0;
+k = MIN;
+do {
+    mult = N * k;
+    console.log(`${N} x ${k} = ${mult}`);
+    k++
+} while (k<=MAX);
