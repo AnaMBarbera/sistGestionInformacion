@@ -68,3 +68,10 @@ do {
     console.log(`${N} x ${k} = ${mult}`);
     k++
 } while (k<=MAX);
+
+
+console.log("bucle for (i=1)")
+for (let i = 1; i<=(MAX-MIN)+1; i++) {
+    let mult = N * (i+(MIN-1));
+    console.log(`${N} x ${i+(MIN-1)} = ${mult}`)
+}

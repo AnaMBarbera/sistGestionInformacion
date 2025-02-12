@@ -9,8 +9,11 @@ for (let i = 1; i <= 100; i++) {
 }
 console.log("")
 console.log("bucle while");
-i = 1;
-while (i <=100){
+//ponemos constansten para mejores prácticas
+let MAX = 100;
+let MIN = 1;
+i = MIN;
+while (i <=MAX){
     if (i%2==0){
         console.log (i)
     }
@@ -23,11 +26,29 @@ const prompt = require("prompt-sync")();
 let N = parseInt(prompt("Introduce un número entre 2 y 100: "));
 
 console.log("bucle for");
+let salida = "";
 for (let i = 1; i <= N; i++) {
-    if (i%2==0){
-        console.log (i)
+    if (i%2==0 && i!=N){
+        salida = salida +i + ", "; //para colocarlos en la misma línea
+        
+    } if (i==N) {
+        salida = salida +i;
     }
 }
+console.log (salida);
+
+// o también
+console.log("bucle for");
+salida = "";
+for (let i = MIN; i <= N; i++) {
+    if (i%2==0){
+        salida += (salida.length == "")? +i : ", "+i; //si la cadena está vacía no empieza con ,
+        
+    }     
+}
+console.log (salida);
+
+
 console.log("")
 console.log("bucle while");
 i = 1;
