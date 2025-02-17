@@ -39,3 +39,46 @@ console.log("Mes:", ahora.getMonth() + 1); // Se suma 1 porque es 0-indexado
 console.log("Día del mes:", ahora.getDate());
 console.log("Hora actual:", ahora.getHours(), ":", ahora.getMinutes());
 console.log("Formato local:", ahora.toLocaleDateString());
+
+
+/*Ejercicio 2: Comparar dos fechas
+
+    Solicita al usuario dos fechas en formato YYYY-MM-DD.
+    Compara ambas fechas e indica cuál es anterior o si son iguales.*/
+
+const prompt = require("prompt-sync")();
+
+let fecha1 = new Date(prompt("Introduce la primera fecha (YYYY-MM-DD): "));
+let fecha2 = new Date(prompt("Introduce la segunda fecha (YYYY-MM-DD): "));
+
+if (fecha1 < fecha2) {
+    console.log("La primera fecha es anterior.");
+} else if (fecha1 > fecha2) {
+    console.log("La segunda fecha es anterior.");
+} else {
+    console.log("Ambas fechas son iguales.");
+}
+
+/*Ejercicio 3: Calcular días entre dos fechas
+    Solicita al usuario dos fechas en formato YYYY-MM-DD. (utilizamos la fechas del ejercicio anterior)
+    Calcula la diferencia en días entre ambas fechas. */
+
+    let diferencia = Math.abs(fecha2 - fecha1); // Diferencia en milisegundos
+    let dias = diferencia / (1000 * 60 * 60 * 24); // Convertir a días
+    
+    console.log("Diferencia en días:", dias);
+      
+/*Ejercicio 4: Crear fecha a partir de valores
+    Solicita al usuario que introduzca el año, mes y día por separado.
+    Crea un objeto Date con esos valores y muestra la fecha en formato local.*/
+
+    let aaaa = parseInt(prompt("Introduce el año: "));
+    let mes = parseInt(prompt("Introduce el mes (1-12): ")) - 1; // Restar 1 porque es 0-indexado
+    let dia = parseInt(prompt("Introduce el día: "));
+    
+    let fecha = new Date(aaaa, mes, dia);
+    console.log("Fecha creada:", fecha.toLocaleDateString());
+
+
+
+
