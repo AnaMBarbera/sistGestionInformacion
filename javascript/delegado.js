@@ -59,3 +59,32 @@ let resultadosFinales = candidatos.map((nombre, i) => ({ nombre, votos: conteoVo
 /*.sort((a, b) => b.votos - a.votos) ordena el array de objetos resultadosFinales en orden descendente según el número de votos. Es decir, los candidatos con más votos aparecerán primero.*/
 
 console.log("Resultados de la elección:", resultadosFinales);
+
+/*// nuevas formas
+let cantidadvotos = votos.filter(voto => voto ===1).length; //solo quiero los votos correspondientes al candidato 1 (con .length me dice la cantidad)
+
+// esto equivale a
+conteo.map((voto, index) => voto + votos.filter(v => v === index + 1 ).length);
+console.log(conteo); */
+
+
+conteo=[0,0,0,0,0]
+for (let voto of votos){
+    conteo [voto -1]++;
+}
+console.log(`Resultados con for of ${conteo}`);
+
+// conteo.forEach((voto, index) = conteo[index] = votos.filter(v => v === index+1).length);
+
+
+let ordenados =[]; 
+while (conteo.length>0){
+    let max = Math.max(...conteo);
+    let index = conteo.indexOf(max);
+    console.log(`El candidato ${candidatos[index]} ha obtenido ${max} votos`);
+    ordenados.push (candidatos[index]);
+    conteo.splice (index, 1);
+    candidatos.splice(index, 1)
+    
+}
+console.log(`Resultado: ${ordenados}`);

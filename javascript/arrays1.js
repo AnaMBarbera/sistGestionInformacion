@@ -161,20 +161,41 @@ console.log(intervalo2);
     let cambios = [1.1, 140.0, 0.85];  // Cambios respecto al euro: [dólares, yenes, libras]
 
     // Pedir al usuario la moneda a la que quiere cambiar (1 - dólares, 2 - yenes, 3 - libras)
-    let seleccion = parseInt(prompt("¿A qué moneda deseas cambiar los precios?\n1 - Dólares\n2 - Yenes\n3 - Libras"));
+    let seleccion = parseInt(prompt("¿A qué moneda deseas cambiar los precios?\n1 - Dólares\n2 - Yenes\n3 - Libras :")); 
+        // Verificamos que la selección sea válida (1, 2 o 3)   
+        if (seleccion >= 1 && seleccion <= 3) {
+            // Convertimos los precios a la moneda seleccionada usando el tipo de cambio correspondiente
+            let preciosConvertidos = preciosEuros.map(precio => precio * cambios[seleccion - 1]);
 
-    // Verificamos que la selección sea válida (1, 2 o 3)
-    if (seleccion >= 1 && seleccion <= 3) {
-        // Convertimos los precios a la moneda seleccionada usando el tipo de cambio correspondiente
-        let preciosConvertidos = preciosEuros.map(precio => precio * cambios[seleccion - 1]);
+            // Mostrar los precios convertidos
+            console.log(`Precios en la moneda seleccionada (opción ${seleccion}): `);
+            console.log(preciosConvertidos);
+        } else {
+            // Si la selección no es válida, mostrar un mensaje de error
+            console.log("Selección no válida. Por favor elige entre 1, 2 o 3.");
+        }
+   
 
-        // Mostrar los precios convertidos
-        console.log(`Precios en la moneda seleccionada (opción ${seleccion}): `);
-        console.log(preciosConvertidos);
-    } else {
-        // Si la selección no es válida, mostrar un mensaje de error
-        console.log("Selección no válida. Por favor elige entre 1, 2 o 3.");
+
+
+    //otra forma
+    const CAMBIO_DOLAR= 1.1;
+    function cambioDolar(precio){
+        return precio * CAMBIO_DOLAR;
     }
+    let preciosDolares3 = preciosEuros.map(cambioDolar);
+    console.log ("Con funcion: ", preciosDolares3)
+
+    //con funcion flecha
+    let preciosDolares2= preciosEuros.map(precio => precio*CAMBIO_DOLAR);    
+    console.log ("con funcion flecha: ", preciosDolares2)
+
+    //con for_of
+    let resultado = [];
+    for (valor of preciosEuros){        
+        resultado.push(valor*CAMBIO_DOLAR);
+    }
+    console.log("Utilizando for_of: ", resultado)
        
 
 
@@ -185,7 +206,12 @@ Dado un array de nombres, usa forEach() para mostrarlos en la consola.
     c. Modifica el código para conseguir un array con el orden inverso. */
 
     nombres = ["Ana", "Luis", "Pedro", "María", "Carlos"];
-    nombres.forEach(nombre => console.log(nombre));
+    nombres.forEach((nombre,i) => {
+        console.log(`${nombre} está en la posición ${i}`)
+        console.log(nombre.toUpperCase());
+        console.log(`${nombre} [${nombre.length}]`)
+    }
+    );
 
     for (let nombre of nombres){
         console.log(nombre.toUpperCase());
@@ -194,6 +220,9 @@ Dado un array de nombres, usa forEach() para mostrarlos en la consola.
     for (let nombre of nombres){
         console.log(`${nombre} [${nombre.length}]`)
     }
+
+    let nombres_low = nombres.map(nombre => nombre.toLowerCase());
+    console.log(nombres_low)
 
     let nombresReverso = nombres;
     nombresReverso.reverse();
@@ -208,8 +237,7 @@ Dado un array de nombres, usa forEach() para mostrarlos en la consola.
 
     let colores = ["Rojo", "Verde", "Azul"];
     colores.splice(1, 1, "Amarillo");
-    console.log(colores); // ["Rojo", "Amarillo", "Azul"]
-    
+    console.log(colores); // ["Rojo", "Amarillo", "Azul"]    
         let colorNuevo = prompt("Escribe un nuevo color: ");
         let posicionColor = prompt("¿En que posición lo quieres? [1,2,3,4]: ");
         if (colores.includes(colorNuevo)){
@@ -218,6 +246,77 @@ Dado un array de nombres, usa forEach() para mostrarlos en la consola.
             colores.splice(posicionColor-1,0,colorNuevo);
             console.log(colores);
         }
+
+/*
+        do{
+            let colorNuevo = prompt("Escribe un nuevo color: ");
+            if (colores.includes(colorNuevo)){
+                console.log("Ese color está repetido")
+            }
+        } while (colores.includes(colorNuevo));
+        colores.splice(posicionColor-1,0,colorNuevo);
+        console.log(colores);
+*/
+let color="";
+let opcion = prompt ("Ingrese una acción ('a'gregar, 'e'liminar, 'l'istar): ");
+switch(opcion){
+    case 'a':
+        if (colores.includes(color)) {
+            console.log ("el color ya existe");            
+        } else {
+            colores.push(color);
+            console.log("color agregado");
+            console.log(colores);
+        }
+        break;
+
+    case 'e':
+        if (colores.indexOf(color)===-1) {
+            console.log ("el color no existe");            
+        } else {
+            colores.splice(colores.indexOf(color), 1);
+            console.log("color eliminado");
+            console.log(colores);
+        }
+        break;
+    case 'l':
+        colores.forEach(color=>{console.log(color)});        
+        break;
+    default:
+        console.log("opción inválida");    
+}
+//en lugar de colocar console.log(colores) en cada opción lo podemos colocar después del switch
+
+//utilizando indexOf crear un array con todas las posiciones de un colot
+    colores = ["rojo", "verde", "rojo", "azul", "amarillo", "rojo"];
+    const SEARCH = "rojo";
+    let posiciones = []; //0,2,5
+    let index = colores.indexOf(SEARCH); // Primer índice encontrado
+
+    while (index !== -1) {
+        posiciones.push(index);
+        index = colores.indexOf(SEARCH, index + 1); // Buscar siguiente aparición después de la última posición
+    }    
+    console.log(posiciones);
+
+    let hayMas = true; //variable bandera para el bucle while
+    let indice = -1; //se inicializa en -1 porque no queremos que indexOf empiece a buscar desde el primer índice del array (es decir, el valor -1 significa que no se ha encontrado ninguna coincidencia aún).
+    while (hayMas) {
+        indice = colores.indexOf(SEARCH, indice + 1);
+        //Usamos el método indexOf para buscar la siguiente aparición de SEARCH en el array colores. El parámetro de indexOf (indice + 1) le dice a indexOf que comience la búsqueda justo después del índice actual (indice + 1). Es decir, indexOf no empezará desde el principio del array, sino desde donde terminó la última búsqueda.
+        if (indice === -1){            
+            haymas = false;
+        }
+        //Si indexOf no encuentra la próxima coincidencia, devolverá -1. En ese caso, indice será -1, lo que indica que ya no hay más coincidencias en el array. Entonces, se establece haymas = false, lo que hará que el ciclo while termine.
+        else {
+            posiciones.push(indice);
+        }
+       // Si indice no es -1, significa que se ha encontrado una coincidencia, por lo que se agrega ese índice al array posiciones.
+    }
+    console.log(posiciones);
+
+
+
      
 
   /*Ejercicio 8: Uso de sort() y reverse()
@@ -228,6 +327,12 @@ Dado un array de nombres, usa forEach() para mostrarlos en la consola.
     
     palabras.reverse();
     console.log(palabras);
+
+
+    
+
+
+
     
   /*Ejercicio 9: Matriz bidimensional
     Crea una matriz 3x3 e imprime todos sus elementos con un for anidado. */
