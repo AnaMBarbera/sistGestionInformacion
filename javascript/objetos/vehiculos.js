@@ -56,12 +56,20 @@ vehiculo.frenar(20);
 
 
 // otra forma
-function vehiculos (matricula, marca, modelo){
+
+function Conductor (nombre, dni, carne){
+    this.nombre = nombre;
+    this.dni = dni;
+    this.carne = carne;
+}
+
+function vehiculos (matricula, marca, modelo, conductor){
     this.matricula = matricula;
     this.marca = marca;
     this.modelo = modelo;
     this.velocidad = 0;
     this.estado = false;
+    this.conductor = conductor;
     this.arrancar = function(){
         if(!this.estado){
             this.estado=true;
@@ -87,11 +95,17 @@ function vehiculos (matricula, marca, modelo){
         if(this.velocidad <0) this.velocidad = 0;
         return this.velocidad;
     }
+    this.mostrarConductor = function(){        
+     return `${this.conductor.nombre} Dni ${this.conductor.dni} Carne ${this.conductor.carne}`;
+    }
+
 }
 
-let coche1 = new vehiculos("25698KLO", "DACIA", "SANDERO");
+let coche1 = new vehiculos("25698KLO", "DACIA", "SANDERO", new Conductor ("Pepe", "123", "B1"));
+coche1.mostrarConductor();
 console.log(`${coche1.marca} ${coche1.modelo} ${coche1.matricula}`);
 coche1.arrancar();
 coche1.parar();
 console.log("Velocidad: "+coche1.acelerar(30));
 console.log("Velocidad: "+coche1.frenar(20));
+console.log(coche1.mostrarConductor());
