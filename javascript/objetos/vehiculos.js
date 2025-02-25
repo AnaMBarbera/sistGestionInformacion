@@ -55,7 +55,7 @@ vehiculo.frenar(20);
 
 
 
-// otra forma
+// Con constructores lo que creamos es una "clase" que puede englobar varios objetos con los mismos atributos
 
 function Conductor (nombre, dni, carne){
     this.nombre = nombre;
@@ -100,9 +100,9 @@ function vehiculos (matricula, marca, modelo, conductor){
     }
 
 }
-
+//podemos meter un objeto (new Conductor) dentro de otro (new vehiculos)
 let coche1 = new vehiculos("25698KLO", "DACIA", "SANDERO", new Conductor ("Pepe", "123", "B1"));
-coche1.mostrarConductor();
+
 console.log(`${coche1.marca} ${coche1.modelo} ${coche1.matricula}`);
 coche1.arrancar();
 coche1.parar();
