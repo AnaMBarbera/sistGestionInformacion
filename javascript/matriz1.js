@@ -1,17 +1,12 @@
-
-
 let A = [
     [1, 2],
     [3, 4]
 ];
-
 let B = [
     [5, 6],
     [7, 8]
 ];
-
 let resultado =[];
-
 
 for (let i = 0; i < A.length; i++) {
     resultado[i] = [];
