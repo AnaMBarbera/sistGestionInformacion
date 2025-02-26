@@ -58,25 +58,30 @@ class Animal {
         this.nombre = nombre;
         this.edad = edad;
     }   
-    presentarse() { throw "Método no implementado"; } // depende de la clase hija    
+    presentarse() { return console.log(`Soy ${this.nombre} y tengo ${this.edad} años`); }  
 }
 
 class Gato extends Animal {
     constructor(nombre, edad) {
-        super(nombre, edad);       
+        super(nombre, edad);
     }
-    presentarse() { return console.log(`Soy un gato me llamo ${this.nombre} y tengo ${this.edad} años`); }    
+    maullar() { return console.log("¡miaaaauuuu!")}       
 }
 
 class Perro extends Animal {
     constructor(nombre, edad) {
         super(nombre, edad);       
     }  
-    presentarse() { return console.log(`Soy un perro me llamo ${this.nombre} y tengo ${this.edad} años`); }    
+    ladrar() { return console.log("¡guau! ¡guau!")}
 }
 
 
 let gato1 = new Gato('Tobi', 10);
 gato1.presentarse();
+gato1.maullar();
 let perro1 = new Perro('Manolo', 8);
+perro1.ladrar();
 perro1.presentarse();
+
+//////////////////////////
+
