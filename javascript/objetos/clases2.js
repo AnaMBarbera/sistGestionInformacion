@@ -49,3 +49,34 @@ console.log("Área de :", c.nombre, c.area());
 console.log("Perímetro de :", c.nombre, c.perimetro());
 console.log("Área de :", t.nombre, t.area());
 console.log("Perímetro de :", t.nombre, t.perimetro());
+
+//////////////////////////
+
+
+class Animal {
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }   
+    presentarse() { throw "Método no implementado"; } // depende de la clase hija    
+}
+
+class Gato extends Animal {
+    constructor(nombre, edad) {
+        super(nombre, edad);       
+    }
+    presentarse() { return console.log(`Soy un gato me llamo ${this.nombre} y tengo ${this.edad} años`); }    
+}
+
+class Perro extends Animal {
+    constructor(nombre, edad) {
+        super(nombre, edad);       
+    }  
+    presentarse() { return console.log(`Soy un perro me llamo ${this.nombre} y tengo ${this.edad} años`); }    
+}
+
+
+let gato1 = new Gato('Tobi', 10);
+gato1.presentarse();
+let perro1 = new Perro('Manolo', 8);
+perro1.presentarse();
