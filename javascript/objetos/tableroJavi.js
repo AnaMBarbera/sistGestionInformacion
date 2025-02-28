@@ -10,7 +10,7 @@ const CELDA_VACIA = "_";
 class Tablero {
     celdas = [];
     // celdas = [ [0,0,0,0], [0,0,X,X] , [0,0,0,0]   ]
- 0
+ 
     //0 0 0
     //0 0 0
     //0 X 0

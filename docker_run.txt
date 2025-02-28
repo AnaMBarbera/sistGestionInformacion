@@ -1,0 +1,13 @@
+    docker run \
+    --detach \
+    --name= docker-mysql \
+    --env="MYSQL_ROOT_PASSWORD=administrador" \
+    --publish 3306:3306 \
+    --volume=c:docker/mysql_conf:/etc/mysql/conf.d \
+    --volume=c:docker/mysql_temp:/tmp
+    --volume=c:docker/mysql_data:/var/lib/mysql \    
+    --restart=unless-stopped \
+    -d mysql/mysql-server:latest
+
+
+     docker run --detach --name= docker-mysql --env="MYSQL_ROOT_PASSWORD=administrador" --publish 3306:3306 --volume=c:\docker\mysql_conf:/etc/mysql/conf.d --volume=c:\docker\mysql_temp:/tmp --volume=c:\docker\mysql_data:/var/lib/mysql --restart=unless-stopped -d mysql/mysql-server:latest
