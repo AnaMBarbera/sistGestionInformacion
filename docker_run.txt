@@ -1,6 +1,6 @@
     docker run \
     --detach \
-    --name= docker-mysql \
+    --name=docker-mysql \
     --env="MYSQL_ROOT_PASSWORD=administrador" \
     --publish 3306:3306 \
     --volume=c:docker/mysql_conf:/etc/mysql/conf.d \
@@ -9,5 +9,31 @@
     --restart=unless-stopped \
     -d mysql/mysql-server:latest
 
+    --------------------------------------------
+     se quitan las / finales y los saltos de líneas
+     cambiar las / por \ en la zona de windows
+    ------------------------------------------------
 
      docker run --detach --name= docker-mysql --env="MYSQL_ROOT_PASSWORD=administrador" --publish 3306:3306 --volume=c:\docker\mysql_conf:/etc/mysql/conf.d --volume=c:\docker\mysql_temp:/tmp --volume=c:\docker\mysql_data:/var/lib/mysql --restart=unless-stopped -d mysql/mysql-server:latest
+
+     ---------------------------------------
+     > docker exec -it basch  //(terminal interactivo, entramos en el contenedor)
+     ------------------------------------
+
+     bash> mysql -uroot -p
+     (contraseña: administrador)
+
+     -----------------------------
+     creamos usuario en mysql
+     -------------------------------
+    CREATE USER 'alumno'@'%' IDENTIFIED BY 'alumnopassword';
+    GRANT ALL PRIVILEGES ON *.* TO 'alumno'@'%' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+
+    exit
+
+    bash> mysql -nalumno -p (el nombre de usuario pegado a la n)
+
+    ---------------------------------------------------------------
+
+    
