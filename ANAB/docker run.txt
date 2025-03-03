@@ -1,0 +1,9 @@
+    docker run \
+    --detach \
+    --name=[nombre_contenedor] \
+    --env="MYSQL_ROOT_PASSWORD=mi_contraseña" \
+    --publish 6603:3306 \
+    --volume=/root/docker/[nombre_contenedor]/conf.d:/etc/mysql/conf.d \
+    --volume=/storage/docker/mysql-data:/var/lib/mysql \
+    --restart=unless-stopped \
+    -d mysql/mysql-server:latest
