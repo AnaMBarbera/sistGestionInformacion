@@ -1,0 +1,14 @@
+[
+  {
+    "codigo": 101,
+    "nombre": "Carlos Pérez",
+    "edad": 35,
+    "sueldo": 2500
+  },
+  {
+    "codigo": 102,
+    "nombre": "Ana López",
+    "edad": 28,
+    "sueldo": 2200
+  }
+]
