@@ -8,13 +8,20 @@ let empleados = JSON.parse(datos); //array de objetos
 
 console.log(empleados);
 
-// para convertirlo en cadena
-//let empl_string = JSON.stringify(empleados);
-//console.log(empl_string);
+//Solicitar al usuario un código de empleado.
+codigo = parseInt(prompt(`Introduce el código del empleado:`));
 
+for (empleado of datos) {
+    console.log(`Código: ${empleado.codigo}, Nombre: ${empleado.nombre}, Edad: ${empleado.edad}, Salario: ${empleado.salario}`);    
+}
 
-/*Solicitar al usuario un código de empleado.
-Mostrar la información del empleado correspondiente.*/
+let indice = -1;
+for (let i = 0; i<datos.length; i++){
+    if (datos [i].codigo == codigo){
+        indice = i;
+    }
+}
+
 
 indice = parseInt(prompt(`Introduce un índice entre 0 y ${empleados.length - 1} para ver un empleado (introduce otro número para salir):`));
 
@@ -58,3 +65,10 @@ if (indice >= 0 && indice < empleados.length) {
 
    console.log(empleados);
 
+
+
+   //METODO 2 ... Buscar con find
+   let empleado = datos.find (empleado => empleado.codigo == codigo);
+   if (empleado != undefined){
+    console.log (`Empleado encontrado: ${}`)
+   }

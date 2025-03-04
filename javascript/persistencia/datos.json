@@ -8,8 +8,8 @@
   {
     "codigo": 102,
     "nombre": "Ana López",
-    "edad": 30,
-    "sueldo": 2200
+    "edad": "30",
+    "sueldo": "2800"
   },
   {
     "codigo": 103,

@@ -1,0 +1,8 @@
+
+docker exec -it docker-mysql bash
+mysql uroot -p
+----------------
+docker exec -it docker-mysql mysql -uroot -p
+select mysql.user.user, mysql.user.host from mysql.user;
+Grant all privileges on *.* to 'alumno'@'%' with grant option;
+-------------------

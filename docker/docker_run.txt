@@ -7,7 +7,11 @@
     --volume=c:docker/mysql_temp:/tmp
     --volume=c:docker/mysql_data:/var/lib/mysql \    
     --restart=unless-stopped \
-    -d mysql/mysql-server:latest
+    -d mysql/mysql-server:latest 
+
+    ----------PARA LINUS ------------------
+
+    docker run --detach --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=administrador" --publish 6606:3306 --volume=/home/ana/docker/mysql_conf:/etc/mysql/conf.d --volume=/home/ana/docker/mysql_temp:/tmp --volume=/home/ana/docker/mysql_data:/var/lib/mysql --restart=unless-stopped mysql/mysql-server:latest
 
     --------------------------------------------
      se quitan las / finales y los saltos de líneas
