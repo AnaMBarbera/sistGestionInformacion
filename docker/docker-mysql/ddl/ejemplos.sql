@@ -1,3 +1,4 @@
+show databases;
 select database();
 create database temp;
 use temp;
@@ -49,12 +50,61 @@ create table tabla3(
 );
 
 
+//-------------------------------
 
+create table temp1(
+    id int,
+    id2 int,   
+    nombre varchar(100),
+    primary key (id, id2)  
+)
+
+create table temp2(
+    id int,
+    temp1 int,
+    temp2 int,
+    nombre varchar(100) UNIQUE,
+    primary key (id),
+    Constraint claveTemp2 Foreign Key (temp1, temp2) REFERENCES temp1 (id, id2)
+)
+
+   CREATE TABLE pueblos (
+      cpo INT PRIMARY KEY,
+      nombre CHAR(30)
+   ) ;
+
+   CREATE TABLE clientes (
+      codigo INT PRIMARY KEY,
+      nombre VARCHAR (40) NOT NULL,
+      pueblo INT,
+      tel VARCHAR(15),
+      FOREIGN KEY (pueblo) REFERENCES pueblos(cpo)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+   ) ;
+    INSERT INTO pueblos VALUES (46410, 'Sueca');
+    INSERT INTO pueblos VALUES (55555, 'Ciudad de prueba');
+
+    INSERT INTO clientes VALUES (1, 'Pep', 46410, "2254565"); 
+    INSERT INTO clientes VALUES (2, 'Pepa', 46410, "2254565");
+    INSERT INTO clientes VALUES (3, 'Luis', 55555, "2254565");
+
+    update pueblos set cpo = 46555 where cpo = 55555;
+
+
+show databases;
+select database();
+use temp;
 show tables;
 DESCRIBE tabla1;
 DESCRIBE tabla2;
 DESCRIBE tabla3;
 show create table tabla2;
 show create table tabla3;
+show create table temp1;
+show create table temp2;
+DESCRIBE clientes;
+select * from clientes;
+drop table temp2;
 
 
