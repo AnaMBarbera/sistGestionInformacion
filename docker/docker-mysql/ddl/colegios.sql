@@ -4,24 +4,28 @@ use COLEGIOS;
 create table colegios (
     id int primary key,
     nombre varchar (50) NOT NULL,
-    direccion varchar (100),
-    tipo varchar (10)
+    direccion varchar (100) NOT NULL,
+    tipo varchar (10) CHECK (tipo="publico" OR tipo="privado") not null
 );
 
-create table estudiantes (
+create table if not exists estudiantes (
     id int primary key,
     nombre varchar (50) NOT NULL,
     edad int,
     colegio int,
-    FOREIGN KEY (colegio) REFERENCES colegios(id) 
+    FOREIGN KEY (colegio) REFERENCES colegios(id)
+    on delete CASCADE
+    on update CASCADE
 );
 
-create table profesores (
+create table if not exists profesores (
     id int primary key,
     nombre varchar (50) NOT NULL,
     asignatura varchar (50),
     colegio int,
-    FOREIGN KEY (colegio) REFERENCES colegios(id) 
+    FOREIGN KEY (colegio) REFERENCES colegios(id)    
+    on delete CASCADE
+    on update CASCADE
 );
 
 create table clases (
@@ -38,6 +42,11 @@ ALTER TABLE colegios ADD COLUMN fecha_fundacion DATE;
 ALTER TABLE estudiantes CHANGE COLUMN edad edad FLOAT;
 show create table colegios;
 show create table estudiantes;
+
+
 show TABLES
 
 SHOW DATABASES;
+
+
+

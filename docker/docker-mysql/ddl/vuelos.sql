@@ -1,18 +1,20 @@
 create database VUELOS;
+
+drop database VUELOS;
 use VUELOS;
 
 create table Aeropuertos (
     id int primary key,
     nombre varchar (50) NOT NULL,
     ciudad varchar (100) NOT NULL,
-    pais varchar (20)
+    pais varchar (20) not null
 );
 create table Vuelos (
     id int primary key,
-    aeropOrigen int,
-    aeropDestino int,
-    duracion int,
-    capacidad int,
+    aeropOrigen int not null,
+    aeropDestino int not null,
+    duracion decimal (4,2) not null check (duracion > 0),
+    capacidad int check (capacidad > 0),
     FOREIGN KEY (aeropOrigen) REFERENCES Aeropuertos(id),
     FOREIGN KEY (aeropDestino) REFERENCES Aeropuertos(id)
 );
@@ -20,14 +22,14 @@ create table Vuelos (
 create table Pasajeros (
     id int primary key,
     nombre varchar(50),
-    pasaporte varchar(30) UNIQUE
+    pasaporte char(12) UNIQUE
 );
 
 create table Reservas(
     id int primary key,
-    vuelo int,
-    pasajero int,
-    asiento int,
+    vuelo int not null,
+    pasajero int not null,
+    asiento char(4) not null,
     Foreign Key (vuelo) REFERENCES Vuelos (id),
     Foreign Key (pasajero) REFERENCES Pasajeros(id)
 )
