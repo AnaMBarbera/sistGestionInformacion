@@ -10,9 +10,8 @@ console.log(calcularMedia(2,6,8).toFixed(2));
 //-----------------
 
 //Crea una función esPrimo que reciba un número entero positivo y devuelva true si es primo y false en caso contrario.
-
 function esPrimo(num){
-    if (num < 2) return true;
+    if (num < 2) return false;
     for (let i = 2; i < num; i++) {
         if (num % i === 0) {
             return false;
@@ -20,11 +19,9 @@ function esPrimo(num){
     }
     return true;
 }
-
 console.log(esPrimo(8));
 console.log(esPrimo(7));
 console.log(esPrimo(2));
-
 
 //Dado un vector de números enteros y teniendo la función esPrimo()
 //crear una función que me diga si algún número del vector es primo
@@ -32,6 +29,7 @@ console.log(esPrimo(2));
 //crear una función que me devuelva un array con los primos
 
 // Función que dice si algún número del vector es primo
+
 function algunPrimo(vector) {
     for (let num of vector) {
         if (esPrimo(num)) {
@@ -39,6 +37,22 @@ function algunPrimo(vector) {
         }
     }
     return false; // Si ningún número es primo, devuelve false
+}
+
+//solución con while (recomendada)
+function existePrimo(array) {
+    let existe = false;
+    let i = 0;
+    while (i < array.length && !existe) {
+        if (esPrimo(array[i])) {
+            existe = true;
+        }
+        i++;
+    }
+    return existe;
+
+    //solución con some
+    //return array.some(numero =>esPrimo(numero));
 }
 
 // Función que dice si todos los números del vector son primos
@@ -51,6 +65,24 @@ function todosPrimos(vector) {
     return true; // Si todos son primos, devuelve true
 }
 
+// solución con while
+function todossonPrimos(array) {
+    let todos = true;
+    let i = 0;
+
+    while (i < array.length && todos) {
+        if (!esPrimo(array[i])) {
+            todos = false;
+        }
+        i++;
+    }
+    return todos;
+
+    // solución con every
+    //return array.every(numero => esPrimo(numero));
+
+}
+
 // Función que devuelve un array con los números primos del vector
 function primosDelVector(vector) {
     let primos = [];
@@ -59,14 +91,35 @@ function primosDelVector(vector) {
             primos.push(num); // Añade los números primos al array
         }
     }
+    //Otra solución
+    //return array.filter(numero =>esPrimo(numero));
+
     return primos; // Devuelve el array con los primos
 }
+
+// Función que devuelve la cantidad de primos que hay
+function cantidadPrimos(vector) {
+    let cantidad = 0;
+    for (let num of vector) {
+        if (esPrimo(num)) {
+            cantidad ++            
+        }
+    }
+    //return cantidad; //quitamos este return para probar el reduce sig.
+    //solución con reduce    
+    return vector.reduce((cantidad, num) => esPrimo(num) ? cantidad + 1 : cantidad, 0);
+}
+
+
+
+//procurar utilizar un while y variable bandera en vez de los for ..of del ejemplo cuando no haga falta recorrer todo el array (algún primo)
 
 let vector = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log("Vector: ",vector)
 console.log("Algun Primo: ", algunPrimo(vector));  // true (porque hay números primos en el vector)
 console.log("Todos primos: ", todosPrimos(vector)); // false (porque no todos son primos)
 console.log("Primos del vector: ", primosDelVector(vector)); // [2, 3, 5, 7] (array de primos)
+console.log("Hay " + cantidadPrimos(vector) + " primos en el array"); 
 
 
 
@@ -141,6 +194,6 @@ modificarPrim(num);
 modificarObj(obj);
 
 console.log(num); // 40 - el número no ha cambiado (valor)
-console.log(obj.coche); //el objeto ha cambiado (referencia)
+console.log(obj.coche);  // Ford - el objeto ha cambiado (referencia)
 
 

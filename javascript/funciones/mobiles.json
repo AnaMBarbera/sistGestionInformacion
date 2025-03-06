@@ -1,0 +1,95 @@
+{
+    "articulos": [
+      {
+        "marca": "Samsung",
+        "modelo": "Galaxy S23",
+        "memoria_RAM": "8GB",
+        "memoria_SD": "128GB",
+        "nucleos": 8,
+        "pulgadas": 6.1,
+        "precio": 799.99
+      },
+      {
+        "marca": "Apple",
+        "modelo": "iPhone 14",
+        "memoria_RAM": "6GB",
+        "memoria_SD": "256GB",
+        "nucleos": 6,
+        "pulgadas": 6.1,
+        "precio": 899.99
+      },
+      {
+        "marca": "Xiaomi",
+        "modelo": "Redmi Note 12",
+        "memoria_RAM": "6GB",
+        "memoria_SD": "128GB",
+        "nucleos": 8,
+        "pulgadas": 6.5,
+        "precio": 299.99
+      },
+      {
+        "marca": "OnePlus",
+        "modelo": "Nord 2",
+        "memoria_RAM": "12GB",
+        "memoria_SD": "256GB",
+        "nucleos": 8,
+        "pulgadas": 6.4,
+        "precio": 499.99
+      },
+      {
+        "marca": "Google",
+        "modelo": "Pixel 7",
+        "memoria_RAM": "8GB",
+        "memoria_SD": "128GB",
+        "nucleos": 8,
+        "pulgadas": 6.3,
+        "precio": 599.99
+      },
+      {
+        "marca": "Motorola",
+        "modelo": "Edge 30",
+        "memoria_RAM": "8GB",
+        "memoria_SD": "256GB",
+        "nucleos": 8,
+        "pulgadas": 6.7,
+        "precio": 549.99
+      },
+      {
+        "marca": "Realme",
+        "modelo": "GT Neo 3",
+        "memoria_RAM": "12GB",
+        "memoria_SD": "256GB",
+        "nucleos": 8,
+        "pulgadas": 6.6,
+        "precio": 429.99
+      },
+      {
+        "marca": "Huawei",
+        "modelo": "P50 Pro",
+        "memoria_RAM": "8GB",
+        "memoria_SD": "256GB",
+        "nucleos": 8,
+        "pulgadas": 6.6,
+        "precio": 799.99
+      },
+      {
+        "marca": "Sony",
+        "modelo": "Xperia 1 IV",
+        "memoria_RAM": "12GB",
+        "memoria_SD": "512GB",
+        "nucleos": 8,
+        "pulgadas": 6.5,
+        "precio": 1199.99
+      },
+      {
+        "marca": "Nokia",
+        "modelo": "G50",
+        "memoria_RAM": "4GB",
+        "memoria_SD": "128GB",
+        "nucleos": 8,
+        "pulgadas": 6.8,
+        "precio": 299.99
+      }
+    ]
+  }
+  
