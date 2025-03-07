@@ -21,9 +21,9 @@ ALTER TABLE Empleados ADD FOREIGN KEY (dept) REFERENCES Departamentos (cod) ON D
 ALTER TABLE Empleados ADD FOREIGN KEY (jefe_dep) REFERENCES Empleados (num);
 
 ALTER TABLE Empleados DROP jefe_dep;
---no está permitido
+--no está permitido al ser una clave ajena
 ALTER TABLE Departamentos DROP PRIMARY KEY;
---no está permitido
+--no está permitido por estar en una clave ajena
 
 
 
