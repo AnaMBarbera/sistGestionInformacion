@@ -1,3 +1,5 @@
+SHOW DATABASES;
+
 create database AEROPUERTOS;
 
 use AEROPUERTOS;
