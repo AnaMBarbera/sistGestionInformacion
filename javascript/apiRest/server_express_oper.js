@@ -16,29 +16,31 @@ const PORT = 3000;
 
 // 📌 Endpoint para obtener la suma
 app.get("/suma/:a/:b", async (req, res) => {
-    let suma = a+b;
+    let a = req.params.a; // Obtener el valor de a desde los parámetros
+    let b = req.params.b;
+    let suma = parseInt(a) + parseInt(b);
     res.json(suma);
 });
 
 // 📌 Endpoint para obtener la resta
 app.get("/resta/:a/:b", async (req, res) => {
-    let resta = a-b;
+    let a = req.params.a; // Obtener el valor de a desde los parámetros
+    let b = req.params.b;
+    let resta = parseInt(a) - parseInt(b);
     res.json(resta);
 });
 
 // 📌 Endpoint para obtener la multiplicacion
-app.get("/multip/:a/:b", async (req, res) => {
+app.get("/multip/:a/:b", async (req, res) => {    
     let multip = a*b;
     res.json(multip);
 });
 
-/*
-    if (ciudad) {
-        res.json(ciudad);
-    } else {
-        res.status(404).json({ error: "Ciudad no encontrada" });
-    }
-}); */
+// 📌 Endpoint para obtener la division
+app.get("/division/:a/:b", async (req, res) => {    
+    let division = a*b;
+    res.json(division);
+});
 
 // Iniciar servidor
 app.listen(PORT, () => {
