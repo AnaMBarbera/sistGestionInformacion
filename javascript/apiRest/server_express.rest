@@ -1,0 +1,11 @@
+### para recibir todas las ciudades
+get http://localhost:3000/ciudades 
+
+### para recibir por código de ciudad
+get http://localhost:3000/ciudades/VAL
+
+//asegurarnos que el servidor esté en marcha
+//ej:  node server_express.js
+
+###
+get http://localhost:3000/suma/8/4
