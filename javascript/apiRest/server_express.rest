@@ -14,3 +14,8 @@ get http://localhost:3000/suma/8/4
 get http://localhost:3000/resta/8/4
 
 
+###
+get http://localhost:3000/division/8/4
+
+###
+get http://localhost:3000/divisor/8/4

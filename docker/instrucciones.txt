@@ -6,3 +6,8 @@ docker exec -it docker-mysql mysql -uroot -p
 select mysql.user.user, mysql.user.host from mysql.user;
 Grant all privileges on *.* to 'alumno'@'%' with grant option;
 -------------------
+
+https://jbeteta-ies.github.io/BBDD/ejercicios/T04_SQL/ejercicios01.html
+
+https://jbeteta-ies.github.io/BBDD/ejercicios/T04_SQL/ejercicios02.html
+
