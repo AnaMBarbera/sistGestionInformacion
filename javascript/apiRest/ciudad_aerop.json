@@ -24,5 +24,20 @@
         "nombre": "El Prat"
       }
     ]
+  },
+  {
+    "codigo": "ALI",
+    "nombre": "Alicante",
+    "poblacion": 300000,
+    "aeropuertos": [
+      {
+        "codigo": "ALT",
+        "nombre": "El Altet"
+      },
+      {
+        "codigo": "NEW",
+        "nombre": "Nuevo aeropuerto"
+      }
+    ]
   }
 ]

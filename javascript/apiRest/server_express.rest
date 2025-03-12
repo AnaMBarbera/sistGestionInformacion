@@ -65,3 +65,46 @@ get http://localhost:3000/division/8/4
 
 ###
 get http://localhost:3000/divisor/8/4
+
+###
+#######################################################
+###
+get http://localhost:3000/ciudadAerop
+###
+GET http://localhost:3000/ciudadAerop/MAD/aeropuertos
+###
+POST http://localhost:3000/ciudadAerop/ALI
+Content-Type: application/json
+
+{
+  "codigo": "ALI",
+  "nombre": "Alicante",
+  "poblacion": 300000,
+  "aeropuertos": [
+            { "codigo": "ALT", "nombre": "El Altet" }
+        ]
+}
+###
+POST http://localhost:3000/ciudadAerop/ALI
+Content-Type: application/json
+
+{
+  "codigo": "ALI",
+  "nombre": "Alicante",
+  "poblacion": 300000,
+  "aeropuertos": [
+            { "codigo": "ALT", "nombre": "El Altet" }
+        ]
+}
+
+###
+POST http://localhost:3000/ciudadAerop/ALI/aeropuertos
+Content-Type: application/json
+
+{
+  "codigo": "NEW",
+  "nombre": "Nuevo aeropuerto" 
+}
+
+###
+DELETE  http://localhost:3000/ciudadAerop/ALI

@@ -80,3 +80,12 @@ WHERE factura = 3;
 DELETE FROM `facturas`
 WHERE id = 3;
 
+-- Eliminar todas las facturas de un cliente (primero detalles)
+DELETE FROM detalleFactura
+WHERE factura = 4;
+###si hay varios valores podemos poner WHERE factura IN (4,3,2....);
+
+DELETE FROM facturas
+WHERE cliente = 4;
+
+
