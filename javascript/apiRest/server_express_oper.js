@@ -19,7 +19,15 @@ app.get("/suma/:a/:b", async (req, res) => {
     let a = req.params.a; // Obtener el valor de a desde los parámetros
     let b = req.params.b;
     let suma = parseInt(a) + parseInt(b);
-    res.json(`{op1: ${a}, op2: ${b}, suma: ${suma}}`);
+    //respuesta con string
+    //res.json(`{op1: ${a}, op2: ${b}, suma: ${suma}}`);
+
+     // Responder con un objeto JSON
+     res.json({
+        op1: a,
+        op2: b,
+        suma: suma
+    });
 });
 
 // 📌 Endpoint para obtener la resta
@@ -27,15 +35,23 @@ app.get("/resta/:a/:b", async (req, res) => {
     let a = req.params.a; // Obtener el valor de a desde los parámetros
     let b = req.params.b;
     let resta = parseInt(a) - parseInt(b);
-    res.json(`{op1: ${a}, op2: ${b}, resta: ${resta}}`);
+    res.json({
+        op1: a,
+        op2: b,
+        resta: resta
+    });
 });
 
 // 📌 Endpoint para obtener la multiplicacion
 app.get("/multip/:a/:b", async (req, res) => {
     let a = req.params.a; // Obtener el valor de a desde los parámetros
     let b = req.params.b;    
-    let division = parseInt(a) * parseInt(b);
-    res.json(`{op1: ${a}, op2: ${b}, multiplicación: ${multip}}`);
+    let multiplicacion = parseInt(a) * parseInt(b);
+    res.json({
+        op1: a,
+        op2: b,
+        multiplicacion: multiplicacion
+    });
 });
 
 // 📌 Endpoint para obtener la division
@@ -45,8 +61,12 @@ app.get("/division/:a/:b", async (req, res) => {
     if (b==0){
         res.status(404).json({ error: "el operador b es 0" });
     } else {    
-    let division = parseInt(a) / parseInt(b);
-    res.json(`{op1: ${a}, op2: ${b}, división: ${division}}`);
+        let division = parseInt(a) / parseInt(b);
+        res.json({
+            op1: a,
+            op2: b,
+            division: division
+        });
     }
 });
 
@@ -58,14 +78,15 @@ app.get("/divisor/:a/:b", async (req, res) => {
     if ((a % b)){
         res.status(404).json({ error: `${a} no es divisible por ${b}` });
     } else {  
-    res.json(`{op1: ${a}, op2: ${b}, divisor: ${divisor}, true}`);
+        res.json({
+            op1: a,
+            op2: b,
+            divisor: divisor,
+            resultado: true
+        });
     } 
 });
 
-/*el res.json nos está devolviendo un string (hay que hacer un parse)
-ej: resultado = JSON.parse(resta(req.params.a, req.params.b));
-    res.json(resultado);
-*/
 
 // Iniciar servidor
 app.listen(PORT, () => {
