@@ -59,8 +59,13 @@ app.get("/divisor/:a/:b", async (req, res) => {
         res.status(404).json({ error: `${a} no es divisible por ${b}` });
     } else {  
     res.json(`{op1: ${a}, op2: ${b}, divisor: ${divisor}, true}`);
-    }
+    } 
 });
+
+/*el res.json nos está devolviendo un string (hay que hacer un parse)
+ej: resultado = JSON.parse(resta(req.params.a, req.params.b));
+    res.json(resultado);
+*/
 
 // Iniciar servidor
 app.listen(PORT, () => {

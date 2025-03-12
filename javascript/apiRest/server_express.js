@@ -34,25 +34,103 @@ app.get("/ciudades/:codigo", async (req, res) => {
     }
 });
 
+//📌 1. Modificar una ciudad (POST)
+// Middleware para manejar JSON en el cuerpo de las solicitudes
+app.use(express.json());
+app.post("/ciudades/:codigo", async (req, res) => {
+    const codigo = req.params.codigo.toUpperCase();
+    /*el cuerpo(body)sería algo así:
+     {"nombre": "Madrid Capital",
+        "poblacion": 3500000}        
+        */
+    const {nombre, poblacion } = req.body;
+    const ciudades = await cargarCiudades();
+    const ciudad = ciudades.find(c => c.codigo === codigo);
+
+    if (ciudad) {
+        ciudad.nombre = nombre || ciudad.nombre;
+        ciudad.poblacion = poblacion || ciudad.poblacion;
+
+        await fs.writeFile("ciudades.json", JSON.stringify(ciudades, null, 2));
+        res.json({ mensaje: "Ciudad actualizada", ciudad });
+    } else {
+        res.status(404).json({ error: "Ciudad no encontrada" });
+    }
+});
+//Podemos modificar datos con Put también
+app.put("/ciudades/:codigo", async (req, res) => {
+    const codigo = req.params.codigo.toUpperCase();    
+    const {nombre, poblacion } = req.body;
+    const ciudades = await cargarCiudades();
+    const ciudad = ciudades.find(c => c.codigo === codigo);
+
+    if (ciudad) {
+        ciudad.nombre = nombre || ciudad.nombre;
+        ciudad.poblacion = poblacion || ciudad.poblacion;
+
+        await fs.writeFile("ciudades.json", JSON.stringify(ciudades, null, 2));
+        res.json({ mensaje: "Ciudad actualizada", ciudad });
+    } else {
+        res.status(404).json({ error: "Ciudad no encontrada" });
+    }
+});
+
+//📌 2. Añadir una ciudad (POST)
+app.post("/ciudades", async (req, res) => {
+    const { codigo, nombre, poblacion } = req.body;
+    const ciudades = await cargarCiudades();
+
+    if (ciudades.find(c => c.codigo === codigo)) {
+        return res.status(400).json({ error: "Código de ciudad ya existe" });
+    }
+
+    const nuevaCiudad = { codigo, nombre, poblacion };
+    ciudades.push(nuevaCiudad);
+
+    await fs.writeFile("ciudades.json", JSON.stringify(ciudades, null, 2));
+    res.json({ mensaje: "Ciudad añadida", ciudad: nuevaCiudad });
+});
+
+//borrar una ciudad (DELETE)
+app.delete("/ciudades/:codigo", async (req, res) => {
+    const codigo = req.params.codigo.toUpperCase();
+    const ciudades = await cargarCiudades();
+    const index = ciudades.findIndex(c => c.codigo === codigo);
+
+    if (index === -1) {
+        return res.status(404).json({ error: "Ciudad no encontrada" });
+    }
+
+    const ciudadEliminada = ciudades.splice(index, 1);
+
+    await fs.writeFile("ciudades.json", JSON.stringify(ciudades, null, 2));
+    res.json({ mensaje: "Ciudad eliminada", ciudad: ciudadEliminada });
+});
+
+
+
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
 
+
+
+
+
 /*ponemos en marcha el servicio ejecutando este fichero
 > node server_express.js
+Para enviar peticiones:
 en el navegador ponemos localhost: 3000 (puerto indicado en el server) / ciudades
- o localhost:3000/ciudades/MAD (Segun los gets indicados) */
+ o localhost:3000/ciudades/MAD (Segun los gets indicados)
+ o también podemos utilizar las extensiones postman o rest (fichero server_express.rest) */
 
-
- /*
- Crear un servidor con las siguientes rutas:
- - /suma/:a/:b devuelva en un json, a, b y la suma
- - /resta/:a/:b devuelva en un json a, b y la resta
- -/multip..
- -/division.. ojo que devuelva error si b es 0
- - /divisor .. que devuelva true si a es divisible por b
-
- Todas las respuestas deben ser un json y los métodos GET */
-
+/* Para que funcione en el fichero.rest
+post http://localhost:3000/ciudades/MAD
+Content-Type: application/json
+(importante dejar esta línea de separación)
+{
+    "nombre": "Madrid Capital",
+    "poblacion": 4500000
+        } */
  

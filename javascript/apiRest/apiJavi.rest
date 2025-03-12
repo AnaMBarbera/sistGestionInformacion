@@ -1,0 +1,18 @@
+### suma
+http://localhost:3000/suma/10/20
+
+### resta
+http://localhost:3000/resta/10/20
+
+
+### multiplicacion
+http://localhost:3000/multiplicacion/10/20
+
+### division
+http://localhost:3000/division/10/20
+
+### divisor
+http://localhost:3000/divisor/20/11
+
+### errores
+http://localhost:3000/divisor/"a"/11
