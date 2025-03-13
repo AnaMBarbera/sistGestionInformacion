@@ -24,5 +24,10 @@
         "nombre": "El Prat"
       }
     ]
+  },
+  {
+    "codigo": "BGT",
+    "nombre": "Bogotá",
+    "poblacion": 300000
   }
 ]

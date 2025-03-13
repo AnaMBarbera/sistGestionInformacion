@@ -75,8 +75,8 @@ app.put("/ciudades/:codigo", async (req, res) => {
     }
 });
 
-//📌 2. Añadir una ciudad (POST)
-app.post("/ciudades", async (req, res) => {
+//📌 2. Añadir una ciudad (lPUT, también funciona con POST)
+app.put("/ciudades", async (req, res) => {
     const { codigo, nombre, poblacion } = req.body;
     const ciudades = await cargarCiudades();
 
@@ -134,3 +134,4 @@ Content-Type: application/json
     "poblacion": 4500000
         } */
  
+//PREFERIBLEMENTE UTILIZAR POST PARA MODIFICAR Y PUT PARA AÑADIR

@@ -29,12 +29,12 @@ Content-Type: application/json
 get http://localhost:3000/ciudades/MAD
 
 ### Para añadir datos
-POST http://localhost:3000/ciudades
+PUT http://localhost:3000/ciudades
 Content-Type: application/json
 
 {
-  "codigo": "VLL",
-  "nombre": "Valladolid",
+  "codigo": "BGT",
+  "nombre": "Bogotá",
   "poblacion": 300000
 }
 ###
