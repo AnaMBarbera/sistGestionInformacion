@@ -51,6 +51,7 @@ Content-Type: application/json
 DELETE  http://localhost:3000/ciudades/MAD
 
 
+
 ###
 #######################################################
 ###
@@ -70,9 +71,12 @@ get http://localhost:3000/divisor/8/4
 #######################################################
 ###
 get http://localhost:3000/ciudadAerop
-###
+
+### Obtener todos los aeropuertos de una ciudad
 GET http://localhost:3000/ciudadAerop/MAD/aeropuertos
-###
+
+
+### Añadir una ciudad
 POST http://localhost:3000/ciudadAerop/ALI
 Content-Type: application/json
 
@@ -84,20 +88,8 @@ Content-Type: application/json
             { "codigo": "ALT", "nombre": "El Altet" }
         ]
 }
-###
-POST http://localhost:3000/ciudadAerop/ALI
-Content-Type: application/json
 
-{
-  "codigo": "ALI",
-  "nombre": "Alicante",
-  "poblacion": 300000,
-  "aeropuertos": [
-            { "codigo": "ALT", "nombre": "El Altet" }
-        ]
-}
-
-###
+### Añadir un aeropuerto a una ciudad
 POST http://localhost:3000/ciudadAerop/ALI/aeropuertos
 Content-Type: application/json
 
@@ -106,5 +98,8 @@ Content-Type: application/json
   "nombre": "Nuevo aeropuerto" 
 }
 
-###
-DELETE  http://localhost:3000/ciudadAerop/ALI
+### Eliminar un aeropuerto de una ciudad
+DELETE  http://localhost:3000/ciudadAerop/ALI/aeropuertos/ALT
+
+### Dado el código de un aeropuerto, obtener la ciudad a la que pertenece
+GET http://localhost:3000/aeropuerto/TOJ
