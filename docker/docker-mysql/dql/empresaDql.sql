@@ -46,3 +46,43 @@ SELECT *, CHAR_LENGTH(nombre) AS 'Long',
     DAYNAME(f_nac) as 'Dia nac',
     CONCAT(DAY(f_nac), ' de ', MONTH(f_nac), ' de ', YEAR(f_nac)) as 'fecha_mod'
 FROM `Empleados`
+
+SELECT nombre,
+LOWER(nombre) as 'Minúsculas',
+ -- También sirve lcase y ucase
+UPPER(nombre) as 'Mayúsculas'
+FROM `Departamentos`;
+
+SELECT MAX(salario) as "Salario max", MIN(salario) as "Salario min", round(AVG(salario),2) as media, SUM(salario) as Suma, COUNT(*) as totalEmpleados, COUNT(jefe_dep) as totalJefedep
+    FROM Empleados;
+
+SELECT MAX(salario) as "Salario max", MIN(salario) as "Salario min", round(AVG(salario),2) as media, SUM(salario) as Suma, COUNT(*) as totalEmpleados, COUNT(jefe_dep) as totalJefedep
+FROM Empleados
+WHERE dept = 4; -- Los del departamento desarrollo
+
+--para ver los empleados que tiene cada departamento
+SELECT `Departamentos`.nombre, `Empleados`.nombre
+FROM Departamentos, `Empleados`
+WHERE Empleados.dept = Departamentos.cod;
+
+--para ver también el nombre del jefe del departamento. Como hay una relación unaria en la tabla de Empleados tenemos que utilizar JOIN 
+SELECT Departamentos.nombre, 
+    Empl1.nombre AS Empleado, 
+    Empl2.nombre AS Jefe
+FROM 
+    Departamentos
+-- Empleados asignados a cada departamento
+JOIN 
+    Empleados Empl1 ON Empl1.dept = Departamentos.cod
+-- Empleados que son jefe de departamento
+-- JOIN Empleados Empl2 ON Empl2.num = Empl1.jefe_dep;
+
+-- Para que aparezcan departamentos que no tienen jefe deberíamos utilizar LEFT JOIN en la última línea
+ LEFT JOIN Empleados Empl2 ON Empl2.num = Empl1.jefe_dep;
+
+
+
+DESCRIBE TABLE Empleados;
+
+
+
