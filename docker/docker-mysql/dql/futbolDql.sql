@@ -3,6 +3,8 @@ USE futbol;
 SELECT * FROM golejadors
 WHERE penals > 0;
 -- De cada partido muestra la jornada, el equipo de casa y el de afuera, los goles de cada equipo, el total de goles, la posesión del equipo de casa y la del equipo de afuera. Pone nombres coherentes en las columnas.
+SELECT  jornada, equipc as Anfitrion, equipf as Visitante, golsf as , golsc, possessioc, 90-possessioc as 'PosesiónVisitante'
+FROM partits
 
 
 -- Goles marcados por el pichichi (sólo los goles; el nombre del jugador no).
