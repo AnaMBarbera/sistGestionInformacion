@@ -80,7 +80,19 @@ JOIN
 -- Para que aparezcan departamentos que no tienen jefe deberíamos utilizar LEFT JOIN en la última línea
  LEFT JOIN Empleados Empl2 ON Empl2.num = Empl1.jefe_dep;
 
+--EJERCICIOS. DISTINCT (BD empresa)
 
+--Muestra los departamentos que tienen algún empleado. En la tabla dept están todos los departamentos pero quizá alguno no tiene empleados. Por tanto, deberás sacarlo a partir de la tabla emp. Que no aparezcan repetidos los departamentos.
+SELECT DISTINCT dept
+FROM Empleados;
+
+--Muestra las parejas de comisión y departamento (de la tabla de empleados) sin que aparezcan parejas repetidas. .
+SELECT DISTINCT comision, dept
+FROM Empleados;
+
+-- Muestra en cuántos pueblos hay departamentos
+select DISTINCT pueblo
+from Departamentos;
 
 DESCRIBE TABLE Empleados;
 

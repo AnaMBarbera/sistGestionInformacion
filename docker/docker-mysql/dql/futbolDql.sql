@@ -11,7 +11,7 @@ SELECT max(gols) from golejadors;
 -- Media de goles por partido en toda la liga.
 SELECT AVG(golsc+golsf) from partits;
 -- Muestra los siguientes sueldos: el más caro, el más barato y el promedio.
-SELECT MAX(sou) as SalarioMax, Min(sou) as SalarioMin, AVG(sou) as SalarioMedio
+SELECT MAX(sou) as SalarioMax, Min(sou) as SalarioMin, round(AVG(sou),2) as SalarioMedio
 FROM jugadors;
 -- Total de goles marcados en toda la liga.
 SELECT sum(golsc+golsf) AS TotalGoles from partits;
@@ -33,6 +33,29 @@ SELECT
 FROM partits;
 
 -- Muestra la diferencia entre el mayor presupuesto y el menor
-SELECT MAX(pressupost)-MIN(pressupost) as 'DiferenciaPresup' FROM equips;
+SELECT MAX(pressupost),MIN(pressupost), MAX(pressupost)-MIN(pressupost) as 'DiferenciaPresup' FROM equips
+where pressupost>0;
 -- Muestra la fecha más antigua y la más reciente de las jornadas
 SELECT MAX(data) as FechaMasReciente, MIN(data) as FechaMasAntigua from jornades;
+
+--EJERCICIOS. ORDER BY (BD liga1213)
+--Muestra el nombre largo de cada equipo y su presupuesto, ordenado por el presupuesto, de menor a mayor.
+SELECT nomllarg, pressupost
+FROM equips
+ORDER BY pressupost;
+--De cada partido, muestra la jornada, el equipo de casa y sus goles, primero saldrán los que han marcado más goles.
+SELECT jornada, equipc, golsc
+FROM partits
+ORDER BY golsc DESC;
+--De cada partido, muestra la jornada, el equipo de casa y sus goles. Estará ordenado por equipo (de menor a mayor). Los partidos de cada equipo estarán ordenados de más goles a menos.
+SELECT jornada, equipc, golsc
+FROM partits
+WHERE (golsc) -- WHERE golsc IS NOT NULL
+ORDER BY equipc , golsc DESC;
+
+--Muestra todos los datos de los partidos pero primero saldrán los partidos que se hayan marcado más goles. En caso de igualdad, saldrán primero los que se marcaran más goles en casa. En caso de igualdad saldrán ordenados por el código del equipo de casa (de menor a mayor). En caso de igualdad saldrán ordenados por la jornada.
+
+SELECT *
+FROM partits
+ORDER BY golsc+golsf DESC, golsc desc, equipc asc, jornada
+
