@@ -59,3 +59,53 @@ SELECT *
 FROM partits
 ORDER BY golsc+golsf DESC, golsc desc, equipc asc, jornada
 
+
+-- EJERCICIOS. WHERE (BD liga1213)
+-- Partidos que ha perdido al Barça (código ‘bar’) jugando en casa.
+SELECT *
+FROM partits
+WHERE equipc = 'bar' and golsf>golsc;
+-- Partidos que ha perdido al Barça jugando fuera.
+SELECT *
+FROM partits
+WHERE equipf = 'bar' and golsc>golsf;
+-- Cantidad de partidos que ha perdido el Barça.
+SELECT *
+FROM partits
+WHERE (equipf = 'bar' and golsc>golsf) OR (equipf = 'bar' and golsc>golsf);
+-- Partidos en los que se han marcado más de 5 goles.
+SELECT *
+FROM partits
+WHERE (golsc+golsf)>5;
+-- Qué jornadas se jugaron en febrero.
+SELECT *
+FROM jornades
+WHERE data BETWEEN '2013-02-01' and '';
+--
+SELECT *
+FROM jornades
+WHERE data like '%-02-%;
+-- 
+
+
+--
+SELECT *
+FROM jornades
+WHERE month(data)=2;
+--
+
+-- ¿Cuántos partidos todavía no ha jugado el Valencia (no ha jugado si no están puestos los goles).
+SELECT *
+FROM partits
+WHERE (equipc='val' and golsc is null) or (equipf='val' and golsc is null) ;
+-- Partidos donde el Madrid (código ‘rma’) ha recibido 3 o más goles.
+SELECT *
+FROM partits
+WHERE (equipc='rma' and golsf>=3) and (equipf='rma' and golsc>=3);
+-- Partidos en los que el Madrid ha perdido por más de un gol de diferencia.
+
+-- Partidos en los que un equipo ha tenido más del 60% de posesión.
+
+-- Partidos en los que un equipo ha tenido más del 60% de posesión y ha perdido el partido.
+
+-- Muestra la quiniela de la primera jornada (equipo casa, equipo fuera, 1x2). Deberás utilizar la función “IF”.

@@ -94,6 +94,37 @@ FROM Empleados;
 select DISTINCT pueblo
 from Departamentos;
 
+-- EJERCICIOS. WHERE (BD empresa)
+-- Muestra nombre y comisión de aquellos empleados que NO tengan comisión (piensa que puede haber empleados con comisión 0 y empleados con comisión NULL).
+SELECT nombre, comision
+from Empleados
+WHERE comision = 0 OR comision is null;
+-- Muestra nombre y comisión de los empleados que sean del departamento 2 con una comisión superior al 10%.
+SELECT nombre, comision
+from Empleados
+WHERE dept = 2 and comision > 10;
+-- Muestra nombre y comisión de los empleados cuya comisión es entre el 20 y el 50%. Hazlo de 2 formas: con BETWEEN y sin BETWEEN.
+SELECT nombre, comision
+from Empleados
+WHERE comision BETWEEN 20 and 50;
+--
+SELECT nombre, comision
+from Empleados
+WHERE comision >= 20 and comision <=50;
+
+-- Muestra el nombre de los empleados de los departamentos 2, 5 y 6. Muestra también el departamento de cada uno. Hazlo de 2 formas: con IN y sin IN.
+SELECT nombre
+from Empleados
+WHERE dept in(2, 5, 6);
+--
+SELECT nombre
+from Empleados
+WHERE dept = 2 or dept = 5 or dept =6;
+-- Muestra todos los datos de los empleados que el nombre empiece por A, que terminan con E y que la tercera letra de su nombre sea una I.
+SELECT nombre
+from Empleados
+WHERE upper(nombre LIKE 'A__I%E');
+
 DESCRIBE TABLE Empleados;
 
 
