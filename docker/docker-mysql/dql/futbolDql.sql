@@ -9,13 +9,13 @@ ORDER BY jornada;
 -- Goles marcados por el pichichi (sólo los goles; el nombre del jugador no).
 SELECT max(gols) from golejadors;
 -- Media de goles por partido en toda la liga.
-SELECT AVG(golsc+golsf) from partits;
+SELECT ROUND(AVG(golsc+golsf),2) from partits;
 -- Muestra los siguientes sueldos: el más caro, el más barato y el promedio.
 SELECT MAX(sou) as SalarioMax, Min(sou) as SalarioMin, round(AVG(sou),2) as SalarioMedio
 FROM jugadors;
 -- Total de goles marcados en toda la liga.
 SELECT sum(golsc+golsf) AS TotalGoles from partits;
-SELECT SUM(gols) as GolesGoleadors from Golejadors;
+SELECT SUM(gols) as GolesGoleadors from golejadors;
 -- Nota: esta información está en 2 tablas: en los resultados de los partidos y en los goles marcados por cada goleador. No cuadra porque hay goles que no les han marcado los goleadores (sino porteros, defensas, en propia puerta…).
 -- Total de goles marcados en todos los partidos
 -- Total de goles marcados por todos los goleadores.
@@ -80,19 +80,15 @@ WHERE (golsc+golsf)>5;
 -- Qué jornadas se jugaron en febrero.
 SELECT *
 FROM jornades
-WHERE data BETWEEN '2013-02-01' and '';
+WHERE data BETWEEN '2013-02-01' and '2013-02-28';
 --
 SELECT *
 FROM jornades
-WHERE data like '%-02-%;
+WHERE data like '%-02-%';
 -- 
-
-
---
 SELECT *
 FROM jornades
 WHERE month(data)=2;
---
 
 -- ¿Cuántos partidos todavía no ha jugado el Valencia (no ha jugado si no están puestos los goles).
 SELECT *
@@ -101,11 +97,37 @@ WHERE (equipc='val' and golsc is null) or (equipf='val' and golsc is null) ;
 -- Partidos donde el Madrid (código ‘rma’) ha recibido 3 o más goles.
 SELECT *
 FROM partits
-WHERE (equipc='rma' and golsf>=3) and (equipf='rma' and golsc>=3);
--- Partidos en los que el Madrid ha perdido por más de un gol de diferencia.
+WHERE (equipc='rma' and golsf>=3) OR (equipf='rma' and golsc>=3);
 
--- Partidos en los que un equipo ha tenido más del 60% de posesión.
+-- Partidos en los que el Madrid ha perdido por más de un gol de diferencia.
+SELECT *
+FROM partits
+WHERE (equipc='rma' and (golsf-golsc)>1) OR (equipf='rma' and (golsc-golsf)>1);
+
+-- Partidos en los que un equipo ha tenido más del 60% de posesión. ()
+SELECT *
+FROM partits
+WHERE possessioc>60 or possessioc<40;
 
 -- Partidos en los que un equipo ha tenido más del 60% de posesión y ha perdido el partido.
+SELECT *
+FROM partits
+WHERE possessioc>60 and golsc<golsf OR possessioc<40 and golsf<golsc;
 
 -- Muestra la quiniela de la primera jornada (equipo casa, equipo fuera, 1x2). Deberás utilizar la función “IF”.
+-- la función if tiene tres parámetros (condición, SI, NO(else))
+SELECT equipc as 'Equipo casa', equipf as 'Equipo fuera',
+ IF(golsf > golsc, '1', 
+        IF(golsf = golsc, 'X', '2')) AS 'Result'
+FROM partits
+WHERE jornada=1;
+--
+SELECT equipc AS 'Equipo casa', 
+       equipf AS 'Equipo fuera',       
+       CASE 
+           WHEN golsf > golsc THEN '1'
+           WHEN golsf = golsc THEN 'X'
+           WHEN golsf < golsc THEN '2'
+       END AS 'Result'
+FROM partits
+WHERE jornada=1;
