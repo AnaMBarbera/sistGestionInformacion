@@ -94,6 +94,15 @@ WHERE month(data)=2;
 SELECT *
 FROM partits
 WHERE (equipc='val' and golsc is null) or (equipf='val' and golsc is null) ;
+-- MEJOR
+SELECT *
+FROM partits
+WHERE (equipc='val' or equipf='val') AND golsc is null;
+-- AUN MEJOR
+SELECT COUNT(*)
+FROM partits
+WHERE 'val' in (equipc,equipf) AND golsc IS NULL;
+
 -- Partidos donde el Madrid (código ‘rma’) ha recibido 3 o más goles.
 SELECT *
 FROM partits
@@ -108,6 +117,10 @@ WHERE (equipc='rma' and (golsf-golsc)>1) OR (equipf='rma' and (golsc-golsf)>1);
 SELECT *
 FROM partits
 WHERE possessioc>60 or possessioc<40;
+-- OTRA FORMA
+SELECT *
+FROM partits
+WHERE possessioc NOT BETWEEN 40 and 60;
 
 -- Partidos en los que un equipo ha tenido más del 60% de posesión y ha perdido el partido.
 SELECT *
@@ -117,11 +130,11 @@ WHERE possessioc>60 and golsc<golsf OR possessioc<40 and golsf<golsc;
 -- Muestra la quiniela de la primera jornada (equipo casa, equipo fuera, 1x2). Deberás utilizar la función “IF”.
 -- la función if tiene tres parámetros (condición, SI, NO(else))
 SELECT equipc as 'Equipo casa', equipf as 'Equipo fuera',
- IF(golsf > golsc, '1', 
+ IF(golsc > golsf, '1', 
         IF(golsf = golsc, 'X', '2')) AS 'Result'
 FROM partits
 WHERE jornada=1;
---
+-- OTRA
 SELECT equipc AS 'Equipo casa', 
        equipf AS 'Equipo fuera',       
        CASE 
