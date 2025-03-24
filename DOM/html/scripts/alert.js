@@ -1,0 +1,1 @@
+alert('Este es el alert del fichero "alert.js"');

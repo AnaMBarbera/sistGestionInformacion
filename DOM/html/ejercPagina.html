@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Final</title>
+    <script>
+        alert('¡Este es el alert del head!');
+    </script>
+    <script src="scripts/alert.js"></script>
+</head>
+<body>
+    <header>
+        <img src="images/logoColegio.png" alt="logo Colegio" id="logo">
+        <h1>INFORMACIÓN GENERAL</h1>
+    </header>    
+    <h2>1DAW</h2>
+    <section>
+        <h3>Horario de clases</h3>
+        <table border="1" id="horario"> <!-- obsoleto, mejor con css -->
+            <tr>
+                <th>horas</th>
+                <th>lunes</th>
+                <th >martes</th>
+                <th >miércoles</th>
+                <th >jueves</th>
+                <th >viernes</th> 
+            </tr>
+            <tr>
+                <td>9:00-10:00</td>
+                <td>Programación</td>
+                <td>Programación</td>
+                <td>Programación</td>
+                <td>Programación</td>
+                <td>Programación</td>
+            </tr>
+            <tr>                
+                <td>10:00-11:00</td>
+                <td>Bases de Datos</td>
+                <td>Bases de Datos</td>
+                <td>Bases de Datos</td>
+                <td>Bases de Datos</td>
+                <td>Bases de Datos</td>
+            </tr>
+            <tr>                
+                <td>11:00-11:30</td>
+                <td>DESCANSO</td>
+                <td>DESCANSO</td>
+                <td>DESCANSO</td>
+                <td>DESCANSO</td>
+                <td>DESCANSO</td>
+            </tr>
+            <tr>                
+                <td>11:30-12:30</td>
+                <td>Leng. de Marcas</td>
+                <td>Leng. de Marcas</td>
+                <td>Leng. de Marcas</td>
+                <td>Inglés</td>
+                <td>Sist.Informáticos</td>
+            </tr>
+            <tr>                
+                <td>12:30-13:30</td>
+                <td>Sist.Informáticos</td>
+                <td>Sist.Informáticos</td>
+                <td>Sist.Informáticos</td>
+                <td>Sist.Informáticos</td>
+                <td>Sist.Informáticos</td>
+            </tr>
+            <tr>                
+                <td>15:00-16:00</td>
+                <td>Entornos Desarrollo</td>
+                <td>Entornos Desarrollo</td>
+                <td>Entornos Desarrollo</td>
+                <td>Entornos Desarrollo</td>
+                <td>Entornos Desarrollo</td>
+            </tr>
+            <tr>                
+                <td>16:00-17:00</td>
+                <td>Inglés</td>
+                <td>Inglés</td>
+                <td>Programación</td>
+                <td>Programación</td>
+                <td>Programación</td>
+            </tr>
+        </table>
+    </section>
+    <section>
+        <h3>Listado de profesores</h3>
+        <ul id="listaProf">
+            <li>Programación: Javier Beteta </li>
+            <li>Bases de Datos: Luis Plá   </li>
+            <li>Lenguaje de Marcas: Rosa Diaz  </li>
+            <li>Sistemas Informáticos: Pepe Pons  </li>
+            <li>Entornos de Desarrollo: María Cruz </li>
+            <li>Inglés: Sonia Martínez   </li>            
+        </ul>
+    </section>
+    <section>
+        <h3>Formulario de sugerencias</h3>
+        <form action="/" method="post" id="formSugest">
+            <label for="nombre">Nombre: </label>
+            <input type="text" id="nombre" name="nombre">
+            
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos">
+            
+            <label for="telef">Teléfono:</label>
+            <input type="text" id="telef" name="telef">
+            <br>
+            <label for="sugest">Sugerencias:</label><br>
+            <textarea name="sugest" id="sugest" cols="94" rows="8"></textarea>
+            <br>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <script>
+        alert('¡Este es el alert del final del body!');
+    </script>   
+</body>
+</html>
