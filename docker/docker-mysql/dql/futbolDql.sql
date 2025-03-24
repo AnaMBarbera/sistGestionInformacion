@@ -144,3 +144,21 @@ SELECT equipc AS 'Equipo casa',
        END AS 'Result'
 FROM partits
 WHERE jornada=1;
+
+-- sacar una tabla con los puntos que lleva el valencia en casa
+-- deben aparecer todos los partidos del valencia en casa y serán
+-- 3 si gana, 1 si empata, 0 si pierde
+
+SELECT equipc as 'Equipo casa', equipf as 'Equipo fuera', golsc, golsf,
+ IF(golsc > golsf, '3', 
+        IF(golsf = golsc, '1', '0')) AS 'Puntos'
+FROM partits
+WHERE equipc='val';
+
+-- en casa y fuera
+SELECT equipc as 'Equipo casa', equipf as 'Equipo fuera', golsc, golsf,
+ IF((golsc > golsf and equipc='val') OR (golsf > golsc and equipf='val'),3, 
+        IF(golsc = golsf,1,0)) 
+    AS 'puntos'     
+FROM partits
+WHERE 'val' in (equipc, equipf);
