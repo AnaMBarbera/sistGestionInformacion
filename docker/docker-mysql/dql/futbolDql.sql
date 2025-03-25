@@ -162,3 +162,39 @@ SELECT equipc as 'Equipo casa', equipf as 'Equipo fuera', golsc, golsf,
     AS 'puntos'     
 FROM partits
 WHERE 'val' in (equipc, equipf);
+
+-- GROUP BY
+USE futbol;
+-- Muestra de cada equipo: el código, sueldo máximo, mínimo, la suma de todos los sueldos, cuántos jugadores hay, de cuántos jugadores se conoce el sueldo, la media de sueldos entre los que sabemos el sueldo y la media de sueldos entre todos los jugadores.
+SELECT equip, max(sou), min(sou), sum(sou), avg(sou), sum(sou)/count(*)
+FROM jugadors
+GROUP BY equip;
+-- Muestra cuántos jugadores tiene cada equipo en cada posición.
+SELECT equip, lloc, count(*)
+FROM jugadors
+GROUP BY equip, lloc;
+-- Goles marcados en total en cada jornada.
+SELECT jornada, sum(golsc+golsf)
+FROM partits
+GROUP BY jornada;
+-- Media de goles por partido en cada jornada.
+SELECT jornada, avg(golsc+golsf)
+FROM partits
+GROUP BY jornada;
+-- Goles marcados por el pichichi de cada equipo. Es decir: es necesario mostrar el código del equipo y los goles marcados por su máximo goleador.
+SELECT equip, max(gols)
+FROM golejadors
+GROUP BY equip;
+-- Goles marcados en total por cada equipo en casa.
+SELECT equipc, SUM(golsc)
+FROM partits
+GROUP BY equipc;
+-- Goles que ha recibido en total a cada equipo como visitante.
+SELECT equipf, SUM(golsc)
+FROM partits
+GROUP BY equipf;
+-- ¿Cuántos partidos ha ganado cada equipo jugando en casa
+SELECT equipc, count(*)
+FROM partits
+WHERE golsc-golsf>1
+GROUP BY equipc;
