@@ -172,7 +172,8 @@ GROUP BY equip;
 -- Muestra cuántos jugadores tiene cada equipo en cada posición.
 SELECT equip, lloc, count(*)
 FROM jugadors
-GROUP BY equip, lloc;
+GROUP BY equip, lloc
+ORDER BY equip, lloc;
 -- Goles marcados en total en cada jornada.
 SELECT jornada, sum(golsc+golsf)
 FROM partits
@@ -196,5 +197,140 @@ GROUP BY equipf;
 -- ¿Cuántos partidos ha ganado cada equipo jugando en casa
 SELECT equipc, count(*)
 FROM partits
-WHERE golsc-golsf>1
+WHERE (golsc-golsf)>0 
 GROUP BY equipc;
+-- o where golsc > golsf
+
+-- lo mismo anterior + de 6 partidos en casa
+SELECT equipc, count(*)
+FROM partits
+WHERE (golsc-golsf)>0 
+GROUP BY equipc
+HAVING count(*) > 6;
+
+-- Comprueba si hay algún nombre de jugador repetido. Es decir: es necesario mostrar el nombre del jugador y cuántas vueltas aparece pero sólo para aquellos jugadores que tengan el nombre repetido.
+SELECT nom, count(*)
+FROM jugadors
+GROUP BY nom
+HAVING count(*) > 1
+
+-- Jornadas en las que se han marcado más de 35 goles. Debe aparecer el número de la jornada y la cantidad total de goles correspondiente.
+SELECT jornada, SUM(golsc+golsf)
+FROM partits
+GROUP BY jornada
+HAVING SUM(golsc+golsf) > 35
+;
+-- Queremos saber la media de posesión del balón de cada equipo jugando en casa de aquellos equipos en los que su mínima posesión jugando en casa es mayor de 40. Ordenado de mayor a menor posesión. La media de la posesión debe salir sin decimales.
+
+SELECT equipc, round(avg(possessioc), 0)
+FROM partits
+GROUP BY equipc
+HAVING MIN(possessioc) > 40
+ORDER BY AVG(possessioc) DESC
+;
+
+-- Muestra la quiniela de la primera jornada (equipo casa, equipo fuera, 1x2). Este ejercicio ya se hizo con la función IF. Ahora hazlo sin usar esa función. Y ordenado por el código del equipo que juega en casa.
+SELECT 
+    equipc AS 'Equipo casa', 
+    equipf AS 'Equipo fuera', 
+    '1' AS resultado  -- Victoria del equipo casa
+FROM 
+    partits
+WHERE 
+   jornada=1 and golsc > golsf
+
+UNION
+
+SELECT 
+    equipc AS 'Equipo casa', 
+    equipf AS 'Equipo fuera', 
+    'X' AS resultado  -- Empate
+FROM 
+    partits
+WHERE 
+    jornada=1 and golsc = golsf
+
+UNION
+
+SELECT 
+    equipc AS 'Equipo casa', 
+    equipf AS 'Equipo fuera', 
+    '2' AS resultado  -- Victoria del equipo fuera
+FROM 
+    partits
+WHERE 
+    jornada=1 and golsc < golsf
+
+ORDER BY 
+    1;  -- Ordena por el equipo de casa
+
+
+-- Cuántos unos, cuántas x y cuántos 2 en la primera jornada.
+SELECT 
+    '1' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    jornada = 1 AND golsc > golsf  -- Equipo de casa gana
+
+UNION
+
+SELECT 
+    'X' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    jornada = 1 AND golsc = golsf  -- Empate
+
+UNION
+
+SELECT 
+    '2' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    jornada = 1 AND golsc < golsf  -- Equipo fuera gana
+
+
+-- Cuántos unos, cuantas x y cuántos 2 en cada jornada (ordenado por la jornada).
+
+SELECT jornada,
+    '1' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    golsc > golsf  -- Equipo de casa gana
+GROUP BY jornada
+UNION
+
+SELECT jornada,
+    'X' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    golsc = golsf  -- Empate
+GROUP BY jornada
+UNION
+
+SELECT jornada,
+    '2' AS resultado, 
+    COUNT(*) AS cantidad
+FROM 
+    partits
+WHERE 
+    golsc < golsf
+GROUP BY jornada
+
+ORDER BY 1;
+
+
+-- ¿Cuántos partidos le queda por jugar a cada equipo en casa y cuántos fuera? Muestra la información ordenada por equipo. Dentro de cada equipo, primero los de casa.
+
+
+-- Cuántos partidos ha ganado/empatado/perdido cada equipo jugando en casa/fuera. Ordenado por equipo. Así (da igual si aparecen primero los ganados o empatados o perdidos):
+
