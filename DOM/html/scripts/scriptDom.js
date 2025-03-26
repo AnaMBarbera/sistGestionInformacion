@@ -68,7 +68,7 @@ function rollImages(){
     let image = document.getElementById("imagen1"); 
     setInterval(() => {image.setAttribute("src", images[i]); 
     i++;
-    if(i==images.length) i=0;},5000);
+    if(i==images.length) i=0;},3000);
    
 }
 
