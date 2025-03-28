@@ -1,0 +1,12 @@
+[
+  { "codigo": "MAD", "nombre": "Madrid", "poblacion": 3223000 },
+  { "codigo": "BCN", "nombre": "Barcelona", "poblacion": 1620000 },
+  { "codigo": "VAL", "nombre": "Valencia", "poblacion": 791000 },
+  { "codigo": "SEV", "nombre": "Sevilla", "poblacion": 688000 },
+  { "codigo": "ZAR", "nombre": "Zaragoza", "poblacion": 674000 },
+  { "codigo": "MAL", "nombre": "Málaga", "poblacion": 574000 },
+  { "codigo": "MUR", "nombre": "Murcia", "poblacion": 460000 },
+  { "codigo": "PAL", "nombre": "Palma de Mallorca", "poblacion": 415000 },
+  { "codigo": "BIL", "nombre": "Bilbao", "poblacion": 345000 },
+  { "codigo": "VGO", "nombre": "Vigo", "poblacion": 296000 }
+]
