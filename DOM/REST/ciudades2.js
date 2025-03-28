@@ -31,7 +31,7 @@ function verCiudad(ciudadCode) {
             
             if (ciudad) {
                 // Mostrar detalles de la ciudad
-                alert(`Detalles de la ciudad: \n\nCódigo: ${ciudad.codigo}\nNombre: ${ciudad.nombre}\nPoblación: ${ciudad.poblacion}\nAeropuertos: ${ciudad.aeropuertos ? ciudad.aeropuertos.map(a => a.nombre).join(', ') : 'Ninguno'}`);
+                alert(`Detalles de la ciudad: \nCódigo: ${ciudad.codigo}\nNombre: ${ciudad.nombre}\nPoblación: ${ciudad.poblacion}`);
             } else {
                 alert("Ciudad no encontrada.");
             }
