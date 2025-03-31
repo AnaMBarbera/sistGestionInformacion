@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Responsivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #970f5edb;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        footer {
+            background-color: #970f5edb;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Media Queries */
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: lightgray;
+            }
+            header {
+                font-size: 14px;
+            }
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        @media only screen and (min-width: 601px) {
+            body {
+                background-color: white;
+            }
+            header {
+                font-size: 24px;
+            }
+            footer {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a la página responsiva</h1>
+    </header>
+
+    <main>
+        <p>Este es un ejemplo de una página web responsiva utilizando media queries.</p>
+    </main>
+
+    <footer>
+        <p>© 2025 Diseño Responsivo</p>
+    </footer>
+</body>
+</html>

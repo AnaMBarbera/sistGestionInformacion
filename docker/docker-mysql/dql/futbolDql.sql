@@ -328,9 +328,39 @@ GROUP BY jornada
 
 ORDER BY 1;
 
-
 -- ¿Cuántos partidos le queda por jugar a cada equipo en casa y cuántos fuera? Muestra la información ordenada por equipo. Dentro de cada equipo, primero los de casa.
-
 
 -- Cuántos partidos ha ganado/empatado/perdido cada equipo jugando en casa/fuera. Ordenado por equipo. Así (da igual si aparecen primero los ganados o empatados o perdidos):
 
+--EJERCICIOS MULTITAULA (BD liga1213)
+USE futbol;
+-- De cada partido queremos mostrar los códigos de los equipos y el nombre de la ciudad en la que juegan.
+SELECT partits.equipc, partits.equipf, ciutats.nom
+FROM partits, equips, ciutats
+WHERE partits.equipc = equips.codi
+and equips.ciutat = ciutats.codi;
+
+-- De cada partido que falta por jugar queremos mostrar en qué fecha se disputará, los nombres cortos de los equipos, los nombres de las respectivas ciudades y el total de habitantes de las dos ciudades.
+SELECT j.data, ec.nomcurt, ef.nomcurt, cc.nom, cf.nom, cc.habitants+cf.habitants as habitantes
+FROM jornades j, partits p, equips ec,equips ef, ciutats as cc, ciutats as cf
+WHERE golsc is null
+and p.jornada = j.num
+and p.equipc = ec.codi
+and p.equipf = ef.codi
+and ec.ciutat = cc.codi
+and ef.ciutat = cf.codi
+;
+
+
+-- De cada equipo: el presupuesto, lo que se gasta con los jugadores y el porcentaje que representa.
+-- Lista de jugadores donde conste: nombre del jugador y nombre de la ciudad en la que juega.
+-- Cantidad total de goles de penalti marcados por equipos de ciudades de menos de 200.000 habitantes.
+-- En qué fechas se han enfrentado Valencia y Barça (sabiendo que los códigos son “vale” y “bar”). Muestra cuál jugaba en casa y quién fuera y el resultado de goles.
+-- En qué fechas se han enfrentado Valencia y Barça (sabiendo que los nombres cortos son “Valencia” y “Barça”). Muestra cuál jugaba en casa y quién fuera (nombre largos) y el resultado de goles.
+-- Muestra parejas de jugadores en los que uno de ellos cobra más de 10 vueltas que el otro. Muestra también sus sueldos.
+-- Modifica el ejercicio anterior para que también aparezcan los respectivos nombres (largos) de los equipos.
+-- Centrocampistas que cobran más que algún delantero de su equipo. Es necesario mostrar los 2 nombres y los 2 sueldos.
+-- Parejas de portero y goleador de un mismo equipo en el que el goleador haya marcado más goles que los goles que ha encajado el portero. Hay que mostrar el equipo y los nombres del portero y goleador con sus respectivos goles. Ordenado por el equipo y el nombre del portero.
+-- Queremos comparar los goles de Messi y Ronaldo (no sabemos el nombre completo de ellos). Muestra el nombre del jugador y toda la estadística de los goles como jugadores pero sólo de ambos.
+-- Media de goles marcados en cada jornada y fecha de la jornada (un decimal).
+-- ¿Cuántos partidos ha ganado/empatado/perdido cada equipo, pero sin diferenciar si está en casa o fuera (sólo los totales).
