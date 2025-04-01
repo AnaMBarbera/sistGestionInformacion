@@ -350,15 +350,61 @@ and p.equipf = ef.codi
 and ec.ciutat = cc.codi
 and ef.ciutat = cf.codi
 ;
-
-
 -- De cada equipo: el presupuesto, lo que se gasta con los jugadores y el porcentaje que representa.
+SELECT e.nomcurt, e.pressupost * 1000000 as PRESUPUESTO, sum(j.sou) AS SALARIOS, ROUND((sum(j.sou)/(e.pressupost * 1000000) * 100),2) as '%'
+FROM equips e, jugadors j
+WHERE e.codi = j.equip
+GROUP BY e.codi;
 -- Lista de jugadores donde conste: nombre del jugador y nombre de la ciudad en la que juega.
+SELECT j.nom, c.nom
+FROM jugadors j, equips e, ciutats c
+WHERE e.codi = j.equip
+    and e.ciutat = c.codi;
+
 -- Cantidad total de goles de penalti marcados por equipos de ciudades de menos de 200.000 habitantes.
+SELECT sum(g.penals)
+FROM golejadors g, equips e, ciutats c
+WHERE g.equip = e.codi
+    and e.ciutat = c.codi
+    and c.habitants < 200000;
+
+SELECT nomcurt, sum(g.penals)
+FROM golejadors g, equips, ciutats c
+WHERE g.equip = equips.codi
+    and equips.ciutat = c.codi
+    and c.habitants < 200000
+    GROUP BY equip;
+
 -- En qué fechas se han enfrentado Valencia y Barça (sabiendo que los códigos son “vale” y “bar”). Muestra cuál jugaba en casa y quién fuera y el resultado de goles.
+
+SELECT j.data, p.equipc, p.equipf, p.golsc, p.golsf
+FROM partits p, jornades j
+WHERE p.jornada = j.num
+and (p.equipc = 'val' or p.equipc = 'bar') and (p.equipf = 'val' or p.equipf = 'bar');
+-- equipc in ('val', 'bar') and equipf in ('val', 'bar')
+
 -- En qué fechas se han enfrentado Valencia y Barça (sabiendo que los nombres cortos son “Valencia” y “Barça”). Muestra cuál jugaba en casa y quién fuera (nombre largos) y el resultado de goles.
--- Muestra parejas de jugadores en los que uno de ellos cobra más de 10 vueltas que el otro. Muestra también sus sueldos.
+SELECT j.data, ec.nomcurt, ef.nomcurt, p.golsc+p.golsf as totalgoles
+FROM partits p, jornades j, equips ec,equips ef
+WHERE p.jornada = j.num
+and p.equipc = ec.codi
+and p.equipf = ef.codi
+and (p.equipc = 'val' or p.equipc = 'bar') and (p.equipf = 'val' or p.equipf = 'bar');
+;
+SELECT j.data, ec.nomllarg Anfitrion, ef.nomllarg as Visitante, p.golsc+p.golsf as totalgoles
+FROM partits p, jornades j, equips ec,equips ef
+WHERE p.jornada = j.num
+and p.equipc = ec.codi
+and p.equipf = ef.codi
+and (ec.nomcurt = 'Valencia' or ec.nomcurt = 'Barça') and (ef.nomcurt = 'Valencia' or ef.nomcurt = 'Barça');
+;
+-- Muestra parejas de jugadores en los que uno de ellos cobra más de 10 vueltas que el otro. Muestra también sus sueldos. 
+SELECT j1.nom, j1.sou, j2.nom, j2.sou
+FROM jugadors j1, jugadors j2
+WHERE j1.sou > j2.sou*10;
+
 -- Modifica el ejercicio anterior para que también aparezcan los respectivos nombres (largos) de los equipos.
+
 -- Centrocampistas que cobran más que algún delantero de su equipo. Es necesario mostrar los 2 nombres y los 2 sueldos.
 -- Parejas de portero y goleador de un mismo equipo en el que el goleador haya marcado más goles que los goles que ha encajado el portero. Hay que mostrar el equipo y los nombres del portero y goleador con sus respectivos goles. Ordenado por el equipo y el nombre del portero.
 -- Queremos comparar los goles de Messi y Ronaldo (no sabemos el nombre completo de ellos). Muestra el nombre del jugador y toda la estadística de los goles como jugadores pero sólo de ambos.
