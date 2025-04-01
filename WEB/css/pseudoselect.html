@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabla de Alumnos</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(odd) {
+        background-color: #ffffff;
+      }
+      tr:last-child {
+        background-color: #f4e1c1;
+        font-weight: bold;
+      }
+      tr:last-child td {
+        background-color: #f4e1c1;
+      }
+      tr:last-child td:first-child::before {
+        content: "Subtotal: ";
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>CSS</th>
+          <th>HTML</th>
+          <th>JS</th>
+          <th>Media</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Ana García</td>
+          <td>8</td>
+          <td>7</td>
+          <td>9</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>José Martínez</td>
+          <td>6</td>
+          <td>7</td>
+          <td>6</td>
+          <td>6.33</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Pedro Fernández</td>
+          <td>9</td>
+          <td>8</td>
+          <td>9</td>
+          <td>8.67</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Laura Rodríguez</td>
+          <td>7</td>
+          <td>6</td>
+          <td>8</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Carlos López</td>
+          <td>6</td>
+          <td>6</td>
+          <td>7</td>
+          <td>6.33</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><b>Total</b></td>
+          <td>36</td>
+          <td>34</td>
+          <td>39</td>
+          <td>7.47</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

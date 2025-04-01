@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--css externo -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--css interno -->
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+      } 
+      #titulo {
+        color: green
+      } 
+      #titulo:hover {
+        background-color: lightblue;
+        font-size: 40px;
+      }
+      .titulo {
+        color: orangered;
+      }   
+        p {
+          color:rgb(34, 0, 255);
+          font-size: 14px; 
+          background-color: lightyellow ; 
+        }
+        /* Los párrafos heredarán la fuente de body */
+    </style>
+</head>
+<body>
+    <h1 id="titulo" class="titulo" > Título de la página (id titulo y clase título)</h1>
+    <h1 class="titulo">Herencia (clase título)</h1>
+    <p>Este párrafo tiene las propiedades CSS de body y de p</p>
+    <p>párrafo con estilo interno</p>
+    <span style="background-color: gray;">texto</span>
+    <!--css en linea -->
+    <p style="color: red; font-size: 22px;">
+        Este es un texto con estilo en línea. \n
+        También utilizará el estilo interno que no esté en conflicto.
+      </p>
+</body>
+</html>
