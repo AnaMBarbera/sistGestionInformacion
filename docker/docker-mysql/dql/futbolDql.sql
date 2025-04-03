@@ -390,23 +390,59 @@ WHERE p.jornada = j.num
 and p.equipc = ec.codi
 and p.equipf = ef.codi
 and (p.equipc = 'val' or p.equipc = 'bar') and (p.equipf = 'val' or p.equipf = 'bar');
+
 ;
-SELECT j.data, ec.nomllarg Anfitrion, ef.nomllarg as Visitante, p.golsc+p.golsf as totalgoles
+SELECT j.data, ec.nomllarg Anfitrion, ef.nomllarg as Visitante, p.golsc , p.golsf as Resultado
 FROM partits p, jornades j, equips ec,equips ef
 WHERE p.jornada = j.num
 and p.equipc = ec.codi
 and p.equipf = ef.codi
 and (ec.nomcurt = 'Valencia' or ec.nomcurt = 'Barça') and (ef.nomcurt = 'Valencia' or ef.nomcurt = 'Barça');
-;
+-- ec.nomcurt in ('Valencia', 'Barça') and ef.nomcurt in ('Valencia', 'Barça')
+
 -- Muestra parejas de jugadores en los que uno de ellos cobra más de 10 vueltas que el otro. Muestra también sus sueldos. 
 SELECT j1.nom, j1.sou, j2.nom, j2.sou
 FROM jugadors j1, jugadors j2
 WHERE j1.sou > j2.sou*10;
-
 -- Modifica el ejercicio anterior para que también aparezcan los respectivos nombres (largos) de los equipos.
-
+SELECT j1.nom, j1.equip, e1.nomllarg, j1.sou, j2.nom, j2.equip, e2.nomllarg, j2.sou
+FROM jugadors j1, jugadors j2, equips e1, equips e2
+WHERE j1.sou > j2.sou*10
+    and j1.equip = e1.codi
+    and j2.equip = e2.codi;
 -- Centrocampistas que cobran más que algún delantero de su equipo. Es necesario mostrar los 2 nombres y los 2 sueldos.
+SELECT j1.nom, j1.sou, j2.nom, j2.sou
+FROM jugadors j1, jugadors j2
+WHERE j1.lloc = 'mig' and j2.lloc = 'davanter'
+and j1.sou > j2.sou
+and j1.equip = j2.equip;
+
+
 -- Parejas de portero y goleador de un mismo equipo en el que el goleador haya marcado más goles que los goles que ha encajado el portero. Hay que mostrar el equipo y los nombres del portero y goleador con sus respectivos goles. Ordenado por el equipo y el nombre del portero.
+
+SELECT p.equip, j.nom, p.gols, jg.nom, g.gols
+FROM porters p, golejadors g, jugadors j, jugadors jg
+WHERE p.equip = g.equip
+and g.gols > p.gols
+and p.equip = j.equip and p.dorsal = j.dorsal
+and g.equip = jg.equip and g.dorsal = jg.dorsal
+;
+-- por la clave primaria compuesta equip + dorsal
+
+
 -- Queremos comparar los goles de Messi y Ronaldo (no sabemos el nombre completo de ellos). Muestra el nombre del jugador y toda la estadística de los goles como jugadores pero sólo de ambos.
+SELECT j.nom, g.gols
+FROM jugadors j, golejadors g
+WHERE (j.nom like "%Messi%" OR j.nom like "%Ronaldo%")
+and j.equip = g.equip and j.dorsal = g.dorsal;
+-- por la clave primaria compuesta equip + dorsal
+
 -- Media de goles marcados en cada jornada y fecha de la jornada (un decimal).
+SELECT j.num, j.`data`, round(avg(p.golsc+p.golsf), 1)
+from jornades j, partits p 
+WHERE p.jornada = j.num
+GROUP BY j.num
+ORDER BY j.num;
+
 -- ¿Cuántos partidos ha ganado/empatado/perdido cada equipo, pero sin diferenciar si está en casa o fuera (sólo los totales).
+
