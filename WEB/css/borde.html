@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bordes, márgenes y padding</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+      /*  div{
+            margin: 20px;
+            border: 2px solid red;
+            background-color: lightcyan;
+            
+        } */
+
+        p{ margin: 10px;
+            border: 8px, solid, rgb(255, 51, 0);
+            background-color: bisque;
+            padding: 10px 20px;
+            font-size: 30px;
+            font-weight:bold ;
+        }
+        p:hover{
+            border:8px solid rgb(98, 0, 255);
+            font-size: 20px;
+        }
+        #container {
+        border: 1px solid red;
+        background-color: aliceblue;
+        }
+        #content {
+            background-color: antiquewhite;
+            border: 5px solid red;
+            padding: 5px 10px;
+            margin: 10px 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #content:hover {            
+            border: 5px solid rgb(0, 255, 17);            
+            font-size: 30px;
+        } 
+        #tablero {
+            margin: auto;
+            width: 420px;
+            height: 420px;
+            padding-top: 10px;
+            background-color: lightgray;
+            
+        } 
+        .fila {
+            width: 400px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }      
+        .celda {
+            display: inline-block;
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            margin-left: 0px;
+            padding: 0px;                    
+        }
+        .fila:nth-child(odd) .celda:nth-child(odd){
+            background-color: gray;
+        }
+        .fila:nth-child(odd) .celda:nth-child(even){
+            background-color: rgb(249, 246, 246);
+        }
+        .fila:nth-child(even) .celda:nth-child(even){
+            background-color: gray;
+        }
+        .fila:nth-child(even) .celda:nth-child(odd){
+            background-color:  rgb(249, 246, 246);
+        }       
+
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+            Hello World!
+        </p>
+    </div>
+    <br><br>
+    <div id="container">
+        <div id="content">Hello World!</div>
+      </div>
+      <br><br>
+      <div id="tablero">
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        <div class="fila">
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+            <div class="celda"></div>
+        </div> 
+        
+      </div>
+</body>
+</html>
