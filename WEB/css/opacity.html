@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>       
+        #div2 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color:rgba(0, 0, 255, 0.4);
+            font-weight: bold;
+            top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="div1">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum repudiandae pariatur in. Dolorem voluptate mollitia deserunt quaerat repellat iste vero quam earum, sint nesciunt libero autem nisi, architecto facilis illo!
+        Illum sequi aliquid sit voluptatum molestiae quod, hic tempora quisquam ut soluta, sapiente, cum corrupti nobis unde qui? Rerum pariatur minima, id impedit error corporis libero? Officiis quod ad ducimus.
+    </p>
+    </div>
+    <div id="div2">div2
+        <button id="boton1" onclick="mas()">+</button><button id="boton2" onclick="menos()">-</button>
+    </div>
+    
+    
+
+    <script>
+       
+        let div2 = document.getElementById('div2');
+        let opacidad = 0.5; // Valor inicial de opacidad
+      //  div2.style.opacity = opacidad; // Aplicamos la opacidad inicial
+
+        function mas() {
+            if (opacidad < 1) { // No permite que la opacidad sea mayor que 1
+                opacidad += 0.1; // Incrementa la opacidad
+                div2.style.backgroundColor = `rgba(0,0,255,${opacidad})`;
+            }
+        }
+
+        function menos() {
+            if (opacidad > 0) { // No permite que la opacidad sea menor que 0
+                opacidad -= 0.1; // Disminuye la opacidad
+                div2.style.backgroundColor = `rgba(0,0,255,${opacidad})`;
+            }
+        }
+    </script>
+    
+</body>
+</html>

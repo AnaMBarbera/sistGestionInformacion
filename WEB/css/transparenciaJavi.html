@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidades</title>
+</head>
+<style>
+    div {
+        border: 1px solid red;
+        padding: 10px 5px;
+        background-color: blanchedalmond;
+        margin: 5px;
+        text-align: center;
+        height: 100px;
+    }
+    #encima {
+        background-color: rgba(0,0,255,0.5);
+        position: absolute;
+        width:150px;
+        left:40vw;
+        top:100px;
+    }
+</style>
+<body>
+    <div></div>
+    <div></div>
+    <div id="encima"></div>
+    <div>
+        <button onclick="subirOpacidad()">+</button>
+        <button onclick="bajarOpacidad()">-</button>
+    </div>
+    <script>
+        var opacidad = 0.5;
+
+        function modificarOpacidad(){
+            let div = document.getElementById("encima");
+            div.style.backgroundColor = `rgba(0,0,255,${opacidad})`;
+        }
+
+        function subirOpacidad(){
+            if (opacidad  < 1 ) opacidad = opacidad + 0.1;
+            modificarOpacidad();
+        }
+
+        function bajarOpacidad(){
+            if (opacidad  > 0 ) opacidad = opacidad - 0.1;
+            modificarOpacidad();
+        }
+
+        document.addEventListener("DOMContentLoaded", 
+            function () {
+                return true;
+            }
+        )
+    </script>
+</body>
+</html> 
