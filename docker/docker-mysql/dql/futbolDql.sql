@@ -329,8 +329,39 @@ GROUP BY jornada
 ORDER BY 1;
 
 -- ¿Cuántos partidos le queda por jugar a cada equipo en casa y cuántos fuera? Muestra la información ordenada por equipo. Dentro de cada equipo, primero los de casa.
+SELECT 
+    e.nomcurt,
+    SUM(IF(p.equipc = e.codi AND p.golsc IS NULL, 1, 0)) AS partidos_por_jugar_casa,
+    SUM(IF(p.equipf = e.codi AND p.golsf IS NULL, 1, 0)) AS partidos_por_jugar_fuera
+FROM 
+    equips e
+LEFT JOIN 
+    partits p ON p.equipc = e.codi OR p.equipf = e.codi
+GROUP BY 
+    e.nomcurt
+ORDER BY 
+    e.nomcurt, partidos_por_jugar_casa DESC;
+
 
 -- Cuántos partidos ha ganado/empatado/perdido cada equipo jugando en casa/fuera. Ordenado por equipo. Así (da igual si aparecen primero los ganados o empatados o perdidos):
+
+SELECT 
+    e.nomcurt,  
+    SUM(IF(p.equipc = e.codi AND p.golsc > p.golsf, 1, 0)) AS ganaCasa,   
+    SUM(IF(p.equipf = e.codi AND p.golsf > p.golsc, 1, 0)) AS ganaFuera,   
+    SUM(IF(p.equipc = e.codi AND p.golsc = p.golsf, 1, 0)) AS empataCasa,
+    SUM(IF(p.equipf = e.codi AND p.golsf = p.golsc, 1, 0)) AS empataFuera,
+    SUM(IF(p.equipc = e.codi AND p.golsc < p.golsf, 1, 0)) AS perdidosCasa,
+    SUM(IF(p.equipf = e.codi AND p.golsf < p.golsc, 1, 0)) AS perdidosFuera
+FROM 
+    equips e
+LEFT JOIN 
+    partits p ON p.equipc = e.codi OR p.equipf = e.codi
+GROUP BY 
+    e.nomcurt
+ORDER BY 
+    e.nomcurt;
+
 
 --EJERCICIOS MULTITAULA (BD liga1213)
 USE futbol;
@@ -445,4 +476,69 @@ GROUP BY j.num
 ORDER BY j.num;
 
 -- ¿Cuántos partidos ha ganado/empatado/perdido cada equipo, pero sin diferenciar si está en casa o fuera (sólo los totales).
+USE futbol;
+SELECT 
+    e.nomcurt,
+    SUM(IF(p.golsc > p.golsf AND p.equipc = e.codi, 1, 0)) +
+    SUM(IF(p.golsf > p.golsc AND p.equipf = e.codi, 1, 0)) AS partidos_ganados,
+    
+    SUM(IF(p.golsc = p.golsf, 1, 0)) AS partidos_empatados,
+    
+    SUM(IF(p.golsc < p.golsf AND p.equipc = e.codi, 1, 0)) +
+    SUM(IF(p.golsf < p.golsc AND p.equipf = e.codi, 1, 0)) AS partidos_perdidos
+    
+FROM 
+    equips e
+LEFT JOIN 
+    partits p
+ON 
+    p.equipc = e.codi OR p.equipf = e.codi
 
+GROUP BY 
+    e.nomcurt;
+-- Si usamos FROM equips e, partits p WHERE p.equipc = e.codi OR p.equipf = e.codi se realiza un producto cartesiano de las dos tablas y luego filtra los resultados según la condición en WHERE. Básicamente, combina todas las filas posibles de ambas tablas y luego reduce el conjunto a aquellas que cumplen la condición. No garantiza que todos los equipos aparezcan en el resultado. Si un equipo no tiene partidos asociados en la tabla partits, no aparecerá en el conjunto de resultados.
+
+SELECT 
+    e.nomcurt as equipo,
+    SUM(IF(p.golsc > p.golsf AND p.equipc = e.codi, 1, 0)) +
+    SUM(IF(p.golsf > p.golsc AND p.equipf = e.codi, 1, 0)) AS partidos_ganados,
+    
+    SUM(IF(p.golsc = p.golsf, 1, 0)) AS partidos_empatados,
+    
+    SUM(IF(p.golsc < p.golsf AND p.equipc = e.codi, 1, 0)) +
+    SUM(IF(p.golsf < p.golsc AND p.equipf = e.codi, 1, 0)) AS partidos_perdidos
+FROM equips e, partits p 
+WHERE p.equipc = e.codi OR p.equipf = e.codi
+GROUP BY 
+    e.nomcurt; 
+
+-- JOIN --
+use futbol;
+-- Sacar el nombre de los equipos y el nombre de la ciudad
+-- multitabla (solo aparecen los equipos que tienen ciudad)
+select e.nomcurt, c.nom
+from equips e, ciutats c
+WHERE e.ciutat = c.codi;
+
+-- inner join
+select e.nomcurt, c.nom
+from equips e inner join ciutats c on e.ciutat = c.codi;
+-- podemos quitar inner
+select e.nomcurt, c.nom
+from equips e join ciutats c on e.ciutat = c.codi;
+
+-- LEFT JOIN Todos los A (con los B relacionados) aparecen todos los registros de A (aunque B sea null)
+-- Aquí A es equips (después del from y antes del left join)
+select e.nomcurt, c.nom
+from equips e left join ciutats c on e.ciutat = c.codi;
+-- aquí A es ciutats
+select c.nom, e.nomcurt
+from ciutats c left join equips e on e.ciutat = c.codi;
+
+-- para evitar el valor null en el resultado
+select c.nom, ifnull(e.nomcurt,"Sin equipo")
+from ciutats c left join equips e on e.ciutat = c.codi;
+
+-- 	RIGHT JOIN	Todos los B (con los A relacionados).
+select c.nom, ifnull(e.nomcurt,"Sin equipo")
+from ciutats c right join equips e on e.ciutat = c.codi;

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fondo</title>
+    <style>
+        #divImage {
+            position: relative;
+            width: 60%;            
+            padding: 20px;
+            z-index: 1;  /* Asegura que el contenido esté por encima */
+        }
+        #divImage p{
+            color: white;
+            background-color: rgba(0, 0, 0, 0.32);
+        }
+        #divImage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("./images/imagen.webp");
+            background-attachment: fixed;
+            background-size: cover; /* contain ajusta la imagen al contenedor en su tamaño original (puede repetir */
+            background-repeat: no-repeat;
+            background-position: center center; /*centrado vertical y horizontalmente */
+            opacity: 0.6;  /* Aplica opacidad solo a la imagen */
+            z-index: -1;  /* Coloca la imagen detrás del contenido */
+        }
+        
+        /*fondo cover
+        body {
+              background-image: url(./images/ejemplo.jpeg);
+              background-size: cover;
+          }
+        #ejercicio {
+            background-color: lightgray;
+            opacity: 0.60;
+        }*/
+        #ejercicio p {
+            color:black;
+            font-weight: bold;
+        }
+        
+        /*fondo fijo en la parte lateral derecha y abajo*/
+        body {
+              background-image: url(./images/ejemplo.jpeg);
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-position: bottom right;
+          }
+          #ejercicio {
+              background-color: lightgray;
+              opacity: 0.60;
+          }        
+    </style>
+</head>
+<body>
+    <div id="divImage">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti molestias consectetur sint quis similique quo repellat temporibus. Iusto consectetur incidunt fugit aliquam rem maxime, doloremque aspernatur corporis veniam, nobis architecto.
+        Doloremque laborum optio enim impedit sequi explicabo cumque ipsa corporis, ad, sit perferendis excepturi illum dolores, ea harum magni soluta delectus pariatur omnis maiores provident architecto dicta quisquam! Sunt, ipsa.</p>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto nisi maiores adipisci porro libero saepe? Et fuga delectus eveniet suscipit aut omnis provident laudantium placeat neque, eius obcaecati, maiores minus!
+            Sequi sunt dolore reprehenderit praesentium sapiente quibusdam provident exercitationem animi, labore a laboriosam porro velit! Corrupti quibusdam, esse unde tenetur delectus numquam, consequuntur officia cupiditate magni voluptate tempora quaerat possimus?
+            Similique eius, libero consequatur, sunt dignissimos nihil cupiditate enim sit veniam recusandae dolorem quia delectus quidem aliquam tempora. Ipsa nostrum non velit nulla cum accusamus neque totam minima quod ducimus!
+            Odio earum unde iusto pariatur facere autem consequatur laborum, incidunt molestiae enim inventore eligendi molestias doloremque laboriosam delectus quam illum nulla quisquam dolore distinctio commodi error. Eligendi perspiciatis recusandae soluta.
+            Voluptatem consequatur unde esse aperiam voluptate magnam quis cum dignissimos numquam sapiente mollitia eos aliquam illum ullam, repellat vitae iusto voluptatum nostrum quos hic nobis id aspernatur earum. Corrupti, sunt.
+            Voluptatibus placeat quaerat, sint optio, soluta a inventore nobis eius odio hic veritatis officia ipsa dolorum, vitae repellat. Molestiae labore asperiores voluptate? Quasi voluptas eaque ipsam, ab nam quas molestiae?
+            Itaque ab reprehenderit, obcaecati ad voluptas asperiores ex, possimus commodi odio delectus sint ut iste illo recusandae maxime velit architecto provident accusamus eaque, quam laborum dicta eos facere. Beatae, deserunt?
+            Perferendis ipsum quo tempora accusamus. Culpa porro ut magni quae deleniti sint nobis sapiente, animi natus, modi pariatur blanditiis id nostrum, nihil sequi. Veniam voluptates fugit libero officia odit? Culpa.
+            Magni quidem laborum saepe veniam. Suscipit libero laudantium nam, iure similique consequatur officiis, sint facilis excepturi, sit repudiandae quam aliquid. Suscipit sapiente eius fuga quibusdam harum necessitatibus ab! Eveniet, adipisci.
+            Facilis molestiae, doloribus a reiciendis, nemo repudiandae veniam recusandae ducimus optio consequuntur corrupti ratione consectetur aut! Nisi, error temporibus, repellendus corporis provident iste veniam ab, fugiat sunt recusandae porro officiis?
+        </p>
+    </div>
+    <div id="ejercicio">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae modi, recusandae voluptatem et dolorem ad sit explicabo quas, saepe assumenda. Soluta ullam, magnam, adipisci expedita minus aliquid, quibusdam quidem esse labore quaerat praesentium perspiciatis ex obcaecati. Velit a dolor architecto tempore nam quam esse tenetur ab repellat. Maxime neque quas error quae dicta fuga soluta natus exercitationem atque asperiores ducimus incidunt officiis ullam eaque enim suscipit temporibus reiciendis perferendis quisquam, obcaecati repudiandae impedit! Possimus praesentium dolorum natus facere quo mollitia, illo quas dolores modi veritatis debitis nisi totam excepturi et necessitatibus a nam non ducimus repellendus? Facilis libero voluptatum 
+        </p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae modi, recusandae voluptatem et dolorem ad sit explicabo quas, saepe assumenda. Soluta ullam, magnam, adipisci expedita minus aliquid, quibusdam quidem esse labore quaerat praesentium perspiciatis ex obcaecati. Velit a dolor architecto tempore nam quam esse tenetur ab repellat. Maxime neque quas error quae dicta fuga soluta natus exercitationem atque asperiores ducimus incidunt officiis ullam eaque enim suscipit temporibus reiciendis perferendis quisquam, obcaecati repudiandae impedit! Possimus praesentium dolorum natus facere quo mollitia, illo quas dolores modi veritatis debitis 
+        </p>
+        </div>
+    
+</body>
+</html>
