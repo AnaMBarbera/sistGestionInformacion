@@ -542,3 +542,85 @@ from ciutats c left join equips e on e.ciutat = c.codi;
 -- 	RIGHT JOIN	Todos los B (con los A relacionados).
 select c.nom, ifnull(e.nomcurt,"Sin equipo")
 from ciutats c right join equips e on e.ciutat = c.codi;
+
+-- SUBCONSULTAS
+-- Dorsal, equipo y goles del pichichi (el que ha marcado más goles).
+SELECT dorsal, equip, gols
+FROM golejadors
+WHERE gols = (SELECT max(gols) FROM golejadors);
+
+-- Nombre del pichichi
+SELECT j.nom, g.dorsal, g.equip, g.gols
+FROM golejadors g, jugadors j
+WHERE g.gols = (SELECT max(g.gols) FROM golejadors g)
+ and j.dorsal = g.dorsal and j.equip = g.equip;
+
+-- Muestra el nombre y sueldo del jugador mejor pagado de toda la liga.
+SELECT j.nom, j.sou
+FROM jugadors j
+WHERE j.sou = (SELECT max(j.sou) FROM jugadors j);
+
+-- Muestra el nombre y sueldo del jugador mejor pagado de cada equipo.
+SELECT j.equip, j.nom, j.sou
+FROM jugadors j
+WHERE j.sou = (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.equip = j.equip);
+
+
+-- Jugador que más cobra en cada equipo dentro de su categoría (lugar). Se debe mostrar el nombre del equipo, el nombre del jugador, el lugar y el sueldo (expresado en millones de euros, con 1 decimal). Ordenado por equipo y puesto.
+SELECT j.equip, j.nom, j.lloc, j.sou
+FROM jugadors j
+WHERE j.sou = (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.lloc = j.lloc and j2.equip = j.equip
+)
+ ;
+-- Muestra todos los datos de los partidos donde más goles se marcaron de todo el campeonato.
+SELECT *
+FROM partits
+WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits);
+
+-- Muestra todos los datos de los partidos donde más goles se marcaron de cada jornada. Ordenado por la jornada.
+SELECT jornades.`data`, partits.*
+FROM partits, jornades
+WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits)
+and partits.jornada = jornades.num
+ORDER BY jornades.num;
+
+-- Nombres de los jugadores de los equipos del partido donde más goles se marcaron. Muestra también el código de sus equipos. Ordenado por equipo y nombre de jugador.
+-- aquí saldría el producto cartesiano
+SELECT jc.nom, jc.equip, jf.nom, jf.equip
+FROM partits, jugadors jc, jugadors jf
+WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits)
+and partits.equipc = jc.equip and partits.equipf = jf.equip
+;
+-- debemos hacer un UNION
+SELECT jc.nom, jc.equip 
+FROM partits p
+JOIN jugadors jc ON p.equipc = jc.equip
+JOIN jugadors jf ON p.equipf = jf.equip
+WHERE (p.golsc + p.golsf) = (
+    SELECT MAX(p2.golsc + p2.golsf)
+    FROM partits p2
+)
+UNION
+SELECT jf.nom, jf.equip 
+FROM partits p
+JOIN jugadors jc ON p.equipc = jc.equip
+JOIN jugadors jf ON p.equipf = jf.equip
+WHERE (p.golsc + p.golsf) = (
+    SELECT MAX(p2.golsc + p2.golsf)
+    FROM partits p2
+);
+
+-- Jornadas en las que se marcaron más goles que la jornada anterior.
+
+
+-- Nombre largo de equipos que tienen más de 2 porteros, más de 2 defensas, más de 2 medios y más de 2 delanteros.-- 
+SELECT e.nomllarg
+FROM jugadors j
+JOIN equips e ON j.equip = e.codi
+GROUP BY  e.nomllarg
+HAVING 
+    SUM(IF(j.lloc = 'porter', 1, 0)) > 2 AND
+    SUM(IF(j.lloc = 'defensa', 1, 0)) > 2 AND
+    SUM(IF(j.lloc = 'mig', 1, 0)) > 2 AND
+    SUM(IF(j.lloc = 'davanter', 1, 0)) > 2;
+
