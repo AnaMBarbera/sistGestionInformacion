@@ -611,16 +611,56 @@ WHERE (p.golsc + p.golsf) = (
 );
 
 -- Jornadas en las que se marcaron más goles que la jornada anterior.
+USE futbol;
 
+SELECT j2.data, j2.num, SUM(p2.golsc + p2.golsf) AS goles_jornada
+FROM jornades j1
+JOIN jornades j2 ON j2.num = j1.num + 1
+JOIN partits p1 ON p1.jornada = j1.num
+JOIN partits p2 ON p2.jornada = j2.num
+GROUP BY j2.data, j2.num
+HAVING SUM(p2.golsc + p2.golsf) > SUM(p1.golsc + p1.golsf);
+;
+-- con subconsultas
+SELECT j2.data, j2.num, (SELECT SUM(p2.golsc + p2.golsf) 
+                          FROM partits p2 
+                          WHERE p2.jornada = j2.num) AS goles_jornada
+FROM jornades j2
+WHERE (SELECT SUM(p2.golsc + p2.golsf) 
+       FROM partits p2 
+       WHERE p2.jornada = j2.num) > 
+      (SELECT SUM(p1.golsc + p1.golsf) 
+       FROM partits p1 
+       WHERE p1.jornada = j2.num - 1)
 
 -- Nombre largo de equipos que tienen más de 2 porteros, más de 2 defensas, más de 2 medios y más de 2 delanteros.-- 
+
 SELECT e.nomllarg
 FROM jugadors j
-JOIN equips e ON j.equip = e.codi
+JOIN equips e ON j.equip = e.cod 
 GROUP BY  e.nomllarg
 HAVING 
     SUM(IF(j.lloc = 'porter', 1, 0)) > 2 AND
     SUM(IF(j.lloc = 'defensa', 1, 0)) > 2 AND
     SUM(IF(j.lloc = 'mig', 1, 0)) > 2 AND
     SUM(IF(j.lloc = 'davanter', 1, 0)) > 2;
+-- con subconsultas
+SELECT e.nomllarg
+FROM equips e
+WHERE 
+    (SELECT COUNT(*) 
+     FROM jugadors j 
+     WHERE j.equip = e.codi AND j.lloc = 'porter') > 2
+    AND
+    (SELECT COUNT(*) 
+     FROM jugadors j 
+     WHERE j.equip = e.codi AND j.lloc = 'defensa') > 2
+    AND
+    (SELECT COUNT(*) 
+     FROM jugadors j 
+     WHERE j.equip = e.codi AND j.lloc = 'mig') > 2
+    AND
+    (SELECT COUNT(*) 
+     FROM jugadors j 
+     WHERE j.equip = e.codi AND j.lloc = 'davanter') > 2;
 

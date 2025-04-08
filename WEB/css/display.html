@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        
+        div{
+            display: flex;
+        }
+        p {
+            background-color: rgba(0, 255, 255, 0.468);
+            margin: 5px;
+            padding: 5px;
+            width: 200px;            
+        }
+        /*para poder aplicar width el display de p debe ser inline-block, o block o que el contenedor padre sea display flex*/
+       button{
+        margin: 5px;
+        cursor:pointer;
+       } 
+       #lista{display:none;
+        cursor:pointer}
+       #menu:hover #lista{display:block}
+    
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <h3>MENU</h3>
+    <ul id="lista">
+        <li>opcion1</li>
+        <li>opcion2</li>
+        <li>opcion3</li>
+    </ul>
+    </div>
+    <div>
+        <p id="parrafo1">PARRAFO 1. Lorem ipsum dolor sit !</p>
+        <p id="parrafo2">PARRAFO 2. Lorem ipsum dolor sit !</p>
+        <p id="parrafo3">PARRAFO 3. Lorem, ipsum dolor sit amet atque.</p>
+        
+    </div>
+    <div id="Divborrar">
+        <button id="borrar1" onclick="borrar('parrafo1')">Borrar parrafo1</button>
+        <button id="borrar2" onclick="borrar('parrafo2')">Borrar parrafo2</button>
+        <button id="borrar3" onclick="borrar('parrafo3')">Borrar parrafo3</button>
+        <br>
+    </div>
+    <div id="enseñar">
+        <button id="enseñar1" onclick="enseñar('parrafo1')">Mostrar parrafo1</button>
+        <button id="enseñar2" onclick="enseñar('parrafo2')">Mostrar parrafo2</button>
+        <button id="enseñar3" onclick="enseñar('parrafo3')">Mostrar parrafo3</button>
+    </div>
+    <script>        
+        function borrar(parrafoId) {            
+            let parrafo = document.getElementById(parrafoId);
+            parrafo.style.display='none';
+        }
+        function enseñar(parrafoId) {            
+            let parrafo = document.getElementById(parrafoId);
+            parrafo.style.display='block';
+        }        
+    </script>
+</body>
+</html>

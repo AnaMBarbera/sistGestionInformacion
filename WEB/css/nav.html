@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+    margin: 0;
+    }
+    #vertical {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    }
+    li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    }
+    li a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+    li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    }
+    
+    #horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+/* para que quede arriba
+    position: fixed;
+    top: 0; */
+#horizontal li {
+  float: left;
+}
+#horizontal li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+<ul id="vertical">
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+<div style="margin-left:25%;padding:1px 16px;">
+  <h2>Fixed Full-height Side Nav</h2>
+  <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
+  <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>
+  <p>Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
+  <p>Some text..</p>
+  <p>Some text..</p>
+  
+</div>
+<ul id="horizontal">
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div style="margin-left:25%;padding:1px 16px;">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae explicabo dignissimos nam, sapiente excepturi laboriosam sint voluptas optio provident cupiditate deserunt dolore voluptate porro earum autem quas nulla ipsa quibusdam!
+Quam consequatur corrupti maxime soluta labore! Doloremque obcaecati ipsum eius, eligendi aperiam architecto facilis commodi repellendus pariatur amet assumenda est molestiae. Sint esse accusantium odit eius nisi excepturi tenetur quisquam.
+Aliquam itaque explicabo ullam eum sequi possimus animi, aliquid voluptatibus eligendi. Exercitationem eos quidem ab quae beatae eum error. Excepturi sit accusantium assumenda! Maxime asperiores in cumque beatae esse mollitia.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae explicabo dignissimos nam, sapiente excepturi laboriosam sint voluptas optio provident cupiditate deserunt dolore voluptate porro earum autem quas nulla ipsa quibusdam!
+Quam consequatur corrupti maxime soluta labore! Doloremque obcaecati ipsum eius, eligendi aperiam architecto facilis commodi repellendus pariatur amet assumenda est molestiae. Sint esse accusantium odit eius nisi excepturi tenetur quisquam.
+Aliquam itaque explicabo ullam eum sequi possimus animi, aliquid voluptatibus eligendi. Exercitationem eos quidem ab quae beatae eum error. Excepturi sit accusantium assumenda! Maxime asperiores in cumque beatae esse mollitia.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae explicabo dignissimos nam, sapiente excepturi laboriosam sint voluptas optio provident cupiditate deserunt dolore voluptate porro earum autem quas nulla ipsa quibusdam!
+Quam consequatur corrupti maxime soluta labore! Doloremque obcaecati ipsum eius, eligendi aperiam architecto facilis commodi repellendus pariatur amet assumenda est molestiae. Sint esse accusantium odit eius nisi excepturi tenetur quisquam.
+Aliquam itaque explicabo ullam eum sequi possimus animi, aliquid voluptatibus eligendi. Exercitationem eos quidem ab quae beatae eum error. Excepturi sit accusantium assumenda! Maxime asperiores in cumque beatae esse mollitia.</p>
+</div>
+</body>
+</html>
