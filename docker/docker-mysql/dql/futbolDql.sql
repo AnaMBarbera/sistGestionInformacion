@@ -572,25 +572,37 @@ FROM jugadors j
 WHERE j.sou = (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.lloc = j.lloc and j2.equip = j.equip
 )
  ;
+SELECT e.nomcurt, j.nom, j.lloc, j.sou
+FROM jugadors j JOIN equips e on e.codi = j.equip
+WHERE j.sou = (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.lloc = j.lloc and j2.equip = j.equip
+)
+ORDER BY e.nomcurt, j.lloc
+ ;
+
 -- Muestra todos los datos de los partidos donde más goles se marcaron de todo el campeonato.
 SELECT *
 FROM partits
 WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits);
 
 -- Muestra todos los datos de los partidos donde más goles se marcaron de cada jornada. Ordenado por la jornada.
-SELECT jornades.`data`, partits.*
-FROM partits, jornades
-WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits)
-and partits.jornada = jornades.num
+SELECT jornades.`data`, p1.*
+FROM partits p1, jornades
+WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits p2 WHERE p1.jornada=p2.jornada)
+and p1.jornada = jornades.num
 ORDER BY jornades.num;
 
 -- Nombres de los jugadores de los equipos del partido donde más goles se marcaron. Muestra también el código de sus equipos. Ordenado por equipo y nombre de jugador.
--- aquí saldría el producto cartesiano
-SELECT jc.nom, jc.equip, jf.nom, jf.equip
+SELECT jc.nom, jc.equip
+FROM partits, jugadors jc, jugadors jf
+WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits)
+and partits.equipc = jc.equip and partits.equipf = jf.equip
+UNION
+SELECT jf.nom, jf.equip
 FROM partits, jugadors jc, jugadors jf
 WHERE golsc+golsf = (SELECT max(golsc+golsf) FROM partits)
 and partits.equipc = jc.equip and partits.equipf = jf.equip
 ;
+
 -- debemos hacer un UNION
 SELECT jc.nom, jc.equip 
 FROM partits p
@@ -613,13 +625,10 @@ WHERE (p.golsc + p.golsf) = (
 -- Jornadas en las que se marcaron más goles que la jornada anterior.
 USE futbol;
 
-SELECT j2.data, j2.num, SUM(p2.golsc + p2.golsf) AS goles_jornada
-FROM jornades j1
-JOIN jornades j2 ON j2.num = j1.num + 1
-JOIN partits p1 ON p1.jornada = j1.num
-JOIN partits p2 ON p2.jornada = j2.num
-GROUP BY j2.data, j2.num
-HAVING SUM(p2.golsc + p2.golsf) > SUM(p1.golsc + p1.golsf);
+SELECT p.jornada, sum(p.golsc+p.golsf)
+FROM partits p
+GROUP BY p.jornada
+HAVING SUM(golsc+golsf) > (select SUM(golsc + golsf) from partits p2 where p2.jornada = p.jornada-1)
 ;
 -- con subconsultas
 SELECT j2.data, j2.num, (SELECT SUM(p2.golsc + p2.golsf) 
@@ -664,3 +673,25 @@ WHERE
      FROM jugadors j 
      WHERE j.equip = e.codi AND j.lloc = 'davanter') > 2;
 
+-- sacar una lista con los 3 jugadores que más cobran
+SELECT j.nom, j.sou
+FROM jugadors j
+WHERE j.sou = (SELECT max(j1.sou) FROM jugadors j1) 
+   OR j.sou = (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.sou < (SELECT max(j1.sou) FROM jugadors j1))
+   OR j.sou = (SELECT max(j3.sou) FROM jugadors j3 WHERE j3.sou < (SELECT max(j2.sou) FROM jugadors j2 WHERE j2.sou < (SELECT max(j1.sou) FROM jugadors j1)))
+   ORDER BY sou desc;
+
+SELECT j1.nom, sou
+FROM jugadors j1
+WHERE (select count(*) from jugadors j2 where j2.sou > j1.sou) < 3
+ORDER BY sou desc;
+
+
+SELECT j.nom, j.sou
+FROM jugadors j
+ORDER BY j.sou DESC
+LIMIT 3;
+
+SELECT TOP 3 j.nom, j.sou
+FROM jugadors j
+ORDER BY j.sou DESC;
