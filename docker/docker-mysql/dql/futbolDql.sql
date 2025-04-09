@@ -695,3 +695,81 @@ LIMIT 3;
 SELECT TOP 3 j.nom, j.sou
 FROM jugadors j
 ORDER BY j.sou DESC;
+
+-- USO DE ANY, ALL, IN, NOT IN (BD liga1213)
+use futbol;
+-- Nombre del equipo con más presupuesto (de 2 formas: usando max y usando all)
+select equips.nomllarg
+FROM equips
+WHERE pressupost = (select max(pressupost) from equips);
+
+select nomcurt
+from equips
+where pressupost >= all (select pressupost from equips);
+
+-- Nombre de los equipos que no tienen el mayor presupuesto (de 2 formas: usando max y usando any)
+select nomcurt
+from equips
+where pressupost < (select max(pressupost) from equips);
+
+select nomcurt
+from equips
+where pressupost < any (select pressupost from equips);
+
+-- Nombres de ciudades que no tienen equipo (de 2 formas: usando all y usando in).
+
+SELECT ciutats.nom
+FROM ciutats
+LEFT JOIN equips ON equips.ciutat = ciutats.codi
+WHERE equips.ciutat IS NULL;
+
+SELECT ciutats.nom
+FROM ciutats
+WHERE codi != ALL (SELECT distinct ciutat from equips where ciutat is not null)
+;
+
+SELECT ciutats.nom
+FROM ciutats
+WHERE codi NOT IN (SELECT distinct ciutat from equips where ciutat is not null)
+
+-- Muestra los nombres de los jugadores que cobran más que todo otro equipo entero.
+SELECT jugadors.nom
+FROM jugadors
+WHERE jugadors.sou > any (select sum(j2.sou) from jugadors j2 group by j2.equip);
+-- Nombre de los jugadores que han marcado más goles que otro equipo entero.
+SELECT jugadors.nom, jugadors.equip, golejadors.gols
+FROM golejadors, jugadors
+WHERE golejadors.gols > any (select sum(g2.gols) from golejadors g2 group by g2.equip)
+and golejadors.equip = jugadors.equip
+and golejadors.dorsal = jugadors.dorsal;
+
+-- Nombre de los jugadores que han marcado más goles que otro equipo entero.
+--  También debe aparecer el código del equipo del goleador y el código del equipo al que supera.
+--  Ordenado por el equipo del goleador, nombre del goleador y equipo al que supera.
+-- También debe aparecer los goles del goleador y los goles del equipo con el que se compara.
+SELECT j.nom, j.equip, g.gols, ge.equip, ge.totalgols
+FROM golejadors g join jugadors j on g.equip = j.equip and g.dorsal = j.dorsal
+join (select equip, sum(g2.gols) as totalgols from golejadors g2 group by g2.equip) as ge
+WHERE g.gols > ge.totalgols
+ORDER BY j.equip, j.nom, ge.equip
+;
+-- Jugadores (equipo y nombre) que todavía no han marcado ningún gol. Ordenado por equipo y nombre.
+SELECT jugadors.nom, jugadors.equip
+FROM jugadors
+WHERE concat (equip, dorsal) !=ALL (select concat (equip, dorsal) from golejadors);
+
+SELECT j.nom, j.equip
+FROM jugadors j
+WHERE not exists ( select * from golejadors g 
+                    where g.equip = j.equip and g.dorsal = j.dorsal);
+-- Equipo con más jugadores.
+SELECT nomcurt, count(*)
+from equips join jugadors on jugadors.equip = equips.codi
+GROUP BY nomcurt 
+HAVING count(*) >= all (SELECT count(*)
+from equips join jugadors on jugadors.equip = equips.codi
+GROUP BY nomcurt);
+ 
+-- Equipo con más jugadores y cantidad de jugadores.
+
+-- Equipo con más jugadores y equipo con menos jugadores. También debe aparecer las cantidades y una palabreja al lado que diga “MAX” o “MIN”.
