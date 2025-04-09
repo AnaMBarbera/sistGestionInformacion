@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tablas</title>
+    <style>
+        table tr{
+            border: 1px solid red;
+        }
+        th{border: 1px solid red;}
+        td{width: 100px;
+            border: 1px solid red}
+    </style>
 </head>
 <body>
     <h2>ejerc. colspan</h2>
-    <table border="1"> <!-- obsoleto sólo para pruebas-->
-        <tr>
+    <table> <!-- obsoleto sólo para pruebas-->
+        <tr style="visibility: collapse;">
           <th colspan="2">Nombre</th>
           <th>Edad</th>
         </tr>
         <tr>
           <td>Jill</td>
-          <td>Smith</td>
+          <td style="visibility: collapse;">Smith</td>
           <td>43</td>
         </tr>
         <tr>

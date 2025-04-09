@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visibility</title>
+    <style>
+        p {
+            border: 1px solid red;
+            background-color: beige;
+            display: inline;
+        }
+
+        table {
+            border: 1px solid red;
+        }
+
+        tr {
+            border: 1px solid green;
+            margin: 0px;
+        }
+
+        td {
+            border: 1px solid blue;
+            width: 100px;
+            text-align: center;
+            margin: 0px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Property: Display</h1>
+    <div>
+        <h2>display none</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, molestias.</p>
+        <p style="display: none;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quidem?.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, repellendus nesciunt.</p>
+    </div>
+    <div>
+        <h2>Property: visibility</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere.</p>
+        <p style="visibility: collapse;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ab?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, ea officia.</p>
+    </div>
+    <table style="margin-left: 200px;margin-top: 40px; border-collapse: collapse;">
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+        </tr>
+        <tr style="visibility: collapse;">
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>I</td>
+            <td>II</td>
+            <td>III</td>
+        </tr>
+    </table>
+    <hr>
+</body>
+</html>

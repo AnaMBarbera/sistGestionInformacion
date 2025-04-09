@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio básico</title>
+    <style>
+        .imagenes-container img{
+            float: left;
+        }
+
+        header, footer {
+        background-color: #04AA6D;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+      
+        nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 8px;
+            width: 100%;            
+            background-color: #333;                      
+            overflow: hidden;
+            margin-bottom: 50px;
+            }
+        a {
+            display: inline;
+            color: white;
+            padding: 8px 8px;
+            text-decoration: none;
+            }
+        a.active {
+            background-color: #04AA6D;
+            color: white;
+            }
+        a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+            }
+    </style>
+</head>
+<body>
+    <header>
+      <h1>Bienvenido a la Página de Ejemplo</h1>
+    </header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Servicios</a>
+    </nav>
+
+    <div class="imagenes-container">
+      <div><img src="images/css.png" alt="css" /></div>
+      <div><img src="images/html-5.png" alt="Imagen 2" /></div>
+      <div><img src="images/javascript.png" alt="Imagen 3" /></div>
+      <div><img src="images/logo.png" alt="Imagen 4" /></div>      
+    </div>
+    <div style="clear: both;"></div>
+    <footer>
+      <p>© 2025 Ejemplo de Diseño Web</p>
+    </footer>
+  </body>
+
+</html>

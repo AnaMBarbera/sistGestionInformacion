@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Z-index</title>
+    <style>
+      .div1,
+      .div2,
+      .div3 {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+      }
+
+      .div1 {
+        background-color: red;
+        top: 130px;
+        left: 50px;
+        z-index: 1; /* El div rojo está en el fondo */
+      }
+
+      .div2 {
+        background-color: green;
+        top: 180px;
+        left: 100px;
+        z-index: 2; /* El div verde está encima del rojo */
+      }
+
+      .div3 {
+        background-color: blue;
+        top: 230px;
+        left: 150px;
+        z-index: 3; /* El div azul está encima de los otros dos */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Z-INDEX</h1>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="buttons">
+        <button style="background-color: red;" onclick="bringToFront('div1')">Traer rojo al frente</button>
+        <button style="background-color: green;; color:white;"onclick="bringToFront('div2')">Traer verde al frente</button>
+        <button style="background-color: blue; color:white;" onclick="bringToFront('div3')">Traer azul al frente</button>
+      </div>
+  
+      <script>
+        // Función para cambiar el z-index de los divs
+        function bringToFront(divClass) {
+          // Restablecer todos los z-index
+          document.querySelector('.div1').style.zIndex = 1;
+          document.querySelector('.div2').style.zIndex = 2;
+          document.querySelector('.div3').style.zIndex = 3;  
+          // Poner el z-index más alto en el div seleccionado
+          document.querySelector(`.${divClass}`).style.zIndex = 4;
+        }
+      </script>
+  </body>
+</html>
