@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solapando áreas en Grid</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 100px auto 100px;
+        grid-template-areas:
+          "header header"
+          "menu content"
+          "footer footer";
+        gap: 10px;
+        position: relative;
+        height: 100vh;
+      }
+
+      .header {
+        grid-area: header;
+        background-color: lightblue;
+        padding: 20px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .menu {
+        grid-area: menu;
+        background-color: lightcoral;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .content {
+        grid-area: content;
+        background-color: lightgreen;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: lightgray;
+        padding: 20px;
+        position: relative;
+        z-index: 0;
+      }
+
+      /* Solapando el menú sobre el contenido. Este elemento no debe formar parte del grid */
+      .menu-overlap {
+        position: absolute;
+        top: 200px; /* Ajusta la posición de la superposición */
+        left: 150px; /* Ajusta la posición horizontal */
+        width: 300px; /* Ajusta el tamaño para el solapamiento */
+        height: 300px;
+        background-color: rgb(140, 164, 236); /* Semi-transparente */
+        z-index: 4; /* Lo pone encima de todo */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Encabezado</div>
+      <div class="menu">Menú Lateral</div>
+      <div class="content">Contenido Principal</div>
+      <div class="footer">Pie de Página</div>
+
+      <!-- Elemento que se solapa -->
+        <div class="menu-overlap">Menú Solapado. <br> Este elemento no debe formar parte del grid, es decir, no tiene la propiedad  <i>'grid-area'</i> para poder posicio
+        </div>
+    </div>
+  </body>
+</html>
+

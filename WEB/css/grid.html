@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página con CSS Grid</title>
+    <style>
+      /* Contenedor principal */
+      .container {
+        display: grid;
+        grid-template-columns: 200px 1fr; /* Menú lateral y contenido principal */
+        grid-template-rows: 100px auto 100px; /* Encabezado, cuerpo y pie */
+        grid-template-areas:
+          "header header"
+          "menu content"
+          "footer content"; /*las filas y columnas se combinan repitiendo el área*/
+        gap: 10px; /* Espacio entre los elementos */
+      }
+
+      header {
+        grid-area: header;
+        background-color: #892d44;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      nav {
+        grid-area: menu;
+        background-color: #333333b6;
+        color: white;
+        padding: 15px;
+      }
+
+      .content {
+        grid-area: content;
+        background-color: #e9e4e4;
+        padding: 20px;
+      }
+
+      footer {
+        grid-area: footer;
+        background-color: #892d44;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+
+      nav a {
+        display: block;
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cabecera de la página (Grid)</h1>
+      </header>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Productos</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
+      </nav>
+      <div class="content">
+        <h2>Título del contenido</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla non tempore officiis, commodi facere et aspernatur iure quam similique, cupiditate repellendus in cum eius officia id repudiandae ex fugit harum?
+          Delectus iure earum quasi animi! Autem at architecto natus error ab nam vel numquam. Nemo obcaecati in tempora quos nisi ducimus ex aspernatur sint expedita, rerum repudiandae, molestiae eligendi aut.
+          Sunt dolor aut fugit cumque similique quis porro neque optio aliquam, reprehenderit at nisi animi labore? In, impedit dolor quod pariatur, ullam blanditiis enim cumque, est dolores itaque at vitae.
+        </p>
+      </div>
+      <footer>
+        <p>Footer de la página</p>
+        <p>© 2025 Ana Barberá</p>
+      </footer>
+    </div>
+  </body>
+</html>
