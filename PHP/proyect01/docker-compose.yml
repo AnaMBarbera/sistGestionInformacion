@@ -8,12 +8,12 @@ services:
     environment:
       - MYSQL_HOST=host.docker.internal
       - MYSQL_USER=alumno
-      - MYSQL_PASSWORD=alumno
-      - MYSQL_DB=test
+      - MYSQL_PASSWORD=alumnopassword
+      - MYSQL_DB=futbol
       - MONGODB_HOST=host.docker.internal
       - MONGODB_USER=alumno
       - MONGODB_PASSWORD=alumno
-      - MONGODB_DB=test
+      - MONGODB_DB=futbol
       - MONGODB_PORT=27017
 
   nginx:
