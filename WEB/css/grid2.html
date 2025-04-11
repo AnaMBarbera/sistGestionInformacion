@@ -52,13 +52,39 @@
 
       /* Solapando el menú sobre el contenido. Este elemento no debe formar parte del grid */
       .menu-overlap {
+        padding: 20px;
         position: absolute;
         top: 200px; /* Ajusta la posición de la superposición */
         left: 150px; /* Ajusta la posición horizontal */
-        width: 300px; /* Ajusta el tamaño para el solapamiento */
+        width: 400px; /* Ajusta el tamaño para el solapamiento */
         height: 300px;
         background-color: rgb(140, 164, 236); /* Semi-transparente */
         z-index: 4; /* Lo pone encima de todo */
+      }
+      button {
+        margin: 10px;        
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition-duration: 0.4s;
+      }
+      button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);      
+        background-color: white !important;
+        color: black;
+        border: 2px solid #04AA6D; /* Green */
+      }
+      #btRed{
+        background-color: red;
+      }
+      #btOran{
+        background-color: orange;
+      }
+      #btGreen{
+        background-color: green;
       }
     </style>
   </head>
@@ -70,7 +96,14 @@
       <div class="footer">Pie de Página</div>
 
       <!-- Elemento que se solapa -->
-        <div class="menu-overlap">Menú Solapado. <br> Este elemento no debe formar parte del grid, es decir, no tiene la propiedad  <i>'grid-area'</i> para poder posicio
+        <div class="menu-overlap">
+          <h3>Menú Solapado.</h3> <p> Este elemento no debe formar parte del grid, es decir, no tiene la propiedad  <i>'grid-area'</i> para poder posicionarlo de manera absoluta </p>
+          <br><br>
+          <div>
+            <button id="btRed">Enviar</button>
+            <button id="btOran">Cancelar</button>
+            <button id="btGreen">Registro</button>
+          </div>          
         </div>
     </div>
   </body>
