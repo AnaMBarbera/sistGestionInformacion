@@ -19,3 +19,4 @@ RUN pecl install mongodb \
 
 # Establecer la ruta de trabajo
 WORKDIR /var/www/html
+

@@ -1,6 +1,6 @@
 
 docker exec -it docker-mysql bash
-mysql uroot -p
+mysql u root -p 
 ----------------
 docker exec -it docker-mysql mysql -uroot -p
 select mysql.user.user, mysql.user.host from mysql.user;

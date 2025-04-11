@@ -646,7 +646,7 @@ WHERE (SELECT SUM(p2.golsc + p2.golsf)
 
 SELECT e.nomllarg
 FROM jugadors j
-JOIN equips e ON j.equip = e.cod 
+JOIN equips e ON j.equip = e.codi 
 GROUP BY  e.nomllarg
 HAVING 
     SUM(IF(j.lloc = 'porter', 1, 0)) > 2 AND
@@ -692,10 +692,6 @@ FROM jugadors j
 ORDER BY j.sou DESC
 LIMIT 3;
 
-SELECT TOP 3 j.nom, j.sou
-FROM jugadors j
-ORDER BY j.sou DESC;
-
 -- USO DE ANY, ALL, IN, NOT IN (BD liga1213)
 use futbol;
 -- Nombre del equipo con más presupuesto (de 2 formas: usando max y usando all)
@@ -736,6 +732,7 @@ WHERE codi NOT IN (SELECT distinct ciutat from equips where ciutat is not null)
 SELECT jugadors.nom
 FROM jugadors
 WHERE jugadors.sou > any (select sum(j2.sou) from jugadors j2 group by j2.equip);
+
 -- Nombre de los jugadores que han marcado más goles que otro equipo entero.
 SELECT jugadors.nom, jugadors.equip, golejadors.gols
 FROM golejadors, jugadors
