@@ -11,3 +11,8 @@ https://jbeteta-ies.github.io/BBDD/ejercicios/T04_SQL/ejercicios01.html
 
 https://jbeteta-ies.github.io/BBDD/ejercicios/T04_SQL/ejercicios02.html
 
+dentro de /docker tenemos 2 docker-compose.yml
+-el que dice (linux) tiene los tres contenedores que se levantan en linux (casa)
+- el otro sólo tiene el contenedor de mysql con el que trabajamos en clase junto con el que está en PHP/proyect1 que tiene los contenedores php y nginx
+
+- para trabajar en casa renombramos los contendores que hay en /docker. Ponemos la anotación (windows o beta) en el de clase y quitamos la anotación (linux) del otro.
