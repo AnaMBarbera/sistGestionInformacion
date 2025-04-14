@@ -1,3 +1,13 @@
+
+<?php
+$frutas = ["Manzana", "Plátano", "Cereza"];
+echo "<ul>";
+foreach ($frutas as $fruta) {
+    echo "<li>" . $fruta . "</li>";
+}
+echo "</ul>";
+?>
+
 <?php
 $titulos = ["Nombre", "Apellido1", "Apellido2", "ID", "Departamento"];
 $empleados = [
@@ -5,7 +15,7 @@ $empleados = [
     ["Juan", "García", "García", "102", "Ventas"],
     ["María", "López", "López", "103", "Marketing"] 
 ];
-echo "<table border='1'>";
+echo "<table style='border: 1px solid black;'>";
 echo "<tr>";
 foreach ($titulos as $titulo) {
     echo "<th>" . $titulo . "</th>";
