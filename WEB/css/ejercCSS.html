@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios CSS</title>
+    <style>
+        #parrafo1{
+            font-family: sans-serif;
+            color: blue;
+            font-size: 18px;
+        }
+        #parrafo2{
+            font-family: serif;
+            color: red;
+            font-weight: bold;
+        }
+        #parrafo3{
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 22px;
+        }
+        button{
+            background-color: green;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: large;
+        }
+        button:hover{
+            background-color: blue;
+            color:yellow
+        }
+        img{
+            border: solid 5px black;
+            box-shadow: 5px 5px 15px gray;            
+        }
+        img:hover{
+            opacity: 0.8;            
+        }
+        #avatar{
+            width: 150px;
+            height: auto;
+            display: flexbox;
+            background-color: whitesmoke;
+            box-shadow: 5px 5px gray;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        #avatar img{
+            width:90%;
+            height: auto;
+            margin: 0px auto;
+        }
+        #avatar:hover{
+            width: 155px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgb(51, 148, 3);
+            padding: 10px;
+            }
+            nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px;
+            font-size: 16px;
+            }
+            nav a:hover {
+            background-color: rgb(71, 172, 21);
+            font-size: 18px;
+            font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <!-- 
+        Ejercicio 1: Personalización de Textos
+        - Crea un archivo HTML con 3 párrafos de texto.
+        - Aplica estilos mediante CSS para que: - El primer párrafo tenga una fuente sans-serif, color azul y tamaño de 18px. - El segundo párrafo tenga una fuente serif, color rojo y texto en negrita. - El tercer párrafo tenga un tamaño de 22px, con texto en mayúsculas y alineado al centro.
+    -->
+    <h3>Personalización de Textos</h3>
+    <p id="parrafo1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, atque fugit       officiis adipisci laudantium at voluptate impedit, vel deleniti mollitia corporis eligendi molestias aut et soluta nostrum sunt provident reiciendis.
+        Asperiores sit ad error distinctio placeat ratione. Enim maxime quaerat quas! Inventore adipisci vel perspiciatis voluptates dolorem sequi eligendi animi illo possimus ex, ullam labore neque voluptatibus deleniti, earum id!
+   </p>
+   <p id="parrafo2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, atque fugit officiis adipisci laudantium at voluptate impedit, vel deleniti mollitia corporis eligendi molestias aut et soluta nostrum sunt provident reiciendis.
+        Asperiores sit ad error distinctio placeat ratione. Enim maxime quaerat quas! Inventore adipisci vel perspiciatis voluptates dolorem sequi eligendi animi illo possimus ex, ullam labore neque voluptatibus deleniti, earum id!
+   </p>
+   <p id="parrafo3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, atque fugit officiis adipisci laudantium at voluptate impedit, vel deleniti mollitia corporis eligendi molestias aut et soluta nostrum sunt provident reiciendis.
+        Asperiores sit ad error distinctio placeat ratione. Enim maxime quaerat quas! Inventore adipisci vel perspiciatis voluptates dolorem sequi eligendi animi illo possimus ex, ullam labore neque voluptatibus deleniti, earum id!
+   </p>
+   <!-- 
+        Ejercicio 2: Botones con Efecto Hover
+        - Crea un botón en HTML con la etiqueta <button>. - Usa CSS para estilizarlo con: - Color de fondo verde, texto en blanco y borde redondeado. - Cuando el usuario pase el cursor sobre el botón (:hover), el color de fondo debe cambiar a azul y el texto a amarillo.
+   -->
+   <h3>Botones con Efecto Hover</h3>
+    <button>Enviar</button>
+    <!-- 
+        Ejercicio 3: Imagen con Bordes y Sombra
+        - Agrega una imagen en tu página web con <img>. - Usa CSS para que: - La imagen tenga un borde sólido de 5px en color negro. - Se le aplique una sombra difusa. - Cuando el usuario pase el cursor sobre la imagen, la opacidad disminuya al 80%.
+    -->
+    <h3>Imagen con Bordes y Sombra</h3>
+    <img src="./images/ejemplo.jpeg" alt="ejemplo">
+    <!--
+       Ejercicio 4: Diseño de una Tarjeta de Perfil
+        - Diseña una tarjeta de perfil con un avatar (imagen), un nombre y una descripción. - La tarjeta debe: - Tener un fondo blanco, una sombra y bordes redondeados. - Usar flexbox para centrar los elementos verticalmente. - Que al pasar el cursor sobre ella, aumente su tamaño ligeramente. 
+    -->
+        <h3>Diseño de una Tarjeta de Perfil</h3>
+        <div id="avatar">
+            <img src="./images/logo.png" alt="logo">
+            <h4>Ana Barberá</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        </div>
+    <!--
+        Ejercicio 5: Crear una Barra de Navegación
+        Objetivo: Aplicar display: flex para estructurar una barra de menú.    
+    -->
+    <h3>Crear una Barra de Navegación</h3>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Productos</a>
+        <a href="#">Tienda</a>
+        <a href="#">Contacto</a>
+    </nav>
+
+</body>
+</html>

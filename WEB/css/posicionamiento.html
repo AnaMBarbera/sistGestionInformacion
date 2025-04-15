@@ -10,7 +10,17 @@
         margin-right: 10px;
         width: 150px;
         height: 150px;
-        border: 1px solid red;
+        border: 1px solid red;        
+      }
+      #img1{
+        filter: grayscale(100%) sepia(50%);
+        border-radius: 15px 100%; /* Bordes redondeados */
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      #img2{
+        filter: grayscale(100%) sepia(50%);
+        border-radius: 100% 10%; /* Bordes redondeados */
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
       }
       #parrafo1 {        
         text-align: center;        
@@ -23,8 +33,8 @@
 </head>
 <body>    
       <div>
-        <img src="../../DOM/html/images/css.png" alt="Imagen 1" />
-        <img src="../../DOM/html/images/html-5.png" alt="Imagen 2" />
+        <img id="img1" src="../../DOM/html/images/css.png" alt="Imagen 1" />
+        <img id="img2" src="../../DOM/html/images/html-5.png" alt="Imagen 2" />
         <img src="../../DOM/html/images/javascript.png" alt="Imagen 3" />
         <p id="parrafo1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, inventore officiis accusantium cumque perspiciatis ipsam fugit necessitatibus? Ea aspernatur eveniet natus corrupti accusantium fugiat iure. Odio accusamus quo illum voluptatibus.</p>
         <p id="parrafo2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, inventore officiis accusantium cumque perspiciatis ipsam fugit necessitatibus? Ea aspernatur eveniet natus corrupti accusantium fugiat iure. Odio accusamus quo illum voluptatibus.</p>
