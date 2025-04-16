@@ -50,7 +50,9 @@
         #avatar img{
             width:90%;
             height: auto;
+            display: block;
             margin: 0px auto;
+            border-radius: 15%;
         }
         #avatar:hover{
             width: 155px;
@@ -61,19 +63,75 @@
             background-color: rgb(51, 148, 3);
             padding: 10px;
             }
-            nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 10px;
+        nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        padding: 10px;
+        font-size: 16px;
+        }
+        nav a:hover {
+        background-color: rgb(71, 172, 21);
+        font-size: 18px;
+        font-weight: bold;
+        }
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        li {
+            padding: 5px;
             font-size: 16px;
+            color: darkblue;
+            background-color: rgba(220, 220, 220, 0.3);
+            margin-bottom: 5px;
+            border-left: 2px solid green;
+        }
+        li:hover{
+            background-color: rgba(220, 220, 220, 0.6);
+        }
+        table {        
+        border-collapse: collapse;
+        }
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+        th:hover {
+            background-color: #4cafa5;
+            font-size: 20px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        h2::before, h2::after {
+            content: "@";
+            color: rgb(146, 10, 10);
+            margin: 10px;
             }
-            nav a:hover {
-            background-color: rgb(71, 172, 21);
-            font-size: 18px;
-            font-weight: bold;
+        .grid-container {
+            display: grid;
+            width: 50%;
+            grid-template-columns: repeat(2, 2fr);
+            gap: 10px;
             }
-    </style>
+        .grid-container img {
+            width: 90%;
+            height: auto;
+            border-radius: 20px;
+            }
+
+</style>
 </head>
 <body>
     <!-- 
@@ -127,6 +185,72 @@
         <a href="#">Tienda</a>
         <a href="#">Contacto</a>
     </nav>
+    <!--
+        Ejercicio 6: Lista con Estilos Personalizados
+        Objetivo: Aplicar estilos a listas utilizando list-style y padding    
+    -->
+    <h3>Lista personalizada</h3>
+    <ul>
+        <li>Opción primera </li>
+        <li>Opción segunda </li>
+        <li>Opción tercera </li>
+        <li>Opción cuarta </li>
+    </ul>
+    <!--
+        Ejercicio 7: Estilo de Tablas con Bordes y Fondos
+        Objetivo: Aplicar estilos a una tabla con border, padding y background-color.
+    -->
+    <h3>Formato tabla</h3>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Profesión</th>
+            <th>Edad</th>
+        </tr>
+        <tr>
+            <td>Pepe</td>
+            <td>Tous</td>
+            <td>Profesor</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>Ana</td>
+            <td>Pérez</td>
+            <td>Auxiliar</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Laura</td>
+            <td>García</td>
+            <td>Conductora</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>Miguel</td>
+            <td>Péris</td>
+            <td>Programador</td>
+            <td>45</td>
+        </tr>
+    </table>
+    <!--
+        Ejercicio 8: Pseudoelementos ::before y ::after
+        Objetivo: Usar ::before y ::after para decorar un título.
+    -->
+    <h3>Pseudoelementos ::before y ::after</h3>
+    <h2>Título para decorar</h2>
+    <!--
+        Ejercicio 9: Cuadrícula con CSS Grid
+        Objetivo: Aplicar display: grid para crear una galería de imágenes.
+    -->
+    <h3>Cuadrícula con CSS Grid</h3>
+    <div class="grid-container">
+        <img src="./images/logo.png" alt="logo">
+        <img src="./images/logo.png" alt="logo">
+        <img src="./images/logo.png" alt="logo">
+        <img src="./images/logo.png" alt="logo">
+    </div> 
+
 
 </body>
 </html>
