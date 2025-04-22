@@ -1,3 +1,66 @@
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Sanitización de los campos antes de validarlos
+        $nombre = filter_var($_POST["nombre"], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+        $email_confirmacion = filter_var($_POST["email_confirmacion"], FILTER_SANITIZE_EMAIL);
+        $dni = filter_var($_POST["dni"], FILTER_SANITIZE_STRING);
+        $telefono = filter_var($_POST["telefono"], FILTER_SANITIZE_NUMBER_INT);
+        $password = $_POST["password"];
+        $password_confirmacion = $_POST["password_confirmacion"];
+
+        // Validación de campos
+        if (strlen($nombre) < 4 || strlen($nombre) > 50) {
+            $errores[] = "El nombre debe tener entre 4 y 50 caracteres.";
+        }
+
+        // Validación de correo electrónico
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errores[] = "El correo electrónico no es válido.";
+        }
+
+        // Validación de confirmación de correo electrónico
+        if ($email != $email_confirmacion) {
+            $errores[] = "Los correos electrónicos no coinciden.";
+        }
+
+        // Validación de DNI (asumimos formato español)
+        if (!preg_match("/^\d{8}[A-Za-z]$/", $dni)) {
+            $errores[] = "El DNI no tiene el formato correcto.";
+        }
+
+        // Validación de teléfono
+        if (!preg_match("/^\d{9}$/", $telefono)) {
+            $errores[] = "El teléfono debe tener 9 dígitos.";
+        }
+
+        // Validación de contraseña
+        if (strlen($password) < 6 || strlen($password) > 8 || !preg_match("/[a-z]/", $password) || !preg_match("/[A-Z]/", $password) || !preg_match("/[0-9]/", $password)) {
+            $errores[] = "La contraseña debe tener entre 6 y 8 caracteres, con al menos una mayúscula, una minúscula y un número.";
+        }
+
+        // Validación de confirmación de contraseña
+        if ($password != $password_confirmacion) {
+            $errores[] = "Las contraseñas no coinciden.";
+        }
+
+        // Si no hay errores, mostramos mensaje de éxito
+        if (empty($errores)) {
+            echo "<div class='exito'>Datos recibidos correctamente, gracias.</div>";
+        }
+    }
+?>
+
+<!-- Mostrar errores en un div rojo -->
+<?php if (!empty($errores)) { ?>
+    <div class="errores">
+        <ul>
+            <?php foreach ($errores as $error) { ?>
+                <li style="color:red;"><?php echo $error; ?></li>
+            <?php } ?>
+        </ul>
+    </div>
+<?php } ?>
 
 
 <!DOCTYPE html>

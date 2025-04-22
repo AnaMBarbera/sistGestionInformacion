@@ -5,6 +5,7 @@ services:
     container_name: docker_php
     volumes:
       - ./src:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     environment:
       - MYSQL_HOST=host.docker.internal
       - MYSQL_USER=alumno

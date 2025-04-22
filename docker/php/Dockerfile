@@ -1,7 +1,7 @@
 FROM php:8.2-fpm
 
 # Instalar extensiones necesarias
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
 # Instalar MongoDB (opcional)
 RUN apt-get update && apt-get install -y \
