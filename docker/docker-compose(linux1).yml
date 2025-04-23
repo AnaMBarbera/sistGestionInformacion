@@ -10,6 +10,7 @@ services:
       MYSQL_USER: 'alumno'
       MYSQL_PASSWORD: 'alumno'
       MYSQL_ROOT_PASSWORD: 'administrador'
+      
     ports:
       - '6606:3306'
     volumes:
@@ -27,6 +28,11 @@ services:
       - MYSQL_USER=alumno
       - MYSQL_PASSWORD=alumno
       - MYSQL_DB=pruebas
+      - MONGODB_HOST=host.docker.internal
+      - MONGODB_USER=alumno
+      - MONGODB_PASSWORD=alumno
+      - MONGODB_DB=pruebas
+      - MONGODB_PORT=27017
     networks:
       - sistgi-net
 

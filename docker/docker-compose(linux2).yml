@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: docker-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'pruebas'
+      MYSQL_USER: 'alumno'
+      MYSQL_PASSWORD: 'alumno'
+      MYSQL_ROOT_PASSWORD: 'administrador'
+    ports:
+      - '6606:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - sistgi-net
+
+  mongodb:
+    image: mongo:6
+    container_name: docker-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: alumno
+      MONGO_INITDB_ROOT_PASSWORD: alumno
+      MONGO_INITDB_DATABASE: pruebas
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - sistgi-net
+
+  php:
+    build: ./php
+    container_name: docker_php
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=alumno
+      - MYSQL_PASSWORD=alumno
+      - MYSQL_DB=pruebas
+      - MONGODB_HOST=mongodb
+      - MONGODB_USER=alumno
+      - MONGODB_PASSWORD=alumno
+      - MONGODB_DB=pruebas
+      - MONGODB_PORT=27017
+    depends_on:
+      - mysql
+      - mongodb
+    networks:
+      - sistgi-net
+
+  nginx:
+    image: nginx:latest
+    container_name: docker-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - sistgi-net
+
+volumes:
+  mysql-data:
+  mongo-data:
+
+networks:
+  sistgi-net:
+    driver: bridge
