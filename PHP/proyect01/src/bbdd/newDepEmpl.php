@@ -1,6 +1,32 @@
+<?php
+    // Crear conexión
+    $dsn = "mysql:host=host.docker.internal;dbname=employees;charset=utf8mb4";
+    $usuario = getenv('MYSQL_USER');
+    $contraseña = getenv('MYSQL_PASSWORD');
+    $conexion = new PDO($dsn, $usuario, $contraseña);
+    // Configurar el modo de error de PDO
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Preparar y ejecutar el INSERT    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtener datos del formulario
+            $dept_no = $_POST['dept_no'];
+            $dept_name = $_POST['dept_name'];
 
 
+        $query = "INSERT INTO departments (dept_no, dept_name) 
+                VALUES (:dept_no, :dept_name)";
+        $stmt = $conexion->prepare($query);
+        $stmt->bindParam(':dept_no', $dept_no, PDO::PARAM_STR);
+        $stmt->bindParam(':dept_name', $dept_name, PDO::PARAM_STR);
 
+        $stmt->execute();
+        echo "Departamento insertado correctamente";
+        $filasAfectadas = $stmt->rowCount();
+        echo "<br> Filas afectadas: $filasAfectadas";
+        // Cerrar la conexión
+        $conexion = null;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,10 +86,10 @@
 <body>  
     <h2>Nuevo Departamento</h2>
     <form action="" method="post">
-        <label for="dep_no">Número : </label>
-        <input type="text" id="dep_no" name="dep_no" maxlength="4" minlength="4">
-        <label for="dep_name">Departamento: </label>
-        <input type="text" id="dep_name" name="dep_name">        
+        <label for="dept_no">Número : </label>
+        <input type="text" id="dept_no" name="dept_no" maxlength="4" minlength="4">
+        <label for="dept_name">Departamento: </label>
+        <input type="text" id="dept_name" name="dept_name">        
         <input type="submit" value="Enviar">        
     </form>
 </body>
