@@ -5,7 +5,7 @@
             
         // leemos los parámetros de conexión...
         $host = getenv("MYSQL_HOST");
-        $db = getenv("MYSQL_DB");
+        $db = "employees";
         $user = getenv("MYSQL_USER");
         $pass = getenv("MYSQL_PASSWORD");
 
@@ -94,6 +94,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario departamentos</title>
+    <link rel="stylesheet" href="./styles/form.css">
 </head>
 <body>
         <h1>Formulario departamentos</h1>

@@ -2,7 +2,7 @@
 
     function conectar() {
         $host = getenv("MYSQL_HOST");
-        $db = getenv("MYSQL_DB");
+        $db = "employees";
         $user = getenv("MYSQL_USER");
         $pass = getenv("MYSQL_PASSWORD");
 
@@ -10,12 +10,13 @@
             $conn =  new PDO("mysql:host=$host;dbname=$db", $user, $pass);
         } catch (PDOException $e) {
             // aquí habría que añadir el error al log, con los datos de conexión
+            // redirigir a una página segura
+            echo $e -> getMessage() . "<br>";
             return null;
         }
 
         return $conn;
     }
-
 
     function readDept($numero) {
         $sql = "SELECT * FROM Departments WHERE dept_no = :numero";
@@ -108,7 +109,7 @@
         if ($modo == 'update') {
             $result = updateDept($numero, $nombre);
         } else if ($modo == 'insert') {
-            $result = insertDept($numeo, $nombre);
+            $result = insertDept($numero, $nombre);
         }   
     }
 ?>
@@ -119,6 +120,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario departamentos</title>
+    <link rel="stylesheet" href="./styles/form.css">
 </head>
 <body>
         <h1>Formulario departamentos</h1>
