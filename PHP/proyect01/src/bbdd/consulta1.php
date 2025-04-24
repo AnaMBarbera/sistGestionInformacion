@@ -121,10 +121,46 @@
         $conexion = null;
         return [1, $datos]; 
     }
+    function buscarDept($dept){
+        // leemos los parámetros de conexión...
+        $host = getenv("MYSQL_HOST");
+        $db = "employees";
+        $user = getenv("MYSQL_USER");
+        $pass = getenv("MYSQL_PASSWORD");
+        $datos = "";
+        try {
+            
+            // Crear conexión
+            $conexion = new PDO("mysql:host=$host;dbname=employees", $user, $pass);
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Consulta para obtener el nombre y apellido del empleado
+            $query = "SELECT employees.first_name, employees.last_name, departments.dept_name 
+                FROM employees
+                INNER JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
+                INNER JOIN departments ON dept_emp.dept_no = departments.dept_no
+                WHERE departments.dept_no = :dept LIMIT 30 ";
+            $stmt = $conexion->prepare($query);
+            $stmt->bindParam(':dept', $dept);            
+            $stmt->execute();
+            // Mostrar los resultados
+            $datos = "<h2> Datos de los empleados del departamento ".$dept. "</h2>";
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $datos .= "Nombre: " . $fila['first_name'] . " - Apellido: " . $fila['last_name'] . "<br>";
+            }
+
+        } catch (PDOException $e) {
+            echo "Conexión fallida: " . $e->getMessage();
+        }
+        $conexion = null;
+        return [1, $datos]; 
+    }
+
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $emp_no = $_POST["emp_no"]; 
-        $nombre =  $_POST["nombre"];     
+        $nombre =  $_POST["nombre"];
+        $dept =  $_POST["dept"];      
         $accion = $_POST["accion"] ?? "";
         $fechaIni = $_POST["fechaIni"];
         $fechaFin = $_POST["fechaFin"];
@@ -145,7 +181,10 @@
                 break;
             case "buscarFecha":
                 $result = buscarFecha($fechaIni, $fechaFin);
-                break;           
+                break;
+            case "buscarDept":
+                $result = buscarDept($dept);
+                break;            
             default:
                 $result = [-1, "Acción no reconocida"];
         }
@@ -176,6 +215,9 @@
             <label for="nombre">Nombre de empleado:</label>
             <input type="text" name="nombre" value = "<?= $nombre ?? ""?>">
             <br>
+            <label for="dept">Departamento:</label>
+            <input type="text" name="dept" value = "<?= $dept ?? ""?>">
+            <br>
             <label for="fechaIni">Fecha inicial:</label>
             <input type="date" name="fechaIni" id="fechaIni">
             <label for="fechaFin">Fecha final:</label>
@@ -184,6 +226,7 @@
             <input type="submit" name="accion" value="buscar">
             <input type="submit" name="accion" value="buscarNombre">
             <input type="submit" name="accion" value="buscarFecha">
+            <input type="submit" name="accion" value="buscarDept">
             <input type="submit" name="accion" value="listar">                
             <br>
         </form>
