@@ -155,8 +155,7 @@
         $conexion = null;
         return [1, $datos]; 
     }
-
-
+    
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $emp_no = $_POST["emp_no"]; 
         $nombre =  $_POST["nombre"];
@@ -190,6 +189,7 @@
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
