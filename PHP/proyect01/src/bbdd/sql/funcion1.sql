@@ -30,3 +30,24 @@ select lastSalary(10001);
 select emp_no, lastSalary(emp_no) as salario 
 from employees
 LIMIT 10;
+
+CREATE FUNCTION lastDept(emp_id INT)
+RETURNS CHAR(4)
+BEGIN
+    DECLARE departamento CHAR(4);
+    DECLARE numero INT;
+
+    select count(*) into numero
+    FROM dept_emp
+    WHERE emp_no = emp_id and to_date = "9999-01-01";
+
+    IF (numero !=1) THEN
+    RETURN NULL;
+    END IF;
+
+    SELECT dept_no INTO departamento
+        FROM dept_emp
+        WHERE emp_no = emp_id and to_date = "9999-01-01";
+    RETURN departamento;
+END;
+
