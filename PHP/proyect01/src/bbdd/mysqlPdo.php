@@ -1,11 +1,4 @@
 <?php
-// Parámetros de conexión 
-/*para securizar el proyecto comentamos los datos de conexión y accedemos a los parámetros del dockercompose
-
-$host = "host.docker.internal";
-$usuario = "alumno"; 
-$contrasena = "alumnopassword";
-$base_de_datos = "futbol";  // Asegúrate de tener esta base de datos creada */
 
 // Parámetros de conexión
 $host = getenv('MYSQL_HOST');  // IP o dominio del host
