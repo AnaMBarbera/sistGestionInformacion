@@ -83,7 +83,7 @@ function cerrarFormulario() {
 // Función para eliminar un empleado
 function eliminarDepartamento(dept_no) {
     if (confirm("¿Estás seguro de que deseas eliminar el departamento con ID: " + dept_no + "?")) {
-        alert("Departameto con ID " + dept_no + " eliminado");
+        alert("Departamento con ID " + dept_no + " eliminado");
         // Aquí puedes agregar la lógica para eliminar el empleado de la base de datos
     }
 }

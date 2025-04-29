@@ -15,7 +15,15 @@
         if (!isset($_GET['id'])) {
             echo json_encode(['error' => 'ID de departamento no proporcionado']);
             exit;
-        }        
+        }
+        
+        //validar que el ID del departamento es un char(4)
+        if (!filter_var($_GET['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z][0-9]{3}$/']])) {
+        echo json_encode(['error' => 'ID de departamento no válido']);
+        exit;
+        }
+
+
 
         // Obtener el ID del departamento
         $dept_id = $_GET['id'];
