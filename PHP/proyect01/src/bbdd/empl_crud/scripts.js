@@ -24,12 +24,6 @@ function eliminarEmpleado(emp_id) {
     }
 }
 
-function eliminarFila(emp_id) {
-    const fila = document.querySelector(`tr[data-id='${emp_id}']`);
-    if (fila) fila.remove();
-}
-
-
 // Función para llenar el formulario modal con los datos del empleado
 function editarEmpleado(emp_id) {
     // Llamar al servidor para obtener los datos del empleado (esto debe hacerse con una solicitud AJAX)
@@ -96,7 +90,78 @@ function guardarEmpleado() {
         alert('Error en la actualización.');
     });
 }
+function anyadirEmpleado() {
+    // const form = document.getElementById('formEmpleado');
+    // const emp_id = document.getElementById('emp_id').value;  // Obtener el ID del empleado
+    mostrarFormulario();
 
+     const nombre = document.getElementById('nombre').value;
+     const apellido = document.getElementById('apellido').value;
+     const fecha_nacimiento = document.getElementById('fecha_nacimiento').value;
+     const fecha_contratacion = document.getElementById('fecha_contratacion').value;
+     const genero = document.getElementById('genero').value;
+
+     /* 
+     // Validaciones en JavaScript
+    if (!nombre || !apellido || !fecha_nacimiento || !fecha_contratacion || !genero) {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+    */
+
+     // Crear un objeto con los datos a enviar
+     const data = {
+        // emp_id: emp_id,
+         nombre: nombre,
+         apellido: apellido,
+         fecha_nacimiento: fecha_nacimiento,
+         fecha_contratacion: fecha_contratacion,
+         genero: genero
+     };
+ 
+     // const formData = new FormData(form);
+ 
+     fetch('anyadirEmpleado.php', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'  // Especificamos que el contenido será JSON
+         },
+         body: JSON.stringify(data)  // Convertimos el objeto a JSON
+     })
+     .then(response => response.json())
+     .then(data => {
+         if (data.success) {
+             // Si la actualización fue exitosa, actualizar la tabla sin recargar la página
+             añadirFila(data.empleado);
+             cerrarFormulario();
+         } else {
+             // Si hay un error, mostrar el mensaje de error
+             alert(data.error || "Error al añadir el empleado.");
+         }
+     })
+     .catch(error => {
+         console.error('Error:', error);
+         alert('Error en la inserción.');
+     });
+ }
+
+ function añadirFila(empleado) {
+    const tabla = document.getElementById('empleados');
+    // insertar la nueva fila al principio de la tabla
+    const nuevaFila = tabla.insertRow(1);
+
+    nuevaFila.setAttribute('data-id', empleado.emp_no);
+    nuevaFila.innerHTML = `
+        <td>${empleado.emp_no}</td>
+        <td>${empleado.first_name}</td>
+        <td>${empleado.last_name}</td>
+        <td>${empleado.birth_date}</td>
+        <td>${empleado.hire_date}</td>
+        <td>${empleado.gender}</td>
+        <td><button onclick="editarEmpleado(${empleado.emp_no})">Editar</button>
+        <button onclick="eliminarEmpleado(${empleado.emp_no})">Eliminar</button></td>
+    `;
+}
 // Función para actualizar la fila de la tabla con los nuevos datos
 function actualizarFila(empleado) {
     // Encontrar la fila correspondiente en la tabla
@@ -110,6 +175,12 @@ function actualizarFila(empleado) {
         fila.children[5].textContent = empleado.gender;       // Género
     }
 }
+
+function eliminarFila(emp_id) {
+    const fila = document.querySelector(`tr[data-id='${emp_id}']`);
+    if (fila) fila.remove();
+}
+
 
 // Función para mostrar la ventana modal
 function mostrarFormulario() {

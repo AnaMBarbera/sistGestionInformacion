@@ -37,12 +37,13 @@
 
                 <button type="button" onclick="guardarEmpleado()">Guardar</button>
                 <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+                <button type="button" onclick="anyadirEmpleado()">Añadir nuevo</button>
             </form>
         </div>
     </div>
     <h1>Administración de Empleados</h1>
         <!-- Botón para agregar nuevo empleado -->
-        <button>Añadir Nuevo Empleado</button>
+        <button onclick='mostrarFormulario();'>Añadir Nuevo Empleado</button>
         <!-- Tabla de empleados -->
     <table id="empleados">
         <thead>
