@@ -81,8 +81,8 @@
                             echo "<td>" . $empleado['hire_date'] . "</td>";
                             echo "<td>" . $empleado['gender'] . "</td>";
                             echo "<td>
-                                    <button onclick='editarEmpleado(" . $empleado['emp_no'] . ")'>Editar</button>
-                                    <button onclick='eliminarEmpleado(" . $empleado['emp_no'] . ")'>Eliminar</button>
+                                    <button onclick='editarEmpleado(".$empleado['emp_no'] . ")'>Editar</button>
+                                    <button onclick='eliminarEmpleado(".$empleado['emp_no'] . ")'>Eliminar</button>
                                 </td>";
                             echo "</tr>";
                         }

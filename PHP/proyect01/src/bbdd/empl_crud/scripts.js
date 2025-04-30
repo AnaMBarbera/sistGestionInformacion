@@ -1,10 +1,34 @@
 // Función para confirmar la eliminación de un empleado
-function confirmarEliminacion(id) {
+function eliminarEmpleado(emp_id) {
     if (confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
-        // Realizar la eliminación (esto debería ser gestionado por PHP)
-        alert("Empleado con ID " + id + " eliminado");
+        fetch("eliminarEmpleado.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ emp_id: emp_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                eliminarFila(emp_id);  // <- aquí estaba el error
+            } else {
+                alert("No eliminado: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error en la eliminación");
+        });
     }
 }
+
+function eliminarFila(emp_id) {
+    const fila = document.querySelector(`tr[data-id='${emp_id}']`);
+    if (fila) fila.remove();
+}
+
 
 // Función para llenar el formulario modal con los datos del empleado
 function editarEmpleado(emp_id) {
@@ -87,7 +111,6 @@ function actualizarFila(empleado) {
     }
 }
 
-
 // Función para mostrar la ventana modal
 function mostrarFormulario() {
     document.getElementById('modalFormulario').style.display = 'block';
@@ -98,11 +121,5 @@ function cerrarFormulario() {
     document.getElementById('modalFormulario').style.display = 'none';
 }
 
-// Función para eliminar un empleado
-function eliminarEmpleado(emp_no) {
-    if (confirm("¿Estás seguro de que deseas eliminar el empleado con ID: " + emp_no + "?")) {
-        alert("Empleado con ID " + emp_no + " eliminado");
-        // Aquí puedes agregar la lógica para eliminar el empleado de la base de datos
-    }
-}
+
 
