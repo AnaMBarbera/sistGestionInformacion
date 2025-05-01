@@ -12,7 +12,7 @@ function eliminarEmpleado(emp_id) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                eliminarFila(emp_id);  // <- aquí estaba el error
+                eliminarFila(emp_id);
             } else {
                 alert("No eliminado: " + data.message);
             }

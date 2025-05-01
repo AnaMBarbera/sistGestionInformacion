@@ -1,8 +1,26 @@
 // Función para confirmar la eliminación de un empleado
-function confirmarEliminacion(id) {
+function eliminarDepartamento(dept_id) {
     if (confirm("¿Estás seguro de que deseas eliminar este departamento?")) {
-        // Realizar la eliminación (esto debería ser gestionado por PHP)
-        alert("Departamento con ID " + id + " eliminado");
+        fetch("eliminarDepartamento.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ dept_id: dept_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                eliminarFila(dept_id);
+            } else {
+                alert("No eliminado: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error en la eliminación");
+        });
     }
 }
 
@@ -69,6 +87,11 @@ function actualizarFila(departamento) {
     }
 }
 
+function eliminarFila(dept_id) {
+    const fila = document.querySelector(`tr[data-id='${dept_id}']`);
+    if (fila) fila.remove();
+}
+
 
 // Función para mostrar la ventana modal
 function mostrarFormulario() {
@@ -80,11 +103,4 @@ function cerrarFormulario() {
     document.getElementById('modalFormulario').style.display = 'none';
 }
 
-// Función para eliminar un empleado
-function eliminarDepartamento(dept_no) {
-    if (confirm("¿Estás seguro de que deseas eliminar el departamento con ID: " + dept_no + "?")) {
-        alert("Departamento con ID " + dept_no + " eliminado");
-        // Aquí puedes agregar la lógica para eliminar el empleado de la base de datos
-    }
-}
 
