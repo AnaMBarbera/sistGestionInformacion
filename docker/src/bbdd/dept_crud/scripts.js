@@ -1,3 +1,5 @@
+
+
 // Función para confirmar la eliminación de un empleado
 function eliminarDepartamento(dept_id) {
     if (confirm("¿Estás seguro de que deseas eliminar este departamento?")) {
@@ -97,10 +99,71 @@ function eliminarFila(dept_id) {
 function mostrarFormulario() {
     document.getElementById('modalFormulario').style.display = 'block';
 }
-
 // Función para cerrar la ventana modal
 function cerrarFormulario() {
     document.getElementById('modalFormulario').style.display = 'none';
 }
+
+function anyadirDepartamento() {
+    //const form = document.getElementById('formEmpleado');
+    const nombre = document.getElementById("nombre").value;    
+  
+    // Validaciones en JavaScript
+    if (!nombre) {
+      alert("El campo nombre es obligatorio");
+      return;
+    }  
+    // Crear un objeto con los datos a enviar
+    const data = {
+      nombre: nombre,     
+    };
+      
+    fetch("anyadirDepartamento.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Especificamos que el contenido será JSON
+      },
+      body: JSON.stringify(data), // Convertimos el objeto a JSON
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Si la actualización fue exitosa, actualizar la tabla sin recargar la página
+          anyadirFila(data.departamento);
+          cerrarFormulario();
+        } else {
+          // Si hay un error, mostrar el mensaje de error
+          alert(data.error || "Error al añadir el departamento.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error en la inserción.");
+      });
+  }
+  
+  // Función para agregar el empleado a la tabla
+  function anyadirFila(departamento) {
+    const tabla = document.getElementById('departamentos');
+    // insertar la nueva fila al principio de la tabla
+    const nuevaFila = tabla.insertRow(1);
+  
+    nuevaFila.setAttribute('data-id', departamento.dept_no);
+    nuevaFila.innerHTML = `
+        <td>${departamento.dept_no}</td>
+        <td>${departamento.dept_name}</td>       
+        <td><button onclick="editarDepartamento(${departamento.emp_no})">Editar</button>
+        <button onclick="eliminarDepartamento(${departamento.emp_no})">Eliminar</button></td>
+    `;
+  }
+  //con esta función elegimos la opción de añadir empleado o editarlo si se ha seleccionado uno previamente (hay 'emp_id'). Es la función que llamará el botón guardar del formulario modal.
+  function editarCrearDepartamento() {
+    const dept_id = document.getElementById("dept_id").value;
+    if (dept_id === "") {
+      anyadirDepartamento();
+    } else {
+      guardarDepartamento();
+    }
+  }
 
 

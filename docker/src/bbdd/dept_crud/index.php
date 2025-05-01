@@ -18,14 +18,14 @@
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>                
 
-                <button type="button" onclick="guardarDepartamento()">Guardar</button>
+                <button type="button" onclick="editarCrearDepartamento()">Guardar</button>
                 <button type="button" onclick="cerrarFormulario()">Cancelar</button>
             </form>
         </div>
     </div>
     <h1>Administración de Departamentos</h1>
         <!-- Botón para agregar nuevo departamento -->
-        <button>Añadir Nuevo Departamento</button>
+        <button onclick = "mostrarFormulario()">Añadir Nuevo Departamento</button>
         <!-- Tabla de departamentos -->
     <table id="departamentos">
         <thead>
