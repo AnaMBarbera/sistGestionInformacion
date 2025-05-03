@@ -50,6 +50,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Formulario Empleado</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <h1><?= $modo != 'eliminar' ? 'Editar' : 'Eliminar' ?> Empleado</h1>
@@ -61,16 +62,16 @@
             <input type="text" name="apellido" value="<?= $empleado['last_name'] ?? '' ?>" required><br>
 
             <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-            <input type="date" name="fecha_nacimiento" value="<?= $empleado['birth_date'] ?? '' ?>" required><br>
+            <input type="date" name="fecha_nacimiento" value="<?= $empleado['birth_date'] ?? '' ?>" required><br><br>
 
             <label for="fecha_contratacion">Fecha de Contratación:</label>
-            <input type="date" name="fecha_contratacion" value="<?= $empleado['hire_date'] ?? '' ?>" required><br>
+            <input type="date" name="fecha_contratacion" value="<?= $empleado['hire_date'] ?? '' ?>" required><br><br>
 
             <label for="genero">Género:</label>
             <select name="genero" required>
                 <option value="M" <?= isset($empleado['gender']) && $empleado['gender'] == 'M' ? 'selected' : '' ?>>Masculino</option>
                 <option value="F" <?= isset($empleado['gender']) && $empleado['gender'] == 'F' ? 'selected' : '' ?>>Femenino</option>
-            </select><br>
+            </select><br><br>
 
             <button type="submit"><?= $modo != 'eliminar' ? 'Guardar' : 'Eliminar' ?></button>
             <a href="empleados.php">Cancelar</a>

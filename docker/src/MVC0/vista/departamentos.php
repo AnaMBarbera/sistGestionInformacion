@@ -12,6 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Departamentos</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <h1>Lista de Departamentos</h1>
@@ -30,7 +31,7 @@
                     <td><?= $departamento['dept_name'] ?></td>                    
                     <td>
                         <a href="departamentosForm.php?id=<?= $departamento['dept_no'] ?>">Editar</a>
-                        
+
                         <!-- tenemos que encerrar el parámetro en '' para que el script lo recoja correctamente al no ser numérico -->
                         <button onclick="eliminarDepartamento('<?= $departamento['dept_no']?>');" >Eliminar</button>
                     </td>

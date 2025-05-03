@@ -48,6 +48,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Formulario Departamento</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <h1><?= $modo != 'eliminar' ? 'Editar' : 'Eliminar' ?> Departamento</h1>
