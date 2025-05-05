@@ -1,33 +1,64 @@
 <?php
-include __DIR__."/../modelo/Empleado.php";
+include __DIR__.'/../modelo/Empleado.php';
 
-class EmpleadoControlador{
+class EmpleadoControlador {
     private $modelo;
 
-    public function __construct(){
+    public function __construct() {
         $this->modelo = new Empleado();
     }
 
-    public function verEmpleados($pagina=1){
-        return $this->modelo->obtenerEmpleados($pagina);
+    public function verEmpleados($pagina = 1) {
+        $empleados = $this->modelo->obtenerEmpleados($pagina);
+        include __DIR__."/../vista/empleados.php";
     }
 
-    public function agregarEmpleado($nombre, $apellido, $fecha_nacimiento, $fecha_contratacion, $genero){
+    public function agregarEmpleado($nombre, $apellido, $fecha_nacimiento, $fecha_contratacion, $genero) {
         return $this->modelo->crearEmpleado($nombre, $apellido, $fecha_nacimiento, $fecha_contratacion, $genero);
     }
 
-    public function verEmpleado($id){
-        return $this->modelo->obtenerEmpleado($id);
+    public function verEmpleado($id): void {
+        
+        $empleado =  $this->modelo->obtenerEmpleado($id);
+        $emp_id= $id;
+        $modo = 'editar';
+        include __DIR__."/../vista/empleadosForm.php";
+    }   
+
+    public function editarEmpleado($id) {
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $fecha_contratacion = $_POST['fecha_contratacion'];
+        $fecha_nacimiento = $_POST['fecha_nacimiento'];
+        $genero = $_POST['genero'];
+        if($id!=-1){
+        $this->modelo->actualizarEmpleado(
+            $id, 
+            $nombre, 
+            $apellido, 
+            $fecha_nacimiento, 
+            $fecha_contratacion, 
+            $genero);
+        } else {
+            $this->modelo->crearEmpleado(                
+                $nombre, 
+                $apellido, 
+                $fecha_nacimiento, 
+                $fecha_contratacion, 
+                $genero);
+            }
+        header('location: /index.php?accion=ver_empleados');
     }
 
-    public function editarEmpleado($emp_id, $nombre, $apellido, $fecha_nacimiento, $fecha_contratacion, $genero){
-        return $this->modelo->actualizarEmpleado($emp_id, $nombre, $apellido, $fecha_nacimiento, $fecha_contratacion, $genero); 
+    public function nuevoEmpleado() {
+        $empleado=[];
+        $emp_id=-1;
+        $modo = 'crear';
+        include __DIR__."/../vista/empleadosForm.php";
     }
 
-    // Eliminar un empleado
-    public function eliminarEmpleado($emp_id) {
-        return $this->modelo->eliminarEmpleado($emp_id);
+    public function eliminarEmpleado($id) {
+        $this->modelo->eliminarEmpleado($id);
+        header('location: /index.php?accion=ver_empleados');
     }
-
 }
-?>

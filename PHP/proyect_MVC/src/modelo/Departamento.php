@@ -1,4 +1,5 @@
 <?php
+include __DIR__."/../utils/verificarAcceso.php";
 //para no perder la ruta se escribe __DIR__
 include __DIR__."/../utils/db.php";
 

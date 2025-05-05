@@ -1,31 +1,29 @@
+<?php
+include __DIR__."/controlador/ControladorPrincipal.php";
+
+//http://localhost:8080/index.php?&action=ver;
+
+$accion = "inicio";
+
+if (isset($_GET["accion"])) {
+    $accion = $_GET["accion"];
+}
+
+$controlador = new ControladorPrincipal();
+$controlador->manejarSolicitud($accion);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h2>Listado de empleados </h2>
+    <h1>Hello world!!</h1>
 
-
-    <?php
-    /*
-        include 'utils/db.php';
-        $con=dbConnection::obtenerConexion();
-        echo "Conexion ok";
-    */
-
-        include 'modelo/Empleado.php';
-
-        $empleado = new Empleado();
-        $lista = $empleado->obtenerEmpleados();
-
-        echo "<ul>";
-        foreach ($lista as $empleado){
-            echo "<li>".$empleado["emp_no"].": ".$empleado["first_name"]." ".$empleado["last_name"]."</li>";
-        }
-        echo "</ul>";
-    ?>    
 </body>
 </html>
