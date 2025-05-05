@@ -50,6 +50,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Formulario Empleado</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <h1><?= $modo != 'eliminar' ? 'Editar' : 'Eliminar' ?> Empleado</h1>
