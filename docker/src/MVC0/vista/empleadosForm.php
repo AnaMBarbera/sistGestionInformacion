@@ -20,7 +20,7 @@
         // Eliminar el empleado
         $modo = 'eliminar';  // Establecer el modo a 'eliminar'
     }
-
+/*
     // Si se recibe un formulario POST, procesar la creación o actualización
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Obtener los datos del formulario
@@ -42,7 +42,7 @@
         // Redirigir a la lista de empleados
         header('Location: empleados.php');
         exit;
-    }
+    }*/
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,8 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1><?= $modo != 'eliminar' ? 'Editar' : 'Eliminar' ?> Empleado</h1>
+        <?=$modo?>
+        <h1><?= $modo != 'editar' ? 'Crear' : 'Editar' ?> Empleado</h1>
         <form method="POST">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" value="<?= $empleado['first_name'] ?? '' ?>" required><br>

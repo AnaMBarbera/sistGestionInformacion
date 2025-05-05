@@ -39,6 +39,12 @@ class ControladorPrincipal {
                 $id = $_GET['id'];               
                 $controlador->eliminarEmpleado($id);
                 exit();
+            case 'contacto':
+                include  __DIR__."/../vista/contacto.php";
+                exit();
+            case 'login':
+                include  __DIR__."/../vista/login.php";
+                exit();
             default: 
                 break;
         }

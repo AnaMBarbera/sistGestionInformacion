@@ -1,20 +1,3 @@
-<?php
-    include __DIR__."/controlador/ControladorPrincipal.php";
-    session_start();
-    //http://localhost:8080/index.php?&action=ver;
-
-    $accion = "inicio";
-
-    if (isset($_GET["accion"])) {
-        $accion = $_GET["accion"];
-    }
-
-    $controlador = new ControladorPrincipal();
-    $controlador->manejarSolicitud($accion);
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +14,6 @@
                 <li><a href="index.php?accion=inicio">Inicio</a></li>
                 <li><a href="index.php?accion=ver_empleados">Empleados</a></li>
                 <li><a href="index.php?accion=ver_departamentos">Departamentos</a></li>
-                <li><a href="index.php?accion=login">Login</a></li>
                 <li><a href="index.php?accion=contacto">Contacto</a></li>
                 <!-- Si el usuario no está logueado, mostramos el enlace al login -->
                 <?php if (!isset($_SESSION['usuario'])): ?>
@@ -46,9 +28,9 @@
     <!-- Cuerpo principal de la página -->
     <main>
         <section id="bienvenida">
-            <h1>Bienvenido al Sistema de Gestión de Empleados</h1>
-            <p>Desde esta página, puedes gestionar empleados, departamentos y más.</p>
-            <p>Selecciona una opción del menú para empezar.</p>
+            <h1>Contacto</h1>
+            <p>Página de contacto.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa soluta quod quis tempora saepe ad dolores temporibus, inventore officiis odio! Quam, doloremque beatae? Velit doloribus voluptatem temporibus ratione voluptas ut.</p>
         </section>
     </main>
 

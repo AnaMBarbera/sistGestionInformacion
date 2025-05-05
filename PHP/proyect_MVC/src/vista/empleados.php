@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Empleados</title>
+    <link rel="stylesheet" href="/vista/styles.css">
 </head>
 <body>
     <h1>Lista de Empleados</h1>
