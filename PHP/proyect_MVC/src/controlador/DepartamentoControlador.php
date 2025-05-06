@@ -1,5 +1,5 @@
 <?php
-    include __DIR__."/../utils/verificarAcceso.php";
+    //include __DIR__."/../utils/verificarAcceso.php";
     include __DIR__."/../modelo/Departamento.php";
 
 class DepartamentoControlador{

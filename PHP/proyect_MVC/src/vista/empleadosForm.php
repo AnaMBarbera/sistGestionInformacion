@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 </head>
 <body>
     <h1><?= $modo != 'editar' ? 'Crear' : 'Editar' ?> Empleado</h1>
-    <form method="POST" action="/index.php?accion=actualizar_empleado&id=<?=$emp_id?>">
+    <form method="POST" action="/index.php?accion=actualizar_empleado&id=<?=$emp_id?>&pagina=<?=$pagina?>">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="<?= $empleado['first_name'] ?? '' ?>" required><br>
 
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         </select><br><br>
 
         <button type="submit"><?= $modo != 'eliminar' ? 'Guardar' : 'Eliminar' ?></button>
-        <a href="/index.php?accion=ver_empleados">Cancelar</a>
+        <a href="/index.php?accion=ver_empleados&pagina=<?=$pagina?>">Cancelar</a>
     </form>
 </body>
 </html>

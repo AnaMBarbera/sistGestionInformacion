@@ -1,6 +1,6 @@
 
 <?php
-    include __DIR__."/../utils/verificarAcceso.php";
+   // include __DIR__."/../utils/verificarAcceso.php";
     // Incluir el controlador
     include __DIR__.'/../controlador/DepartamentoControlador.php';
 

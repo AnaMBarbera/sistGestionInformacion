@@ -1,5 +1,5 @@
 <?php
-    session_start();  // Iniciar sesión
+   // session_start();  // Iniciar sesión
     // Incluir la clase de autenticación
     include __DIR__."/../utils/autenticacion.php";
     
@@ -31,6 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="/vista/styles.css">
 </head>
 <body>
 
@@ -46,7 +47,7 @@
 
         <label for="contraseña">Contraseña:</label>
         <input type="password" name="contraseña" value="<?=$contraseña ?? ''?>" required><br>
-
+        <br>
         <button type="submit">Iniciar sesión</button>
     </form>
 

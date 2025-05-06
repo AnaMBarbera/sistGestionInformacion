@@ -33,14 +33,25 @@
                 <td><?= $empleado['hire_date'] ?></td>
                 <td><?= $empleado['gender'] ?></td>
                 <td>
-                    <a href="/index.php?accion=editar_empleado&id=<?= $empleado['emp_no'] ?>">Editar</a>
+                    <a href="/index.php?accion=editar_empleado&id=<?= $empleado['emp_no'] ?>&pagina=<?= $pagina ?>">Editar</a>
                     <button onclick="eliminarEmpleado(<?= $empleado['emp_no']?>);" >Eliminar</button>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="./index.php?accion=nuevo_empleado">Agregar Nuevo Empleado</a>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <a href="./index.php?accion=nuevo_empleado">Agregar Nuevo Empleado</a>
+    </div>
+    <!--Paginacion -->
+    <div id="paginacion">
+        <a href="/index.php?accion=ver_empleados&pagina=1">Pag.1</a>
+        <a href="/index.php?accion=ver_empleados&pagina=<?=($pagina>1) ? $pagina -1 : 1 ?>">Anterior</a>
+        <span><?= $pagina ?> de <?= $totalPaginas ?></span>
+        <a href="/index.php?accion=ver_empleados&pagina=<?=($pagina<$totalPaginas) ? $pagina +1 : $totalPaginas ?>">Siguiente</a>
+        <a href="/index.php?accion=ver_empleados&pagina=<?=$totalPaginas ?> ">última</a>
+    </div>
+
     <script>
         function eliminarEmpleado(emp_no) {
             if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {

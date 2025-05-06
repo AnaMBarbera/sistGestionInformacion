@@ -14,8 +14,7 @@ class Empleado {
         $offset=($pagina-1)*$elementos;
         
         $query = "SELECT * 
-                    FROM employees 
-                    ORDER BY emp_no DESC
+                    FROM employees                     
                     LIMIT :limit
                     OFFSET :offset"; 
 
@@ -24,6 +23,15 @@ class Empleado {
         $stmt->bindParam("limit", $elementos, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtenerTotalEmpleados():int{
+        $query = "SELECT count(*) as total 
+                    FROM employees";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];          
+
     }
 
     public function getNewId(): int{

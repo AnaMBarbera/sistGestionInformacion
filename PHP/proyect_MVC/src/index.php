@@ -29,15 +29,20 @@
         <nav>
             <ul>
                 <li><a href="index.php?accion=inicio">Inicio</a></li>
+
+                <?php if (isset($_SESSION['usuario'])): ?>
                 <li><a href="index.php?accion=ver_empleados">Empleados</a></li>
-                <li><a href="index.php?accion=ver_departamentos">Departamentos</a></li>
-                <li><a href="index.php?accion=login">Login</a></li>
+                <!--<li><a href="index.php?accion=ver_departamentos">Departamentos</a></li>-->
+                <li><a href="vista\departamentos.php">Departamentos</a></li>
+                <?php endif;?>
+                
                 <li><a href="index.php?accion=contacto">Contacto</a></li>
+                
                 <!-- Si el usuario no está logueado, mostramos el enlace al login -->
                 <?php if (!isset($_SESSION['usuario'])): ?>
-                    <li><a href="login.php">Login</a></li>
+                    <li><a href="index.php?accion=login">Login</a></li>
                 <?php else: ?>
-                    <li><a href="logout.php">Cerrar sesión</a></li>
+                    <li><a href="index.php?accion=logout">Cerrar sesión</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
