@@ -41,7 +41,7 @@
         </tbody>
     </table>
     <div style="max-width: 800px; margin: 0 auto;">
-        <a href="./index.php?accion=nuevo_empleado">Agregar Nuevo Empleado</a>
+        <a href="./index.php?accion=nuevo_empleado&pagina=<?=($pagina)?>">Agregar Nuevo Empleado</a>
     </div>
     <!--Paginacion -->
     <div id="paginacion">
@@ -55,7 +55,7 @@
     <script>
         function eliminarEmpleado(emp_no) {
             if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
-                window.location.href = `/index.php?accion=eliminar_empleado&id=${emp_no}`;
+                window.location.href = `/index.php?accion=eliminar_empleado&id=${emp_no}&pagina=<?=($pagina)?>`;
             }
         }
     </script>
