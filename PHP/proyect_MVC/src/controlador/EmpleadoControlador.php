@@ -8,10 +8,10 @@ class EmpleadoControlador {
         $this->modelo = new Empleado();
     }
 
-    public function verEmpleados($pagina = 1, $ordenarPor = 'emp_no', $orden = 'asc') {
+    public function verEmpleados($pagina = 1, $ordenarPor = 'emp_no', $orden = 'asc', $busqueda = "") {
         $empleadosPorPagina = 10;
-        $empleados = $this->modelo->obtenerEmpleados($pagina, $empleadosPorPagina, $ordenarPor, $orden);
-        $totalEmpleados = $this->modelo->obtenerTotalEmpleados();
+        $empleados = $this->modelo->obtenerEmpleados($pagina, $empleadosPorPagina, $ordenarPor, $orden, $busqueda);
+        $totalEmpleados = $this->modelo->obtenerTotalEmpleados($busqueda);
         //ceil redondea hacia arriba
         $totalPaginas = ceil($totalEmpleados/$empleadosPorPagina);
         include __DIR__."/../vista/empleados.php";

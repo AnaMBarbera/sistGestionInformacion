@@ -33,10 +33,20 @@ class Empleado {
     }
         */
 
-    public function obtenerTotalEmpleados():int{
+    public function obtenerTotalEmpleados($busqueda):int{
+        $where = "";
+        if ($busqueda !== "")
+        $where = " AND (emp_no like :busqueda 
+                    OR first_name like :busqueda
+                    OR last_name like :busqueda)" ;
+
         $query = "SELECT count(*) as total 
-                    FROM employees";
+                    FROM employees
+                    WHERE 1 $where";
+
+        $busqueda = "%$busqueda%";
         $stmt = $this->conexion->prepare($query);
+        if ($where !="") $stmt->bindParam("busqueda", $busqueda, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];          
 
@@ -46,30 +56,31 @@ public function obtenerEmpleados(
     $pagina = 1,
     $elementos = 10,
     $ordenarPor = 'emp_no',
-    $orden = 'asc'
+    $orden = 'asc',
+    $busqueda=''
     ): array {
-
-    /*    
-    // Validar columnas permitidas
-    $columnasPermitidas = ['emp_no', 'first_name', 'last_name', 'birth_date', 'hire_date', 'gender'];
-    if (!in_array($ordenarPor, $columnasPermitidas)) {
-        $ordenarPor = 'emp_no';
-    }
-    // Validar orden
-    $orden = strtolower($orden) === 'desc' ? 'DESC' : 'ASC';
-*/
+    
     $offset = ($pagina - 1) * $elementos;
+    $where = "";
+    if ($busqueda !== "")
+    $where = " AND (emp_no like :busqueda 
+                OR first_name like :busqueda
+                OR last_name like :busqueda)" ;
 
     // ⚠ Construcción directa del ORDER BY (sin bindParam)
     $query = "SELECT * 
               FROM employees 
+              WHERE 1 $where
               ORDER BY $ordenarPor $orden
               LIMIT :limit
               OFFSET :offset";
 
+    $busqueda = "%$busqueda%";
+
     $stmt = $this->conexion->prepare($query);
     $stmt->bindParam("limit", $elementos, PDO::PARAM_INT);
     $stmt->bindParam("offset", $offset, PDO::PARAM_INT);
+    if ($where !="") $stmt->bindParam("busqueda", $busqueda, PDO::PARAM_STR);
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

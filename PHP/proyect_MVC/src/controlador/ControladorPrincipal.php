@@ -24,7 +24,7 @@ class ControladorPrincipal {
         return false;
     }
 
-    public function manejarSolicitud($accion, $ordenarPor, $orden) {
+    public function manejarSolicitud($accion, $ordenarPor, $orden, $busqueda) {
 
         // ver_empleados -> mostrará la página principal de empleados
         // agragar_empleado -> mostrará formulario
@@ -43,7 +43,7 @@ class ControladorPrincipal {
             case 'ver_empleados':
                 $controlador = new EmpleadoControlador();
                 $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;                
-                $controlador->verEmpleados($pagina, $ordenarPor, $orden);
+                $controlador->verEmpleados($pagina, $ordenarPor, $orden, $busqueda);
                 exit();
             case 'editar_empleado':
                 $controlador = new EmpleadoControlador();

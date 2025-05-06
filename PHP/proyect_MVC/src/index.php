@@ -10,9 +10,10 @@
     }
     $ordenarPor = $_GET["ordenarPor"] ?? 'emp_no';
     $orden = $_GET["orden"] ?? 'asc';
+    $busqueda = $_GET["busqueda"] ?? '';
 
     $controlador = new ControladorPrincipal();
-    $controlador->manejarSolicitud($accion, $ordenarPor, $orden);
+    $controlador->manejarSolicitud($accion, $ordenarPor, $orden, $busqueda);
 
 
 ?>

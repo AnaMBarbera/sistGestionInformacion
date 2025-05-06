@@ -30,6 +30,16 @@
             <?php endif; ?>
         </ul>
     </nav>
+    <!-- Busqueda -->
+    <div id="busqueda">
+        <h2>Buscar empleados</h2>
+        <form method="GET" action="index.php" > 
+            <input name="busqueda" type="text" placeholder="buscar por nombre o apellido" value="<?= $busqueda?>"/>
+            <input type="text" name="accion" value="ver_empleados" hidden >            
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
     <h1>Lista de Empleados</h1>
     <table>
         <thead>
