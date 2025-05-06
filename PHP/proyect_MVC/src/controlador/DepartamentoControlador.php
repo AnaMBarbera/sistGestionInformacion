@@ -10,25 +10,45 @@ class DepartamentoControlador{
     }
 
     public function verDepartamentos($pagina=1){
-        return $this->modelo->obtenerDepartamentos($pagina);
+        $departamentosPorPagina = 10;
+        $departamentos = $this->modelo->obtenerDepartamentos($pagina, $departamentosPorPagina);
+        $totalDepartamentos = $this->modelo->obtenerTotalDepartamentos();
+        //ceil redondea hacia arriba
+        $totalPaginas = ceil($totalDepartamentos/$departamentosPorPagina);
+        include __DIR__."/../vista/departamentos.php";
+
     }
 
     public function agregarDepartamento($nombre){
         return $this->modelo->crearDepartamento($nombre);
     }
 
-    public function verDepartamento($id){
-        return $this->modelo->obtenerDepartamento($id);
+    public function verDepartamento($id, $pagina):void{
+        $departamento = $this->modelo->obtenerDepartamento($id);
+        $dept_id= $id;
+        $modo = 'editar';
+        include __DIR__."/../vista/departamentosForm.php";
     }
 
-    public function editarDepartamento($dept_id, $nombre){
-        return $this->modelo->actualizarDepartamento($dept_id, $nombre); 
-    }
+    public function editarDepartamento($dept_id, $nombre, $pagina){
+        $this->modelo->actualizarDepartamento($dept_id, $nombre); 
+    }else {
+        $this->modelo->crearDepartamento(                
+            $nombre);
+        }
 
+    header("location: /index.php?accion=ver_departamentos&pagina=$pagina");
+
+    public function nuevoDepartamento($pagina) {
+        $departamento=[];
+        $dept_id=-1;
+        $modo = 'crear';
+        include __DIR__."/../vista/departamentosForm.php";
+    }
     // Eliminar un departamento
-    public function eliminarDepartamento($dept_id) {
-        return $this->modelo->eliminarDepartamento($dept_id);
+    public function eliminarDepartamento($dept_id, $pagina) {
+        $this->modelo->eliminarDepartamento($dept_id);
+        header("location: /index.php?accion=ver_departamentos&pagina=$pagina");
     }
-
 }
 ?>

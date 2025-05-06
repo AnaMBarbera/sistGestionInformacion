@@ -1,6 +1,6 @@
 <?php
 include __DIR__.'/../modelo/Empleado.php';
-
+    
 class EmpleadoControlador {
     private $modelo;
 
@@ -8,9 +8,9 @@ class EmpleadoControlador {
         $this->modelo = new Empleado();
     }
 
-    public function verEmpleados($pagina = 1) {
+    public function verEmpleados($pagina = 1, $ordenarPor = 'emp_no', $orden = 'asc') {
         $empleadosPorPagina = 10;
-        $empleados = $this->modelo->obtenerEmpleados($pagina, $empleadosPorPagina);
+        $empleados = $this->modelo->obtenerEmpleados($pagina, $empleadosPorPagina, $ordenarPor, $orden);
         $totalEmpleados = $this->modelo->obtenerTotalEmpleados();
         //ceil redondea hacia arriba
         $totalPaginas = ceil($totalEmpleados/$empleadosPorPagina);

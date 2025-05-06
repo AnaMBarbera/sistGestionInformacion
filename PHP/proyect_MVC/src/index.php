@@ -8,9 +8,11 @@
     if (isset($_GET["accion"])) {
         $accion = $_GET["accion"];
     }
+    $ordenarPor = $_GET["ordenarPor"] ?? 'emp_no';
+    $orden = $_GET["orden"] ?? 'asc';
 
     $controlador = new ControladorPrincipal();
-    $controlador->manejarSolicitud($accion);
+    $controlador->manejarSolicitud($accion, $ordenarPor, $orden);
 
 
 ?>

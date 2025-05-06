@@ -8,22 +8,30 @@ class Empleado {
     public function __construct() {
         $this->conexion = dbConnection::obtenerConexion();
     }
-
-    public function obtenerEmpleados($pagina = 1, $elementos = 10): array {
+/*
+    public function obtenerEmpleados(
+        $pagina = 1,
+        $elementos = 10,
+        $ordenarPor = 'emp_no',
+        $orden = 'asc'): array {
 
         $offset=($pagina-1)*$elementos;
         
         $query = "SELECT * 
-                    FROM employees                     
+                    FROM employees 
+                    ORDER BY :column :orden                   
                     LIMIT :limit
                     OFFSET :offset"; 
 
         $stmt = $this->conexion->prepare($query);
         $stmt->bindParam("offset", $offset, PDO::PARAM_INT);
         $stmt->bindParam("limit", $elementos, PDO::PARAM_INT);
+        $stmt->bindParam("column", $ordenarPor, PDO::PARAM_STR);
+        $stmt->bindParam("orden", $orden, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+        */
 
     public function obtenerTotalEmpleados():int{
         $query = "SELECT count(*) as total 
@@ -33,6 +41,40 @@ class Empleado {
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];          
 
     }
+
+public function obtenerEmpleados(
+    $pagina = 1,
+    $elementos = 10,
+    $ordenarPor = 'emp_no',
+    $orden = 'asc'
+    ): array {
+
+    /*    
+    // Validar columnas permitidas
+    $columnasPermitidas = ['emp_no', 'first_name', 'last_name', 'birth_date', 'hire_date', 'gender'];
+    if (!in_array($ordenarPor, $columnasPermitidas)) {
+        $ordenarPor = 'emp_no';
+    }
+    // Validar orden
+    $orden = strtolower($orden) === 'desc' ? 'DESC' : 'ASC';
+*/
+    $offset = ($pagina - 1) * $elementos;
+
+    // ⚠ Construcción directa del ORDER BY (sin bindParam)
+    $query = "SELECT * 
+              FROM employees 
+              ORDER BY $ordenarPor $orden
+              LIMIT :limit
+              OFFSET :offset";
+
+    $stmt = $this->conexion->prepare($query);
+    $stmt->bindParam("limit", $elementos, PDO::PARAM_INT);
+    $stmt->bindParam("offset", $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     public function getNewId(): int{
         $query = "SELECT max(emp_no) as max FROM employees";

@@ -9,11 +9,10 @@ include __DIR__."/../utils/db.php";
             $this -> conexion = dbConnection::obtenerConexion();
         }
         //utilizamos 2 parámetros para la paginación
-        public function obtenerDepartamentos($pagina = 1, $elementos = 10): array {
+        public function obtenerDepartamentos($pagina = 1, $elementos = 15): array {
             $offset=($pagina-1)*$elementos;
 
             $query = "SELECT * FROM departments ORDER BY dept_no DESC LIMIT :limit OFFSET :offset";
-            
             $stmt = $this ->conexion->prepare($query);
             $stmt -> bindParam("offset", $offset, PDO::PARAM_INT);
             $stmt -> bindParam("limit", $elementos, PDO::PARAM_INT);

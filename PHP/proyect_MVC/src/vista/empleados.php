@@ -10,13 +10,45 @@
     <link rel="stylesheet" href="/vista/styles.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.php?accion=inicio">Inicio</a></li>
+
+            <?php if (isset($_SESSION['usuario'])): ?>
+            <li><a href="index.php?accion=ver_empleados">Empleados</a></li>
+            <!--<li><a href="index.php?accion=ver_departamentos">Departamentos</a></li>-->
+            <li><a href="vista\departamentos.php">Departamentos</a></li>
+            <?php endif;?>
+            
+            <li><a href="index.php?accion=contacto">Contacto</a></li>
+            
+            <!-- Si el usuario no está logueado, mostramos el enlace al login -->
+            <?php if (!isset($_SESSION['usuario'])): ?>
+                <li><a href="index.php?accion=login">Login</a></li>
+            <?php else: ?>
+                <li><a href="index.php?accion=logout">Cerrar sesión</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
     <h1>Lista de Empleados</h1>
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=emp_no&orden=asc">+</a>
+                    ID
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=emp_no&orden=desc">-</a>
+                </th>
+                <th>
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=first_name&orden=asc">+</a>
+                    Nombre
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=first_name&orden=desc">+</a>
+                </th>
+                <th>
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=last_name&orden=asc">+</a>
+                    Apellido
+                    <a href="/index.php?accion=ver_empleados&ordenarPor=last_name&orden=desc">+</a>
+                </th>
                 <th>Fecha de Nacimiento</th>
                 <th>Fecha de Contratación</th>
                 <th>Género</th>
