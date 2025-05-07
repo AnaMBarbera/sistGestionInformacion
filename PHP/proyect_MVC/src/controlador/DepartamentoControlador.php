@@ -9,10 +9,10 @@ class DepartamentoControlador{
         $this->modelo = new Departamento();
     }
 
-    public function verDepartamentos($pagina=1){
+    public function verDepartamentos($pagina=1, $ordenarPor = 'emp_no', $orden = 'asc', $busqueda = ""){
         $departamentosPorPagina = 10;
-        $departamentos = $this->modelo->obtenerDepartamentos($pagina, $departamentosPorPagina);
-        $totalDepartamentos = $this->modelo->obtenerTotalDepartamentos();
+        $departamentos = $this->modelo->obtenerDepartamentos($pagina, $departamentosPorPagina, $ordenarPor, $orden, $busqueda);
+        $totalDepartamentos = $this->modelo->obtenerTotalDepartamentos($busqueda);
         //ceil redondea hacia arriba
         $totalPaginas = ceil($totalDepartamentos/$departamentosPorPagina);
         include __DIR__."/../vista/departamentos.php";

@@ -8,16 +8,50 @@ include __DIR__."/../utils/db.php";
         public function __construct(){
             $this -> conexion = dbConnection::obtenerConexion();
         }
-        //utilizamos 2 parámetros para la paginación
-        public function obtenerDepartamentos($pagina = 1, $elementos = 10): array {
-            $offset=($pagina-1)*$elementos;
 
-            $query = "SELECT * FROM departments ORDER BY dept_no DESC LIMIT :limit OFFSET :offset";
-            
+        public function obtenerTotalDepartamentos($busqueda):int{
+            $where = "";
+            if ($busqueda !== "")
+            $where = " AND (dept_no like :busqueda 
+                        OR dept_name like :busqueda)" ;
+    
+            $query = "SELECT count(*) as total 
+                        FROM departments
+                        WHERE 1 $where";
+    
+            $busqueda = "%$busqueda%";
+            $stmt = $this->conexion->prepare($query);
+            if ($where !="") $stmt->bindParam("busqueda", $busqueda, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC)['total'];          
+    
+        }
+        //utilizamos 2 parámetros para la paginación
+        public function obtenerDepartamentos($pagina = 1, $elementos = 10,
+        $ordenarPor = 'emp_no',
+        $orden = 'asc',
+        $busqueda=''): array {
+            $offset=($pagina-1)*$elementos;
+            $where = "";
+            if ($busqueda !== "")
+                $where = " AND (dept_no like :busqueda 
+                OR dept_name like :busqueda)" ;
+
+            $query = "SELECT *
+                     FROM departments
+                     WHERE 1 $where
+                     ORDER BY dept_no 
+                     DESC LIMIT :limit 
+                     OFFSET :offset";
+
+            $busqueda = "%$busqueda%";
+
             $stmt = $this ->conexion->prepare($query);
             $stmt -> bindParam("offset", $offset, PDO::PARAM_INT);
             $stmt -> bindParam("limit", $elementos, PDO::PARAM_INT);
+            if ($where !="") $stmt->bindParam("busqueda", $busqueda, PDO::PARAM_STR);
             $stmt->execute();
+
             return $stmt ->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -31,7 +65,6 @@ include __DIR__."/../utils/db.php";
             $nextNum = $count ? $count + 1 : 1;
             //aquí añadimos la parte númerica al carácter "d"
             $id = 'd' . str_pad($nextNum, 3, '0', STR_PAD_LEFT);
-
             return $id;
         }
 

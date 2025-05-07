@@ -8,30 +8,6 @@ class Empleado {
     public function __construct() {
         $this->conexion = dbConnection::obtenerConexion();
     }
-/*
-    public function obtenerEmpleados(
-        $pagina = 1,
-        $elementos = 10,
-        $ordenarPor = 'emp_no',
-        $orden = 'asc'): array {
-
-        $offset=($pagina-1)*$elementos;
-        
-        $query = "SELECT * 
-                    FROM employees 
-                    ORDER BY :column :orden                   
-                    LIMIT :limit
-                    OFFSET :offset"; 
-
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bindParam("offset", $offset, PDO::PARAM_INT);
-        $stmt->bindParam("limit", $elementos, PDO::PARAM_INT);
-        $stmt->bindParam("column", $ordenarPor, PDO::PARAM_STR);
-        $stmt->bindParam("orden", $orden, PDO::PARAM_STR);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-        */
 
     public function obtenerTotalEmpleados($busqueda):int{
         $where = "";
