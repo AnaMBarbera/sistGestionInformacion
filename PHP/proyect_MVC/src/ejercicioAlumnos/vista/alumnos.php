@@ -6,19 +6,18 @@
     <title>Administración de alumnos</title>
 </head>
 <body>
-    <h1>Administración de Empleados</h1>
-        <!-- Botón para agregar nuevo empleado -->
-        <button onclick='mostrarFormulario();'>Añadir Nuevo Empleado</button>
+    <h1>Administración de Alumnos</h1>
+        <!-- Botón para agregar nuevo alumno -->
+        <button onclick='mostrarFormulario();'>Añadir Nuevo Alumno</button>
         <!-- Tabla de empleados -->
     <table id="alumnos">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Fecha de Contratación</th>
-                <th>Género</th>
+                <th>Edad</th>
+                <th>Curso</th>
+                <th>Email</th>                
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -34,7 +33,7 @@
                     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                     // Consulta para obtener todos los alumnos
-                    $query = "SELECT id, nombre, edad, curso, email FROM escuela";
+                    $query = "SELECT id, nombre, edad, curso, email FROM alumnos";
                     $stmt = $conexion->query($query);
 
                     if ($stmt->rowCount() > 0) {
@@ -46,8 +45,8 @@
                             echo "<td>" . $alumno['curso'] . "</td>";
                             echo "<td>" . $alumno['email'] . "</td>";                           
                             echo "<td>
-                                    <button onclick='editarEmpleado(".$alumno['id'] . ")'>Editar</button>
-                                    <button onclick='eliminarEmpleado(".$alumno['id'] . ")'>Eliminar</button>
+                                    <button onclick='editarAlumno(".$alumno['id'] . ")'>Editar</button>
+                                    <button onclick='eliminarAlumno(".$alumno['id'] . ")'>Eliminar</button>
                                 </td>";
                             echo "</tr>";
                         }
