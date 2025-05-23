@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Alumnos</title>
-    <link rel="stylesheet" href="/vista/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>  
+<body class="container my-5">  
 
-    <h1>Lista de Alumnos</h1>
-    <table>
-        <thead>
+    <h1 class="mb-4">Lista de Alumnos</h1>
+    <table table class="table table-striped table-bordered">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
@@ -28,15 +29,15 @@
                 <td><?= $alumno['curso'] ?></td>
                 <td><?= $alumno['email'] ?></td>                
                 <td>
-                    <a href="index.php?accion=editar_alumnos&id=<?= $alumno['id'] ?>">Editar</a>
-                    <button onclick="eliminarAlumno(<?= $alumno['id']?>);" >Eliminar</button>
+                    <a href="index.php?accion=editar_alumnos&id=<?= $alumno['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
+                    <button onclick="eliminarAlumno(<?= $alumno['id']?>);"  class="btn btn-sm btn-danger">Eliminar</button>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div style="max-width: 800px; margin: 0 auto;">
-        <a href="./index.php?accion=nuevo_alumno">Agregar Nuevo Alumno</a>
+    <div class="text-center mt-4">
+        <a href="./index.php?accion=nuevo_alumno" class="btn btn-success">Agregar Nuevo Alumno</a>
     </div>   
 
     <script>
