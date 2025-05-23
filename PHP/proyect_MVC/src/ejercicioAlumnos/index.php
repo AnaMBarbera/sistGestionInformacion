@@ -1,52 +1,57 @@
 <?php
     include __DIR__."/controlador/ControladorPrincipal.php";
     session_start();
-    //http://localhost:8080/index.php?&action=ver;
 
     $accion = "inicio";
-
     if (isset($_GET["accion"])) {
         $accion = $_GET["accion"];
     }    
-
     $controlador = new ControladorPrincipal();
     $controlador->manejarSolicitud($accion);
-
-
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/vista/styles.css">
-    <title>Document</title>
+    <title>Sistema de Gestión de Alumnos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
     <!-- Cabecera -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.php?accion=inicio">Inicio</a></li>                
-                <li><a href="index.php?accion=ver_alumnos">Alumnos</a></li>                
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Gestión Alumnos</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?accion=inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?accion=ver_alumnos">Alumnos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <!-- Cuerpo principal de la página -->
-    <main>
-        <section id="bienvenida">
-            <h1>Bienvenido al Sistema de Gestión de Alumnos</h1>
-            <p>Desde esta página, puedes gestionar la base de datos de la escuela con la tabla de alumnos.</p>
+    <!-- Contenido principal -->
+    <main class="flex-grow-1 container py-4">
+        <div class="text-center">
+            <h1 class="display-4">Bienvenido al Sistema de Gestión de Alumnos</h1>
+            <p class="lead">Desde esta página, puedes gestionar la base de datos de la escuela con la tabla de alumnos.</p>
             <p>Selecciona una opción del menú para empezar.</p>
-        </section>
+        </div>
     </main>
 
     <!-- Pie de página -->
-    <footer>
-        <p>&copy; 2025 Sistema de Gestión</p>
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">&copy; 2025 Sistema de Gestión</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
