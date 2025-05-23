@@ -2,7 +2,7 @@ services:
   php:
     image: php:8.2-fpm
     build: ./php
-    container_name: docker_php
+    container_name: docker_php2
     volumes:
       - ./src:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/php.ini

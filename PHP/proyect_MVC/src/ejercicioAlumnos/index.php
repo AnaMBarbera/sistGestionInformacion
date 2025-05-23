@@ -28,11 +28,8 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.php?accion=inicio">Inicio</a></li>
-
-                <?php if (isset($_SESSION['usuario'])): ?>
-                <li><a href="index.php?accion=ver_alumnos">Alumnos</a></li> 
-                <?php endif;?>  
+                <li><a href="index.php?accion=inicio">Inicio</a></li>                
+                <li><a href="index.php?accion=ver_alumnos">Alumnos</a></li>                
             </ul>
         </nav>
     </header>

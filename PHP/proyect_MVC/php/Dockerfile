@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 #RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
 # Instalar las extensiones de PHP necesarias
-RUN pecl install mongodb \
-    && docker-php-ext-enable mongodb
+# RUN pecl install mongodb \
+#    && docker-php-ext-enable mongodb
 
 # Establecer la ruta de trabajo
 WORKDIR /var/www/html
