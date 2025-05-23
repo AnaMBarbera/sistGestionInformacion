@@ -9,7 +9,7 @@ class AlumnoControlador {
     }
 
     public function verAlumnos() {        
-        $empleados = $this->modelo->obtenerAlumnos();
+        $alumnos = $this->modelo->obtenerAlumnos();
         
         include __DIR__."/../vista/alumnos.php";
     }
@@ -46,7 +46,7 @@ class AlumnoControlador {
                 $curso, 
                 $email);
             }
-        header("location: /index.php?accion=ver_alumnos");
+        header("location: ./index.php?accion=ver_alumnos");
     }
 
     public function nuevoAlumno() {
@@ -58,6 +58,6 @@ class AlumnoControlador {
 
     public function eliminarAlumno($id) {
         $this->modelo->eliminarAlumno($id);
-        header("location: /index.php?accion=ver_alumnos");
+        header("location: ./index.php?accion=ver_alumnos");
     }
 }
