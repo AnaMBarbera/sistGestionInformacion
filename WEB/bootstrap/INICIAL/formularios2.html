@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formularios 23</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- EJEMPLOS DE ARCHIVOS INPUT -->
+      <div class="mb-3">
+        <label for="formFile" class="form-label"
+          >Default file input example</label
+        >
+        <input class="form-control" type="file" id="formFile" />
+      </div>
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label"
+          >Multiple files input example</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="formFileMultiple"
+          multiple
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formFileDisabled" class="form-label"
+          >Disabled file input example</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="formFileDisabled"
+          disabled
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formFileSm" class="form-label"
+          >Small file input example</label
+        >
+        <input
+          class="form-control form-control-sm"
+          id="formFileSm"
+          type="file"
+        />
+      </div>
+      <div>
+        <label for="formFileLg" class="form-label"
+          >Large file input example</label
+        >
+        <input
+          class="form-control form-control-lg"
+          id="formFileLg"
+          type="file"
+        />
+      </div>
+      <br />
+
+      <!-- EJEMPLO DE COLOR INPUT -->
+      <label for="exampleColorInput" class="form-label">Color picker</label>
+      <input
+        type="color"
+        class="form-control-color"
+        id="exampleColorInput"
+        value="#563d7c"
+        title="Choose your color"
+      />
+      <br /><br />
+
+      <!-- EJEMPLO DE DATALIST -->
+      <label for="exampleDataList" class="form-label"
+        >Select a browser from this list:</label
+      >
+      <input
+        class="form-control"
+        list="browsers"
+        id="exampleDataList"
+        placeholder="Type to search..."
+      />
+      <datalist id="browsers">
+        <option value="Chrome"></option>
+        <option value="Firefox"></option>
+        <option value="Safari"></option>
+        <option value="Opera"></option>
+        <option value="Internet Explorer"></option>
+      </datalist>
+      <br />
+
+      <!-- EJEMPLO DE SELECT -->
+      <form class="row">
+        <div class="col-auto">
+          <label for="opciones" class="col-form-label lg"
+            >Selecciona una opción</label
+          >
+          <select class="col-form-select" id="opciones">
+            <option selected>Elige una opción...</option>
+            <option value="1">Opción 1</option>
+            <option value="2">Opción 2</option>
+            <option value="3">Opción 3</option>
+          </select>
+        </div>
+      </form>
+      <br />
+      <form>
+        <!-- EJEMPLO DE CHECKS -->
+        <div class="mb-3">
+          <label class="form-label">Selecciona tus preferencias</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="opcion1" />
+            <label class="form-check-label" for="opcion1">Opción 1</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="opcion2" />
+            <label class="form-check-label" for="opcion2">Opción 2</label>
+          </div>
+        </div>
+        <br />
+        <!-- EJEMPLO DE BUTTONS RADIOS -->
+        <div class="mb-3">
+          <label class="form-label">Selecciona una opción</label>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radioGrupo"
+              id="radio1"
+            />
+            <label class="form-check-label" for="radio1">Opción A</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radioGrupo"
+              id="radio2"
+            />
+            <label class="form-check-label" for="radio2">Opción B</label>
+          </div>
+        </div>
+      </form>
+      <br />
+      <!-- EJEMPLO DE SWITCH -->
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Default switch checkbox input</label
+        >
+      </div>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckChecked"
+          checked
+        />
+        <label class="form-check-label" for="flexSwitchCheckChecked"
+          >Checked switch checkbox input</label
+        >
+      </div>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDisabled"
+          disabled
+        />
+        <label class="form-check-label" for="flexSwitchCheckDisabled"
+          >Disabled switch checkbox input</label
+        >
+      </div>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckCheckedDisabled"
+          checked
+          disabled
+        />
+        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"
+          >Disabled checked switch checkbox input</label
+        >
+      </div>
+      <br />
+
+      <!-- EJEMPLO DE ESTILO BOTON PARA CHECKS -->
+      <input
+        type="checkbox"
+        class="btn-check"
+        id="btn-check"
+        autocomplete="off"
+      />
+      <label class="btn btn-primary" for="btn-check">Single toggle</label>
+
+      <input
+        type="checkbox"
+        class="btn-check"
+        id="btn-check-2"
+        checked
+        autocomplete="off"
+      />
+      <label class="btn btn-primary" for="btn-check-2">Checked</label>
+
+      <input
+        type="checkbox"
+        class="btn-check"
+        id="btn-check-3"
+        autocomplete="off"
+        disabled
+      />
+      <label class="btn btn-primary" for="btn-check-3">Disabled</label>
+      <br />
+      <br>
+      <!-- EJEMPLO DE ESTILO BOTON PARA RADIO -->
+      <input
+        type="radio"
+        class="btn-check"
+        name="options"
+        id="option1"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-secondary" for="option1">Checked</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="options"
+        id="option2"
+        autocomplete="off"
+      />
+      <label class="btn btn-secondary" for="option2">Radio</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="options"
+        id="option3"
+        autocomplete="off"
+        disabled
+      />
+      <label class="btn btn-secondary" for="option3">Disabled</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="options"
+        id="option4"
+        autocomplete="off"
+      />
+      <label class="btn btn-secondary" for="option4">Radio</label>    
+    <br><br>
+
+    <!-- EJEMPLO DE ESTILOS DESALINEADOS -->
+    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+
+    <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+    <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label><br>
+
+    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+    <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+
+    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+    <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+
+    <br><br>
+    <!-- EJEMPLO DE FORM RANGE -->
+    <label for="rango" class="form-label">Selecciona un valor</label>
+    <input type="range" class="form-range" id="rango" min="0" max="100">
+    <br>
+    <label for="rangoCustom" class="form-label">Rango con pasos</label>
+    <input type="range" class="form-range" id="rangoCustom" min="0" max="50" step="5">
+    <br>
+
+    <!-- EJEMPLOS DE INPUT GROUP -->
+     <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Usuario">
+      <button class="btn btn-outline-secondary" type="button">Buscar</button>
+    </div>
+    <br>
+    <div class="input-group mb-3">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Nombre de usuario">
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" placeholder="Cantidad">
+      <span class="input-group-text">.00</span>
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      <input type="text" class="form-control" placeholder="Buscar usuario">
+  </div>
+  <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Enviar mensaje">
+      <button class="btn btn-outline-primary" type="button">Enviar</button>
+  </div>
+  
+
+  </div>
+  </body>
+</html>
