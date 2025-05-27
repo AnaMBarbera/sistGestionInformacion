@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formularios 23</title>
+    <title>Formularios 2</title>
     <link
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+    <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
   </head>
   <body>
     <div class="container">
@@ -223,7 +228,7 @@
       />
       <label class="btn btn-primary" for="btn-check-3">Disabled</label>
       <br />
-      <br>
+      <br />
       <!-- EJEMPLO DE ESTILO BOTON PARA RADIO -->
       <input
         type="radio"
@@ -258,58 +263,194 @@
         id="option4"
         autocomplete="off"
       />
-      <label class="btn btn-secondary" for="option4">Radio</label>    
-    <br><br>
+      <label class="btn btn-secondary" for="option4">Radio</label>
+      <br /><br />
 
-    <!-- EJEMPLO DE ESTILOS DESALINEADOS -->
-    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+      <!-- EJEMPLO DE ESTILOS DESALINEADOS -->
+      <input
+        type="checkbox"
+        class="btn-check"
+        id="btn-check-outlined"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-primary" for="btn-check-outlined"
+        >Single toggle</label
+      ><br />
 
-    <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
-    <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label><br>
+      <input
+        type="checkbox"
+        class="btn-check"
+        id="btn-check-2-outlined"
+        checked
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-secondary" for="btn-check-2-outlined"
+        >Checked</label
+      ><br />
 
-    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-    <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="options-outlined"
+        id="success-outlined"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-outline-success" for="success-outlined"
+        >Checked success radio</label
+      >
 
-    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-    <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="options-outlined"
+        id="danger-outlined"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-danger" for="danger-outlined"
+        >Danger radio</label
+      >
+      <br /><br />
+      <!-- EJEMPLO DE FORM RANGE -->
+      <label for="rango" class="form-label">Selecciona un valor</label>
+      <input type="range" class="form-range" id="rango" min="0" max="100" />
+      <br />
+      <label for="rangoCustom" class="form-label">Rango con pasos</label>
+      <input
+        type="range"
+        class="form-range"
+        id="rangoCustom"
+        min="0"
+        max="50"
+        step="5"
+      />
+      <br />
 
-    <br><br>
-    <!-- EJEMPLO DE FORM RANGE -->
-    <label for="rango" class="form-label">Selecciona un valor</label>
-    <input type="range" class="form-range" id="rango" min="0" max="100">
-    <br>
-    <label for="rangoCustom" class="form-label">Rango con pasos</label>
-    <input type="range" class="form-range" id="rangoCustom" min="0" max="50" step="5">
-    <br>
-
-    <!-- EJEMPLOS DE INPUT GROUP -->
-     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Usuario">
-      <button class="btn btn-outline-secondary" type="button">Buscar</button>
-    </div>
-    <br>
-    <div class="input-group mb-3">
+      <!-- EJEMPLOS DE INPUT GROUP -->
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Usuario" />
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+      <br />
+      <div class="input-group mb-3">
         <span class="input-group-text">@</span>
-        <input type="text" class="form-control" placeholder="Nombre de usuario">
-    </div>
-    <br>
-    <div class="input-group mb-3">
-      <span class="input-group-text">$</span>
-      <input type="text" class="form-control" placeholder="Cantidad">
-      <span class="input-group-text">.00</span>
-    </div>
-    <br>
-    <div class="input-group mb-3">
-      <button class="btn btn-outline-secondary" type="button">Buscar</button>
-      <input type="text" class="form-control" placeholder="Buscar usuario">
-  </div>
-  <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Enviar mensaje">
-      <button class="btn btn-outline-primary" type="button">Enviar</button>
-  </div>
-  
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nombre de usuario"
+        />
+      </div>
+      <br />
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control" placeholder="Cantidad" />
+        <span class="input-group-text">.00</span>
+      </div>
+      <br />
+      <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+        <input type="text" class="form-control" placeholder="Buscar usuario" />
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Enviar mensaje" />
+        <button class="btn btn-outline-primary" type="button">Enviar</button>
+      </div>
+      <br /><br />
+      <div class="mb-3">
+        <label for="basic-url" class="form-label">Your vanity URL</label>
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon3"
+            >https://example.com/users/</span
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3 basic-addon4"
+          />
+        </div>
+        <div class="form-text" id="basic-addon4">
+          Example help text goes outside the input group.
+        </div>
+      </div>
+      <br /><br />
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+        />
+        <span class="input-group-text">@</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Server"
+          aria-label="Server"
+        />
+      </div>
+      <br /><br />
+      <div class="input-group">
+        <span class="input-group-text">With textarea</span>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+      </div>
+      <br /><br />
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">Grande</span>
+        <input type="text" class="form-control" />
+      </div>
 
-  </div>
-  </body>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Normal</span>
+        <input type="text" class="form-control" />
+      </div>
+
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Pequeño</span>
+        <input type="text" class="form-control" />
+      </div>
+      <br /><br />
+      <div class="input-group mb-3">
+        <div class="input-group-text">
+          <input class="form-check-input mt-0" type="checkbox" value="" />
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Texto con checkbox"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-text">
+          <input class="form-check-input mt-0" type="radio" value="" />
+        </div>
+        <input type="text" class="form-control" placeholder="Texto con radio" />
+      </div>
+      <br /><br />
+
+      <!-- EJEMPLOS DE INPUT GROUP CON DROPDOWN -->
+      <div class="input-group mb-3">
+        <button
+          class="btn btn-outline-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+        >
+          Opciones
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Acción 1</a></li>
+          <li><a class="dropdown-item" href="#">Acción 2</a></li>
+          <li><a class="dropdown-item" href="#">Acción 3</a></li>
+        </ul>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Selecciona una opción"
+        />
+      </div>
+    </div>
+
+   <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
