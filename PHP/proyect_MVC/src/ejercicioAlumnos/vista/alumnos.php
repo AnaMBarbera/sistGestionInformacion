@@ -11,18 +11,14 @@
 
   <!-- Cabecera -->
   <header>
-    <nav class="navbar">
+  <nav class="navbar">
       <div class="container">
         <a class="navbar-brand" href="#">Gestión Alumnos</a>
         <div>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?accion=inicio">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?accion=ver_alumnos">Alumnos</a>
-            </li>
-          </ul>
+          <p class="navbar-nav">            
+              <a class="nav-link" href="index.php?accion=inicio">Inicio</a>                       
+              <a class="nav-link" href="index.php?accion=ver_alumnos">Alumnos</a>            
+          </p>
         </div>
       </div>
     </nav>

@@ -26,12 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Formulario Alumno</title>
-    <link rel="stylesheet" href="/vista/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!--   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link rel="stylesheet" href="estilos.css">
+    
 </head>
 
 <body class="container my-5">
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gestión Alumnos</a>
+            <div>
+            <p class="navbar-nav">            
+                <a class="nav-link" href="index.php?accion=inicio">Inicio</a>                       
+                <a class="nav-link" href="index.php?accion=ver_alumnos">Alumnos</a>            
+            </p>
+            </div>
+        </div>
+        </nav>
     <h1 class="mb-4"><?= $modo != 'editar' ? 'Crear' : 'Editar' ?> Alumno</h1>
     <form method="POST" action="./index.php?accion=actualizar_alumno&id=<?= $id ?>" class="row g-3 col-md-10 col-lg-8">
         <div class="col-md-10">
@@ -42,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="edad" class="form-label">Edad:</label>
             <input type="number" class="form-control" name="edad" value="<?= $alumno['edad'] ?? '' ?>" required><br>
         </div>
+        
         <div class="col-md-7">
             <label for="curso" class="form-label">Curso:</label>
             <input type="text" class="form-control" name="curso" value="<?= $alumno['curso'] ?? '' ?>" required><br><br>
