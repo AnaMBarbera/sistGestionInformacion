@@ -1,0 +1,72 @@
+[	
+
+{"nombre":	"Curso de SQL Nivel Intermedio",
+"tecnologia":	"SQL",
+"duracion":	"70 horas",
+"precio":	"335€",
+"imagen":	"sql-course.jpg",
+"descripcion":	"Administración y consultas avanzadas en bases de datos SQL."},
+	
+{"nombre":	"Curso de Ruby Nivel Intermedio",
+"tecnologia":	"Ruby",
+"duracion":	"59 horas",
+"precio":	"227€",
+"imagen":	"ruby-course.jpg",
+"descripcion":	"Programación en Ruby y desarrollo con Ruby on Rails."},
+	
+{"nombre":	"Curso de React Nivel Intermedio",
+"tecnologia":	"React",
+"duracion":	"68 horas",
+"precio":	"425€",
+"imagen":"react.jpg",
+"descripcion":	"Desarrollo de aplicaciones modernas con React.js."},
+	
+{"nombre":	"Curso de JavaScript Nivel Intermedio",
+"tecnologia":	"JavaScript",
+"duracion":	"72 horas",
+"precio":	"273€",
+"imagen":"js-course.jpg",
+"descripcion":	"Aprende a desarrollar aplicaciones web dinámicas con JavaScript."},
+	
+{"nombre":	"Curso de JavaScript Nivel Básico",
+"tecnologia":	"JavaScript",
+"duracion":	"37 horas",
+"precio":	"356€",
+"imagen":	"js-course.jpg",
+"descripcion":	"Aprende a desarrollar aplicaciones web dinámicas con JavaScript."},
+	
+{"nombre":	"Curso de Python Nivel Básico",
+"tecnologia":	"Python",
+"duracion":	"58 horas",
+"precio":	"458€",
+"imagen":	"python-course.jpg",
+"descripcion":	"Curso para aprender los fundamentos del lenguaje Python."},
+	
+{"nombre":	"Curso de Python Nivel Avanzado",
+"tecnologia":	"Python",
+"duracion":	"34 horas",
+"precio":	"411€",
+"imagen":	"python-course.jpg",
+"descripcion":	"Curso para aprender los fundamentos del lenguaje Python."},
+	
+{"nombre":	"Curso de Ruby Nivel Básico",
+"tecnologia":	"Ruby",
+"duracion":	"34 horas",
+"precio":	"352€",
+"imagen":	"ruby-course.jpg",
+"descripcion":	"Programación en Ruby y desarrollo con Ruby on Rails."},
+
+{"nombre":	"Curso de Node.js Nivel Avanzado",
+"tecnologia":	"Node.js",
+"duracion":	"47 horas",
+"precio":	"497€",
+"imagen":	"node-course.jpg",
+"descripcion":	"Backend con Node.js y Express para crear APIs REST."},
+
+{"nombre":	"Curso de React Nivel Avanzado",
+"tecnologia":	"React",
+"duracion":	"69 horas",
+"precio":	"482€",
+"imagen":	"react.jpg",
+"descripcion":	"Desarrollo de aplicaciones modernas con React.js."}
+]

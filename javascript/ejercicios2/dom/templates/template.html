@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Template</title>
+    <style>
+        .tarjeta{
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: center;
+            text-align: center;
+            border: 2px solid #ccc; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <template id="mi-template">
+        <div class="tarjeta">
+            <img src="images.jpeg" alt="" style="text-align: center; height: 80px; border-radius: 100%;">
+            <h2 class="titulo"></h2>
+            <p class="contenido"></p>
+            
+        </div>
+    </template>
+    <div id="contenedor"></div>
+    <button id="boton">Nueva tarjeta</button>
+    <script src="documentFragment.js"></script>
+</body>
+</html>
