@@ -191,3 +191,88 @@ table {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+
+/* Breakpoint para tablets (≥768px) */
+@media (max-width: 767.98px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar a {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  form.row {
+    flex-direction: column;
+  }
+  .col-md-2,
+  .col-md-5,
+  .col-md-7,
+  .col-md-10,
+  .col-lg-8 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  h1.display-4 {
+    font-size: 2rem;
+  }
+  p.lead {
+    font-size: 1rem;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Breakpoint para tablets (≥768px) */
+@media (max-width: 767.98px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar a {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  form.row {
+    flex-direction: column;
+  }
+  .col-md-2,
+  .col-md-5,
+  .col-md-7,
+  .col-md-10,
+  .col-lg-8 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  h1.display-4 {
+    font-size: 2rem;
+  }
+  p.lead {
+    font-size: 1rem;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Breakpoint para teléfonos (≥576px) */
+@media (max-width: 575.98px) {
+  .container {
+    width: 95%;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  .btn-sm {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  table {
+    font-size: 0.9rem;
+    overflow-x: auto;
+    display: block;
+  }
+}
