@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios Api</title>
+</head>
+<body>
+  <h1>Api de usuarios</h1> 
+  <button onclick="getUser()">Listar Usuarios</button>
+  <button onclick="addUser()">Añadir Usuario</button>
+  <button onclick="deleteUser()">Borrar Usuario</button>
+  <script>
+    function getUser(){
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error("Error al obtener datos", error));
+    }
+    function addUser(){
+        fetch("https://jsonplaceholder.typicode.com/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: "Ana Barberá",
+                username: "Ana",
+                email: "ana@gmail.com",
+                address: {
+                street: "Victor Plains",
+                suite: "Suite 879",
+                city: "Wisokyburgh",
+                zipcode: "90566-7771",
+                geo: {
+                    lat: "-43.9509",
+                    lng: "-34.4618"
+                }
+                },
+                phone: "010-692-6593 x09125",
+                website: "anastasia.net",
+                company: {
+                name: "Deckow-Crist",
+                catchPhrase: "Proactive didactic contingency",
+                bs: "synergize scalable supply-chains"
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log("Usuario creado:", data))
+        .catch(error => console.error("Error en la petición POST", error));
+    }
+    function deleteUser(){
+        fetch("https://jsonplaceholder.typicode.com/users/1", {
+            method: "DELETE"
+        })
+        .then(response => console.log("Usuario eliminado:", response))
+        .catch(error => console.error("Error al eliminar usuario", error));
+    }
+  </script>
+  </body>
+</body>
+</html>
